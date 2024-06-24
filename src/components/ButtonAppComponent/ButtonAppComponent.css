@@ -1,0 +1,17 @@
+.button-app {
+    background-color: var(--button-color);
+    border-color: var(--button-border-color);
+    border-radius: 7px;
+    border-width: 3px;
+    border-style: solid;
+    font-family: Inter, sans-serif;
+    font-size: 0.8em;
+    color: var(--white-font);
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px var(--button-shadow);
+}
+
+.button-app:hover {
+    background-color: var(--button-color-hover);
+}

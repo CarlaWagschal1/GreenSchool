@@ -1,5 +1,5 @@
-import HeaderComponent from "../components/HeaderComponent.tsx";
-import HomePageContentComponent from "../components/HomePageContentComponent.tsx";
+import HeaderComponent from "../components/HeaderComponent/HeaderComponent.tsx";
+import HomePageContentComponent from "../components/HomePageContentComponent/HomePageContentComponent.tsx";
 
 export default function HomePage() {
     return (

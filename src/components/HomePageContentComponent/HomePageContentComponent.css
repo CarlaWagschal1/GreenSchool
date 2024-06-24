@@ -1,0 +1,26 @@
+body{
+    background-color: var(--background-color);
+    margin: 0;
+}
+
+.welcome-text{
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 2em;
+    margin: 10px 0;
+    padding: 20px;
+    font-weight: bold;
+    color: var(--vert-fonce);
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+
+}
+
+.game-scroll{
+    display: flex;
+    justify-content: center;
+}
