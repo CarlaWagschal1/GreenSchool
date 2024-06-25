@@ -5,9 +5,9 @@
     border-width: 3px;
     border-style: solid;
     font-family: Inter, sans-serif;
-    font-size: 0.8em;
+    font-size: 1.3em;
     color: var(--white-font);
-    padding: 15px;
+    padding: 25px;
     cursor: pointer;
     box-shadow: 5px 5px 5px var(--button-shadow);
 }

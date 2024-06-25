@@ -9,6 +9,12 @@
     box-shadow: 0 0 10px var(--game-scroll-item-shadow);
 }
 
+.container-game-scroll-item:hover{
+    background-color: var(--game-scroll-item-background-hover);
+    box-shadow: 0 0 10px var(--game-scroll-item-shadow);
+    cursor: pointer;
+}
+
 .game-name{
     font-size: 1.5em;
     font-family: Inter, sans-serif;

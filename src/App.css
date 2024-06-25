@@ -4,7 +4,7 @@ body {
 
   /* Button */
   --button-color : #F89114;
-  --button-color-hover : rgba(248, 145, 20, 0.85);
+  --button-color-hover : rgba(248, 145, 20, 0.75);
   --button-border-color : #fff;
   --button-shadow : rgba(0,0,0,0.38);
 
@@ -17,6 +17,11 @@ body {
   /* GameScrollItem */
   --game-scroll-item-background : #D0EFBD;
   --game-scroll-item-shadow : rgba(0,0,0,0.50);
+  --game-scroll-item-background-hover : rgba(183, 211, 174, 0.85);
+
+  /* ScanDisplayComponent */
+    --scan-display-webcam-shadow : rgba(0,0,0,0.50);
+
 
   height: 100vh;
   width: 100vw;

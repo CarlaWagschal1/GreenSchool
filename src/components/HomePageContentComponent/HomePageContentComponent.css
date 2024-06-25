@@ -36,3 +36,8 @@ main {
     display: flex;
     justify-content: center;
 }
+
+.scan-page{
+    display: none;
+    justify-content: center;
+}

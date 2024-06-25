@@ -7,7 +7,7 @@ interface ButtonAppComponentProps {
 
 function ButtonAppComponent(props: ButtonAppComponentProps){
   return (
-    <button className="button-app">{props.content}</button>
+    <button className="button-app" onClick={props.action}>{props.content}</button>
   );
 }
 
