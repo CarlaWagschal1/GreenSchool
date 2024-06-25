@@ -6,12 +6,12 @@ import './HeaderComponent.css';
 
 export default function HeaderComponent() {
     return(
-        <main>
+        <header>
             <div className="container-header">
                 <div className="logo"><img src={logoApp} alt="Logo"></img></div>
                 <div className="empty-header"></div>
                 <div className="earth-globe"><img src={globeApp} alt="Globe"></img></div>
             </div>
-        </main>
+        </header>
     )
 }

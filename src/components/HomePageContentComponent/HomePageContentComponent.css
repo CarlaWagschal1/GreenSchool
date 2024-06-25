@@ -1,6 +1,18 @@
 body{
     background-color: var(--background-color);
-    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container-home-page-content {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+    height: 100%;
 }
 
 .welcome-text{
