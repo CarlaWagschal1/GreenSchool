@@ -1,5 +1,5 @@
 import Webcam from "react-webcam";
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
 
@@ -22,13 +22,28 @@ function ScanDisplayComponent () {
         navigate('/');
     }
 
+
+    const findWaste = () => {
+        // TODO: API CALL
+        navigate('/answer', {state: {waste: "plastic"}})
+
+    }
+
+    useEffect(() => {
+        if (imgSrc) {
+            findWaste();
+        }
+    }, [findWaste, imgSrc]);
+
     return (
         <div className="webcam-container">
             {imgSrc ? (
-                <div className="answerWaste"> You can throw your waste in the bin "...." </div>
+                <div className="img-preview">
+                    <img src={imgSrc} alt="Captured"/>
+                </div>
             ) : (
                 <div className="web-camera">
-                    <Webcam ref={webcamRef} mirrored={true} screenshotFormat="image/jpeg" />
+                    <Webcam ref={webcamRef} mirrored={true} screenshotFormat="image/jpeg"/>
 
                     <div className="btn-capture">
                         <ButtonAppComponent content={"TAKE A PICTURE"} action={capture}></ButtonAppComponent>
