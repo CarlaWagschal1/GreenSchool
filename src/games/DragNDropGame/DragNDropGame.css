@@ -1,0 +1,5 @@
+.drag-n-drop-img {
+    width: 100%;
+    min-height: fit-content;
+    max-height: 500px;
+}
