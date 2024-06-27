@@ -1,15 +1,12 @@
-.bin-container {
+.drag-and-drop-game-info {
     display: flex;
-}
-
-.type-container {
-    text-align: center;
     width: 100%;
-}
-
-.binImg {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.drag-and-drop-game-final-message {
+    width: 100%;
+    text-align: center;
 }
