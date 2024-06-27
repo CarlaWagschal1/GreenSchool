@@ -1,0 +1,43 @@
+body{
+    background-color: var(--background-color);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container-home-page-content {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+    height: 100%;
+}
+
+.welcome-text{
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 2em;
+    margin: 10px 0;
+    padding: 20px;
+    font-weight: bold;
+    color: var(--vert-fonce);
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+
+}
+
+.game-scroll{
+    display: flex;
+    justify-content: center;
+}
+
+.scan-page{
+    display: none;
+    justify-content: center;
+}
