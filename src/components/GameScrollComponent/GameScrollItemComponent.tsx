@@ -7,7 +7,7 @@ export default function GameScrollItemComponent(game: Game) {
 
     const navigateToGame = () => {
         // Navigate to the game page
-        navigate('/game1');
+        navigate(game.url);
     }
 
 

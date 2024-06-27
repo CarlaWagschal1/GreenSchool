@@ -7,6 +7,8 @@
     text-align: center;
     background-color: var(--game-scroll-item-background);
     box-shadow: 0 0 10px var(--game-scroll-item-shadow);
+    width: 200px;
+
 }
 
 .container-game-scroll-item:hover{

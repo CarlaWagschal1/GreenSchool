@@ -3,6 +3,11 @@
 }
 
 .type-container {
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    justify-content: center;
     text-align: center;
     width: 100%;
 }

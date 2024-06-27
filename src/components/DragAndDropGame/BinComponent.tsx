@@ -27,7 +27,7 @@ const BinComponent: React.FC<BinProps> = (props: BinProps) => {
             {props.img ? <div className="binImg">
                     <img src={props.img} alt={props.type} style={{
 
-                        filter: isOver ? 'brightness(1.2)' : 'brightness(1)',
+                        filter: isOver ? 'brightness(1.5)' : 'brightness(1)',
                     }} />
                     <a className="type-container"> {props.type}</a>
 

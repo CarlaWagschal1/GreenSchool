@@ -6,9 +6,9 @@ import WasteGameIMG from "../../mocks/img/waste-game-img.png";
 import { useNavigate } from 'react-router-dom';
 
 const gamesList: Game[] = [
-    { name: "Drag and drop", img: WasteGameIMG },
-    { name: "Game 2", img: WasteGameIMG },
-    { name: "Game 3", img: WasteGameIMG },
+    { name: "Drag and drop", img: WasteGameIMG, url: '/game1'},
+    { name: "Game 2", img: WasteGameIMG, url: '/game2' },
+    { name: "Game 3", img: WasteGameIMG, url: '/game3' },
     // Add other games as necessary
 ];
 

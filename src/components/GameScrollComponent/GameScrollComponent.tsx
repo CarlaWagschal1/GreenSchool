@@ -12,7 +12,7 @@ export default function GameScrollComponent({gamesList}: GameScrollProps) {
             <div className="container-game-scroll">
                 {gamesList.map((item: Game) =>
                     <li key={item.name}>
-                        <GameScrollItemComponent name={item.name} img={item.img}></GameScrollItemComponent>
+                        <GameScrollItemComponent name={item.name} img={item.img} url={item.url}></GameScrollItemComponent>
                     </li>)}
             </div>
         </>
