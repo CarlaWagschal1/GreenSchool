@@ -5,7 +5,13 @@ import Bouteille from '../../mocks/img/bouteille.png';
 import Armoire from '../../mocks/img/armoire.png';
 import Trognon from '../../mocks/img/trognon.png';
 import PoubelleDnd from '../../mocks/img/poubelle-tri-dnd.png';
+import Table from '../../mocks/img/table.png';
+import Cookie from '../../mocks/img/cookie.png';
+import Carton from '../../mocks/img/carton.png';
+
 import './DragAndDropGameComponent.css'
+import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
+import {useNavigate} from "react-router-dom";
 
 interface WasteItem {
     name: string;
@@ -14,14 +20,20 @@ interface WasteItem {
 }
 
 const initialWasteItems: WasteItem[] = [
-    {name: 'bouteille en plastique', img: Bouteille, type: 'plastique'},
-    {name: 'armoire encombrant', img: Armoire, type: 'encombrant'},
-    {name: 'trognon alimentaire', img: Trognon, type: 'alimentaire'},
+    {name: 'bouteille recyclable', img: Bouteille, type: 'recyclable'},
+    {name: 'armoire encombrant', img: Armoire, type: 'bulky'},
+    {name: 'trognon alimentaire', img: Trognon, type: 'food'},
+    {name: 'table encombrant', img: Table, type: 'bulky'},
+    {name: 'cookie alimentaire', img: Cookie, type: 'food'},
+    {name: 'carton recyclable', img: Carton, type: 'recyclable'},
 ];
 
-function DragAndDropGameComponent() {
+function DragAndDropGameComponent(){
+    const navigate = useNavigate();
+
     const [score, setScore] = useState(0);
     const [wasteItems, setWasteItems] = useState(initialWasteItems);
+    const sizeWasteItems = initialWasteItems.length;
 
     const handleDrop = (type: string) => (item: { name: string; img: string; type: string }) => {
         console.log(item, type);
@@ -35,22 +47,26 @@ function DragAndDropGameComponent() {
 
     const isGameOver = wasteItems.length === 0;
 
+    const navigateToHomePage = () => {
+        navigate('/');
+    }
+
     return (
         <div className="drag-and-drop-game-container">
             <div className="drag-and-drop-game-info">
-                <h1>Jeu de Tri des Déchets</h1>
-                <h2>Score: {score}</h2>
+                <h1>Sorting of Waste</h1>
             </div>
             {isGameOver ? (
-                <h2 className="drag-and-drop-game-final-message">Jeu terminé! Score final: {score}</h2>
+                <h2 className="drag-and-drop-game-final-message">Game Over! Final score: {score} / {sizeWasteItems}</h2>
             ) : (
                 <>
-                    <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                        <BinComponent type="plastique" img={PoubelleDnd} onDrop={handleDrop('plastique')}/>
-                        <BinComponent type="encombrant" img={PoubelleDnd} onDrop={handleDrop('encombrant')}/>
-                        <BinComponent type="alimentaire" img={PoubelleDnd} onDrop={handleDrop('alimentaire')}/>
+                    <h2 className="drag-and-drop-game-info">Score: {score} / {sizeWasteItems}</h2>
+                    <div className="bin-waste-container">
+                        <BinComponent type="recyclable" img={PoubelleDnd} onDrop={handleDrop('recyclable')}/>
+                        <BinComponent type="bulky" img={PoubelleDnd} onDrop={handleDrop('bulky')}/>
+                        <BinComponent type="food" img={PoubelleDnd} onDrop={handleDrop('food')}/>
                     </div>
-                    <div style={{marginTop: '20px', display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                    <div className="waste-item-container">
                         {wasteItems.map((wasteItem) => (
                             <WasteComponent key={wasteItem.name} name={wasteItem.name} img={wasteItem.img}
                                             type={wasteItem.type}/>
@@ -58,6 +74,10 @@ function DragAndDropGameComponent() {
                     </div>
                 </>
             )}
+            <div className="button-home">
+                <ButtonAppComponent content={"HOME"} action={navigateToHomePage}/>
+            </div>
+
         </div>
     );
 }
