@@ -9,7 +9,7 @@ function AnswerWasteComponent(props: wasteProps){
 
 
     return (
-    <>
+    <main>
         <div className="container-answer-waste">
             <div className="answer-content">
                 You have to put your waste in the <a className="answer-bold>" style={{fontWeight: "bold"}}>{props.waste}</a> bin
@@ -19,7 +19,7 @@ function AnswerWasteComponent(props: wasteProps){
             </div>
 
         </div>
-    </>
+    </main>
     );
 }
 

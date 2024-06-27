@@ -36,26 +36,28 @@ function ScanDisplayComponent () {
     }, [findWaste, imgSrc]);
 
     return (
-        <div className="webcam-container">
-            {imgSrc ? (
-                <div className="img-preview">
-                    <img src={imgSrc} alt="Captured"/>
-                </div>
-            ) : (
-                <div className="web-camera">
-                    <Webcam ref={webcamRef} mirrored={true} screenshotFormat="image/jpeg"/>
-
-                    <div className="btn-capture">
-                        <ButtonAppComponent content={"TAKE A PICTURE"} action={capture}></ButtonAppComponent>
+        <main>
+            <div className="webcam-container">
+                {imgSrc ? (
+                    <div className="img-preview">
+                        <img src={imgSrc} alt="Captured"/>
                     </div>
+                ) : (
+                    <div className="web-camera">
+                        <Webcam ref={webcamRef} mirrored={true} screenshotFormat="image/jpeg"/>
+
+                        <div className="btn-capture">
+                            <ButtonAppComponent content={"TAKE A PICTURE"} action={capture}></ButtonAppComponent>
+                        </div>
+                    </div>
+                )}
+
+                <div className="btn-retake">
+                    <ButtonAppComponent content={"Home"} action={navigateToHomePage}></ButtonAppComponent>
                 </div>
-            )}
 
-            <div className="btn-retake">
-                <ButtonAppComponent content={"Home"} action={navigateToHomePage}></ButtonAppComponent>
             </div>
-
-        </div>
+        </main>
     );
 }
 
