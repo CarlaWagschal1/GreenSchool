@@ -1,11 +1,15 @@
+import {Game} from "../../interfaces/GameInterface";
+import "./GameScrollItemComponent.css";
 
-export default function GameScrollItemComponent() {
+export default function GameScrollItemComponent(game: Game) {
     return(
-        <main>
+        <>
             <div className="container-game-scroll-item">
-                <a><img/></a>
-                <h6>Title of the game</h6>
+                <div className="img-container">
+                    <img src={game.img} alt="Game Image"></img>
+                </div>
+                <h2 className="game-name">{game.name}</h2>
             </div>
-        </main>
+        </>
     )
 }
