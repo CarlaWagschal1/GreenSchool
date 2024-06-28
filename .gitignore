@@ -9,7 +9,7 @@ lerna-debug.log*
 
 
 # package-lock.json
-package-lock.json
+frontend/package-lock.json
 
 
 node_modules
