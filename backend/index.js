@@ -1,12 +1,16 @@
 const express = require('express');
-
 const app = express();
-const port = 3001;
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+const db = require('./db');
+
+db().then(database => {
+    app.listen(5000, () => {
+        console.log('Server is running on port 5000');
+    });
+}).catch(err => {
+    console.error(err);
 });
 
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
+
+
+

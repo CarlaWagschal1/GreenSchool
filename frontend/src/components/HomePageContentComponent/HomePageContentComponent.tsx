@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const gamesList: Game[] = [
     { name: "Drag and drop", img: WasteGameIMG, url: '/game1'},
-    { name: "Game 2", img: WasteGameIMG, url: '/game2' },
+    { name: "Raining Waste", img: WasteGameIMG, url: '/game2' },
     { name: "Game 3", img: WasteGameIMG, url: '/game3' },
     // Add other games as necessary
 ];

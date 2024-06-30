@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage.tsx";
 import ScanPage from "./pages/ScanPage/ScanPage";
 import AnswerPage from "./pages/AnswerPage/AnswerPage";
 import DragAndDropPage from "./pages/GamePages/DragAndDropPage";
+import RainingWastePage from "./pages/GamePages/RainingWastePage";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/scan" element={<ScanPage />} />
                 <Route path="/answer" element={<AnswerPage />} />
                 <Route path="/game1" element={<DragAndDropPage />} />
+                <Route path="/game2" element={<RainingWastePage />} />
             </Routes>
         </Router>
     </>
