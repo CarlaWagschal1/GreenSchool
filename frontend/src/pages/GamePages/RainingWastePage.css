@@ -1,0 +1,14 @@
+.choice-title {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    font-family: Inter, sans-serif;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px;
+}

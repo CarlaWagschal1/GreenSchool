@@ -4,14 +4,15 @@ interface TrashBinProps {
     type: string;
     img: string;
     setBinType: (type: string) => void;
+    setBinPosition: (position: { left: number, width: number, height: number }) => void;
 }
 
-const TrashBin: React.FC<TrashBinProps> = ({ type, img, setBinType }) => {
+const TrashBin: React.FC<TrashBinProps> = ({ type, img, setBinType, setBinPosition }) => {
     const [position, setPosition] = useState({ left: 0 });
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
-            setPosition({ left: event.clientX - 25 });
+            setPosition({ left: event.clientX - 40 });
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -23,7 +24,8 @@ const TrashBin: React.FC<TrashBinProps> = ({ type, img, setBinType }) => {
 
     useEffect(() => {
         setBinType(type);
-    }, [type, setBinType]);
+        setBinPosition({ left: position.left, width: 80, height: 80 });
+    }, [type, setBinType, position, setBinPosition]);
 
     return (
         <img

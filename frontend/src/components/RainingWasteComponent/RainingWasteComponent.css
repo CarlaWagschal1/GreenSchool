@@ -1,0 +1,34 @@
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+.raining-waste {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.raining-waste-info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter, sans-serif;
+}
+
+.raining-waste-final-message {
+    font-family: Inter, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.raining-waste-container {
+    display: flex;
+    overflow: hidden;
+
+}

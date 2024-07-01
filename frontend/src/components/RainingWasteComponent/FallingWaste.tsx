@@ -1,32 +1,62 @@
 import React, { useEffect, useState } from 'react';
 
 interface FallingWasteProps {
+    id: number;
     name: string;
     img: string;
     type: string;
-    onCatch: (type: string) => void;
+    onCatch: (id: number, type: string) => void;
     binType: string;
+    binPosition: { left: number, width: number, height: number };
 }
 
-const FallingWaste: React.FC<FallingWasteProps> = ({ name, img, type, onCatch, binType }) => {
-    const [position, setPosition] = useState({ top: 0, left: Math.random() * window.innerWidth });
+const FallingWaste: React.FC<FallingWasteProps> = ({ id, name, img, type, onCatch, binPosition }) => {
+    const [position, setPosition] = useState({ top: 150, left: Math.random() * (window.innerWidth - 80) });
+    const [isFalling, setIsFalling] = useState(false);
 
     useEffect(() => {
+        const delay = Math.random() * 3000; // Random delay between 0 and 3000 milliseconds
+
+        const timeout = setTimeout(() => {
+            setIsFalling(true);
+        }, delay);
+
+        return () => clearTimeout(timeout);
+    }, []);
+
+    useEffect(() => {
+        if (!isFalling) return;
+
         const interval = setInterval(() => {
             setPosition(prev => ({ ...prev, top: prev.top + 5 }));
         }, 50);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [isFalling]);
 
     useEffect(() => {
-        if (position.top > window.innerHeight - 100) {
-            if (type === binType) {
-                onCatch(type);
+        const checkCollision = () => {
+            const wasteBottom = position.top + 80;
+            const wasteLeft = position.left;
+            const wasteRight = position.left + 80;
+            const binTop = window.innerHeight - 90;
+            const binLeft = binPosition.left;
+            const binRight = binPosition.left + binPosition.width;
+
+            if (wasteBottom >= binTop && wasteLeft < binRight && wasteRight > binLeft) {
+                console.log('Collision detected:', name);
+                onCatch(id, type);
+                setPosition({ top: 150, left: Math.random() * (window.innerWidth - 80) });
+                setIsFalling(false);
+                setTimeout(() => setIsFalling(true), Math.random() * 3000);
             }
-            setPosition({ top: 0, left: Math.random() * window.innerWidth });
-        }
-    }, [position, onCatch, type, binType]);
+            else if(wasteBottom >= window.innerHeight - 80) {
+                setPosition({ top: 150, left: Math.random() * (window.innerWidth - 80 ) });
+            }
+        };
+
+        checkCollision();
+    }, [position, binPosition, id, onCatch, type]);
 
     return (
         <img
