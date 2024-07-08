@@ -48,7 +48,7 @@ function DragAndDropGameComponent(){
     const isGameOver = wasteItems.length === 0;
 
     const navigateToHomePage = () => {
-        navigate('/');
+        navigate('/welcome');
     }
 
     return (

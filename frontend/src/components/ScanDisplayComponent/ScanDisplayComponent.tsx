@@ -19,7 +19,7 @@ function ScanDisplayComponent () {
     }, [webcamRef, setImgSrc])
     const navigateToHomePage = () => {
         setImgSrc(null);
-        navigate('/');
+        navigate('/welcome');
     }
 
 

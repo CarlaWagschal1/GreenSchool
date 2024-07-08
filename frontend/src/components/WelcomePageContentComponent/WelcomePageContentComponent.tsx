@@ -1,7 +1,7 @@
 import GameScrollComponent from "../GameScrollComponent/GameScrollComponent.tsx";
 import {Game} from "../../interfaces/GameInterface.tsx";
 import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
-import "./HomePageContentComponent.css";
+import "./WelcomePageContentComponent.css";
 import WasteGameIMG from "../../mocks/img/waste-game-img.png";
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const gamesList: Game[] = [
 ];
 
 
-export default function HomePageContentComponent() {
+export default function WelcomePageContentComponent() {
     const navigate = useNavigate();
 
     const navigateToScanPage = () => {

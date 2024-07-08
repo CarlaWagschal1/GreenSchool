@@ -1,20 +1,23 @@
-# Node image
-FROM node:16
+# Use the official image as a parent image
+FROM node:latest
 
-# Définition du répertoire de travail dans le conteneur
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Copie des fichiers package.json et package-lock.json
+# Copy the package.json file and the package-lock.json file into the working directory
 COPY backend/package*.json ./
 
-# Installation des dépendances de l'application
+# Install the dependencies
 RUN npm install
 
-# Copie de tous les fichiers du projet dans le répertoire de travail du conteneur
+# Copy the rest of the application
 COPY . .
 
-# Exposition du port sur lequel l'application écoute
+# Expose the port 5000
 EXPOSE 5000
 
-# Commande pour démarrer l'application
+# Run the command to start the application
 CMD ["node", "backend/index.js"]
+
+
+
