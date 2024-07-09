@@ -4,12 +4,23 @@ const {
     loginController
 } = require('../controllers/userController');
 
+const {
+    getChildrenController,
+    createChildrenController,
+    getChildrenByUserIdController
+} = require('../controllers/childrenController');
+
 
 
 async function manageAPI(request, response) {
     console.log('Request received:', request.method, request.url);
-    const url = request.url;
+    const url = request.url.split('?')[0];
     const method = request.method;
+    const params = request.query;
+    console.log('Params:', params)
+    console.log('Body:', request.body)
+    console.log('Method:', method)
+    console.log('URL:', url)
 
 
     try {
@@ -37,6 +48,22 @@ async function manageAPI(request, response) {
                     response.status(405).send('Method not allowed');
                 }
                 break;
+            case '/api/children':
+                if(method === 'GET' && 'userId' in params){
+                    await getChildrenByUserIdController(request, response);
+                } else if (method === 'GET') {
+                    await getChildrenController(request, response);
+                } else if (method === 'POST') {
+                    await createChildrenController(request, response);
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+
+
+            default:
+                console.log('Request not found')
+                response.status(404).send('Not found');
 
         }
     }

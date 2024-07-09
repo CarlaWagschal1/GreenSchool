@@ -1,5 +1,6 @@
 const {getDB} = require('../db');
 const bcryptjs = require("bcryptjs");
+const ObjectId = require('mongodb').ObjectId;
 
 async function getUsers(request, response) {
     const db = getDB();
@@ -72,7 +73,19 @@ async function loginUser(request, response) {
         console.log("Error in login:", error)
         response.status(500).send('Internal server error');
     }
+}
 
+async function getUserById(response, id) {
+    const db = getDB();
+    try {
+        const user = await db.collection('users').findOne({_id: new ObjectId(id)});
+        console.log('User by id:', user)
+        return user;
+    }
+    catch (error) {
+        console.log("Error in get user by id:", error)
+        response.status(500).send('Internal server error');
+    }
 }
 
 module.exports = {
@@ -80,5 +93,6 @@ module.exports = {
     emailAlreadyExists,
     getUserByEmail,
     createUser,
-    loginUser
+    loginUser,
+    getUserById
 };

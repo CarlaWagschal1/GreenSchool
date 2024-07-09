@@ -16,6 +16,8 @@ const connectDB = async (callback) => {
         console.log("Connect to db : ", uri);
         await _db.createCollection('users');
         console.log("Collection 'users' created");
+        await _db.createCollection('children');
+        console.log("Collection 'children' created");
 
         console.log('MongoDB connected');
         return callback(null);
