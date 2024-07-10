@@ -1,13 +1,14 @@
 const {
-    getUsersController,
-    createUsersController,
-    loginController
-} = require('../controllers/userController');
+    getEducatorsController,
+    createEducatorsController,
+    loginController,
+    changeChildrenLogoutPasswordController
+} = require('../controllers/educatorController');
 
 const {
     getChildrenController,
     createChildrenController,
-    getChildrenByUserIdController
+    getChildrenByEducatorIdController
 } = require('../controllers/childrenController');
 
 
@@ -25,9 +26,13 @@ async function manageAPI(request, response) {
 
     try {
         switch (url) {
-            case '/api/users':
+            case '/api/educators':
                 if (method === 'GET') {
-                    await getUsersController(request, response);
+                    await getEducatorsController(request, response);
+                } else if (method === 'PATCH') {
+                    if (params.educatorId && 'newChildrenLogoutPassword' in request.body) {
+                        await changeChildrenLogoutPasswordController(request, response);
+                    }
                 } else {
                     response.status(405).send('Method not allowed');
                 }
@@ -36,7 +41,7 @@ async function manageAPI(request, response) {
                 console.log('Signin')
                 if (method === 'POST') {
                     console.log('Post')
-                    await createUsersController(request, response);
+                    await createEducatorsController(request, response);
                 } else {
                     response.status(405).send('Method not allowed');
                 }
@@ -49,8 +54,8 @@ async function manageAPI(request, response) {
                 }
                 break;
             case '/api/children':
-                if(method === 'GET' && 'userId' in params){
-                    await getChildrenByUserIdController(request, response);
+                if(method === 'GET' && 'EducatorId' in params){
+                    await getChildrenByEducatorIdController(request, response);
                 } else if (method === 'GET') {
                     await getChildrenController(request, response);
                 } else if (method === 'POST') {

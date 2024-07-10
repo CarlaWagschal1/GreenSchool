@@ -1,9 +1,9 @@
 const {
     getChildren,
     createChildren,
-    getChildrenByUserId
+    getChildrenByEducatorId
 } = require('../collections/children');
-const {getUserById} = require('../collections/users');
+const {getEducatorById} = require('../collections/educators');
 
 async function getChildrenController(request, response) {
     try {
@@ -17,19 +17,19 @@ async function getChildrenController(request, response) {
 }
 
 async function createChildrenController(request, response) {
-    const {name, lastName, age, userId} = request.body;
-    if(!name || !lastName || !age || !userId) {
-        response.status(400).send('Name, lastName, age, and userId are required');
+    const {name, lastName, age, educatorId} = request.body;
+    if(!name || !lastName || !age || !educatorId) {
+        response.status(400).send('Name, lastName, age, and EducatorId are required');
         return;
     }
-    const user = await getUserById(response, userId);
-    if (!user) {
-        response.status(400).send('User does not exist');
+    const educator = await getEducatorById(response, educatorId);
+    if (!educator) {
+        response.status(400).send('Educator does not exist');
         return;
     }
 
     try {
-        await createChildren(name, lastName, age, userId, response);
+        await createChildren(name, lastName, age, educatorId, response);
         response.status(201).send('Children created');
     }
     catch (error) {
@@ -38,24 +38,24 @@ async function createChildrenController(request, response) {
     }
 }
 
-async function getChildrenByUserIdController(request, response) {
-    const userId = request.query.userId;
-    if (!userId) {
-        response.status(400).send('User id is required');
+async function getChildrenByEducatorIdController(request, response) {
+    const educatorId = request.query.educatorId;
+    if (!educatorId) {
+        response.status(400).send('Educator id is required');
         return;
     }
 
-    if (!await getUserById(response, userId)) {
-        response.status(400).send('User does not exist');
+    if (!await getEducatorById(response, educatorId)) {
+        response.status(400).send('Educator does not exist');
         return;
     }
 
     try {
-        const children = await getChildrenByUserId(response, userId);
+        const children = await getChildrenByEducatorId(response, educatorId);
         response.status(200).json(children);
     }
     catch (error) {
-        console.log("Error in get children by user id controller:", error)
+        console.log("Error in get children by Educator id controller:", error)
         response.status(500).send('Internal server error');
     }
 }
@@ -63,5 +63,5 @@ async function getChildrenByUserIdController(request, response) {
 module.exports = {
     getChildrenController,
     createChildrenController,
-    getChildrenByUserIdController
+    getChildrenByEducatorIdController
 }

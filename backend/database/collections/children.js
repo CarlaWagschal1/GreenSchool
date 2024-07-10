@@ -10,14 +10,14 @@ async function getChildren(request, response) {
         response.status(500).send('Internal server error');
     }
 }
-async function createChildren(name, lastName, age, userId, response) {
+async function createChildren(name, lastName, age, educatorId, response) {
     const db = getDB();
     try {
         await db.collection('children').insertOne({
             name,
             lastName,
             age,
-            userId
+            educatorId
         });
     }
     catch (error) {
@@ -26,13 +26,13 @@ async function createChildren(name, lastName, age, userId, response) {
     }
 }
 
-async function getChildrenByUserId(response, userId) {
+async function getChildrenByEducatorId(response, educatorId) {
     const db = getDB();
     try {
-        return await db.collection('children').find({userId}).toArray();
+        return await db.collection('children').find({educatorId}).toArray();
     }
     catch (error) {
-        console.log("Error in get children by user id:", error)
+        console.log("Error in get children by Educator id:", error)
         response.status(500).send('Internal server error');
     }
 }
@@ -40,5 +40,5 @@ async function getChildrenByUserId(response, userId) {
 module.exports = {
     getChildren,
     createChildren,
-    getChildrenByUserId
+    getChildrenByEducatorId
 }

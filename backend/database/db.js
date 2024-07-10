@@ -14,8 +14,8 @@ const connectDB = async (callback) => {
         _db = client.db();
 
         console.log("Connect to db : ", uri);
-        await _db.createCollection('users');
-        console.log("Collection 'users' created");
+        await _db.createCollection('educators');
+        console.log("Collection 'educators' created");
         await _db.createCollection('children');
         console.log("Collection 'children' created");
 
