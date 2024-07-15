@@ -60,23 +60,30 @@ function DragAndDropGameComponent(){
                 {isGameOver ? (
                     <h2 className="drag-and-drop-game-final-message">Game Over! Final score: {score} / {sizeWasteItems}</h2>
                 ) : (
-                    <>
-                        <h2 className="drag-and-drop-game-info">Score: {score} / {sizeWasteItems}</h2>
-                        <div className="bin-waste-container">
-                            <BinComponent type="recyclable" img={PoubelleDnd} onDrop={handleDrop('recyclable')}/>
-                            <BinComponent type="bulky" img={PoubelleDnd} onDrop={handleDrop('bulky')}/>
-                            <BinComponent type="food" img={PoubelleDnd} onDrop={handleDrop('food')}/>
+                    <div className="game-content">
+
+                        <h2 className="drag-and-drop-game-info" style={ {display:"none"}
+
+                        }
+                        >Score: {score} / {sizeWasteItems}</h2>
+
+                        <div className="game-container">
+                            <div className="bin-waste-container">
+                                <BinComponent type="recyclable" img={PoubelleDnd} onDrop={handleDrop('recyclable')}/>
+                                <BinComponent type="bulky" img={PoubelleDnd} onDrop={handleDrop('bulky')}/>
+                                <BinComponent type="food" img={PoubelleDnd} onDrop={handleDrop('food')}/>
+                            </div>
+                            <div className="waste-item-container">
+                                {wasteItems.map((wasteItem) => (
+                                    <WasteComponent key={wasteItem.name} name={wasteItem.name} img={wasteItem.img}
+                                                    type={wasteItem.type}/>
+                                ))}
+                            </div>
                         </div>
-                        <div className="waste-item-container">
-                            {wasteItems.map((wasteItem) => (
-                                <WasteComponent key={wasteItem.name} name={wasteItem.name} img={wasteItem.img}
-                                                type={wasteItem.type}/>
-                            ))}
-                        </div>
-                    </>
+                    </div>
                 )}
                 <div className="button-home">
-                    <ButtonAppComponent content={"HOME"} action={navigateToHomePage}/>
+                    <ButtonAppComponent content={"BACK"} action={navigateToHomePage}/>
                 </div>
 
             </div>

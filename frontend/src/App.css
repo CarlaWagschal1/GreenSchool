@@ -1,5 +1,5 @@
 body {
-  --background-color : #D0EFBD;
+  --background-color : #e1eacd;
   --vert-fonce : #005A35;
 
   /* Button */
@@ -9,18 +9,38 @@ body {
   --button-shadow : rgba(0,0,0,0.38);
 
   /* Header */
-  --background-header-color : #98C926;
+  --background-header-color : #bad8b6;
 
   /* Font */
   --white-font : #fff;
 
   /* GameScrollItem */
-  --game-scroll-item-background : #D0EFBD;
+  --game-scroll-item-background : #c3e0ba;
   --game-scroll-item-shadow : rgba(0,0,0,0.50);
   --game-scroll-item-background-hover : rgba(183, 211, 174, 0.85);
 
   /* ScanDisplayComponent */
     --scan-display-webcam-shadow : rgba(0,0,0,0.50);
+
+  /* Game */
+  --game-background : #c3e0ba;
+
+  /* SIGNIN */
+  --signin-background : #c3e0ba;
+  --signin-input : #e1eacd;
+  --signin-shadow: rgba(0, 90, 53, 0.48);
+
+  /* ChildrenCardComponent */
+  --children-card-background : #c3e0ba;
+  --children-card-box-shadow : rgba(0, 90, 53, 0.48);
+
+  /* ChildrenListComponent */
+  --children-creation-popup-background : #c3e0ba;
+  --children-creation-popup-background-box-shadow : rgba(0, 90, 53, 0.48);
+
+  /* ChildrenCreationComponent */
+  --children-creation-select-background : #e1eacd;
+  --children-creation-select-focus : rgba(0, 90, 53, 0.48);
 
 
   height: 100vh;
@@ -28,6 +48,12 @@ body {
 
   padding: 0;
   margin: 0;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  height: 100vh;
 }
 
 

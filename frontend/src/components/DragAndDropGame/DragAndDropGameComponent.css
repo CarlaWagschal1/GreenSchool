@@ -1,3 +1,9 @@
+.drag-and-drop-game-container {
+    width: 80%;
+    position: center;
+    margin: 20px auto;
+}
+
 .drag-and-drop-game-info {
     display: flex;
     width: 100%;
@@ -11,6 +17,19 @@
     font-family: Inter, sans-serif;
     width: 100%;
     text-align: center;
+}
+.game-content {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    flex-direction: column;
+}
+
+.game-container {
+    width: 80%;
+    border: 5px solid var(--vert-fonce);
+    border-radius: 7px;
+    background-color: var(--game-background);
 }
 
 .bin-waste-container {

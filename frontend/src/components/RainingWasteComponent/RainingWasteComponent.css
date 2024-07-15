@@ -1,7 +1,6 @@
 html, body, #root {
     height: 100%;
     margin: 0;
-    overflow: hidden;
 }
 
 
@@ -9,7 +8,8 @@ html, body, #root {
     position: relative;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 .raining-waste-info {
@@ -30,5 +30,30 @@ html, body, #root {
 .raining-waste-container {
     display: flex;
     overflow: hidden;
+    border: 5px solid var(--vert-fonce);
+    border-radius: 7px;
+    position: relative;
 
+
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--game-background);
+
+}
+
+.game-content-raining {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+}
+
+.waiting-waste {
+    display: none;
+}
+
+.falling-waste {
+    display: block;
 }

@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, RefObject } from 'react';
 
 interface TrashBinProps {
     type: string;
     img: string;
     setBinType: (type: string) => void;
     setBinPosition: (position: { left: number, width: number, height: number }) => void;
+    containerRef: RefObject<HTMLDivElement>;
 }
 
-const TrashBin: React.FC<TrashBinProps> = ({ type, img, setBinType, setBinPosition }) => {
+const TrashBin: React.FC<TrashBinProps> = ({ type, img, setBinType, setBinPosition, containerRef }) => {
     const [position, setPosition] = useState({ left: 0 });
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
-            setPosition({ left: event.clientX - 40 });
+            if (containerRef.current) {
+                const containerRect = containerRef.current.getBoundingClientRect();
+                let newLeft = event.clientX - containerRect.left - 40;
+
+                if (newLeft < 20) {
+                    newLeft = -20;
+                } else if (newLeft > containerRect.width - 95) {
+                    newLeft = containerRect.width - 95;
+                }
+                setPosition({ left: newLeft });
+            }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -20,7 +31,7 @@ const TrashBin: React.FC<TrashBinProps> = ({ type, img, setBinType, setBinPositi
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, []);
+    }, [containerRef]);
 
     useEffect(() => {
         setBinType(type);
@@ -32,11 +43,12 @@ const TrashBin: React.FC<TrashBinProps> = ({ type, img, setBinType, setBinPositi
             src={img}
             alt={type}
             style={{
-                position: 'fixed',
-                bottom: '10px',
+                position: 'absolute',
+                bottom: '0px',
                 left: position.left,
                 width: '80px',
                 height: '80px',
+                margin: '0',
             }}
         />
     );
