@@ -2,6 +2,8 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import ProtectedRoute from "../utils/ProtectedRoute";
+
 import WelcomePage from "./pages/WelcomePage/WelcomePage.tsx";
 import ScanPage from "./pages/ScanPage/ScanPage";
 import AnswerPage from "./pages/AnswerPage/AnswerPage";
@@ -25,14 +27,26 @@ function App() {
 
 
                 //Pages for children
-                <Route path="/welcome" element={<WelcomePage />} />
-                <Route path="/scan" element={<ScanPage />} />
-                <Route path="/answer" element={<AnswerPage />} />
-                <Route path="/game1" element={<DragAndDropPage />} />
-                <Route path="/game2" element={<RainingWastePage />} />
+                <Route path="/welcome" element={
+                    <ProtectedRoute childrenRoute={<WelcomePage/>}>
+                    </ProtectedRoute>} />
+                <Route path="/scan" element={
+                    <ProtectedRoute childrenRoute={<ScanPage/>}>
+                    </ProtectedRoute>}/>
+                <Route path="/answer" element={
+                    <ProtectedRoute childrenRoute={<AnswerPage/>}>
+                    </ProtectedRoute>}/>
+                <Route path="/game1" element={
+                    <ProtectedRoute childrenRoute={<DragAndDropPage/>}>
+                    </ProtectedRoute>}/>
+                <Route path="/game2" element={
+                    <ProtectedRoute childrenRoute={<RainingWastePage/>}>
+                    </ProtectedRoute>}/>
 
                 //Pages for educators
-                <Route path="/childrenManage" element={<ChildrenManagePage />} />
+                <Route path="/childrenManage" element={
+                    <ProtectedRoute childrenRoute={<ChildrenManagePage/>}>
+                    </ProtectedRoute>}/>
 
             </Routes>
         </Router>

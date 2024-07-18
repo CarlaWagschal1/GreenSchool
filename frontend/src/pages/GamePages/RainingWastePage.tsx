@@ -22,6 +22,7 @@ const RainingWastePage = () => {
                         <ButtonAppComponent content={"Recyclable"} action={() => setWasteType("recyclable")}></ButtonAppComponent>
                         <ButtonAppComponent content={"Food"} action={() => setWasteType("food")}></ButtonAppComponent>
                         <ButtonAppComponent content={"Bulky"} action={() => setWasteType("bulky")}></ButtonAppComponent>
+                        <ButtonAppComponent content={"All"} action={() => setWasteType("all")}></ButtonAppComponent>
                     </div>
                 </div>
 

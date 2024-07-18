@@ -49,6 +49,7 @@ const FallingWaste: React.FC<FallingWasteProps> = ({ id, name, img, type, onCatc
 
                 if (wasteBottom >= binTop && wasteLeft < binRight && wasteRight > binLeft) {
                     onCatch(id, type);
+                    /*
                     console.log("wasteBottom: " + wasteBottom)
                     console.log("binTop: " + binTop)
                     console.log("wasteLeft: " + wasteLeft)
@@ -57,6 +58,8 @@ const FallingWaste: React.FC<FallingWasteProps> = ({ id, name, img, type, onCatc
                     console.log("binLeft: " + binLeft)
                     console.log("containerRect.height: " + containerRect.height)
                     console.log("containerRect.width: " + containerRect.width)
+
+                     */
                     setPosition({ top: -300, left: Math.random() * (containerRect.width - 80) });
                     setIsFalling(false);
                     setTimeout(() => setIsFalling(true), Math.random() * 3000);

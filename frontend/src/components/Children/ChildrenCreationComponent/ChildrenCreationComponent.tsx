@@ -1,7 +1,41 @@
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
+import axios from "axios";
 
 import "./ChildrenCreationComponent.css";
 function ChildrenCreationComponent(){
+
+    const createChild = async () => {
+        try {
+            const name = (document.querySelectorAll('input[type="text"]')[0] as HTMLInputElement).value;
+            const lastName = (document.querySelectorAll('input[type="text"]')[1] as HTMLInputElement).value;
+            const age = (document.querySelector('select') as HTMLSelectElement).value;
+            console.log(name, lastName, age)
+
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token') || ''
+            }
+
+            const data = {
+                name: name,
+                lastName: lastName,
+                age: age
+            }
+
+            const rep = await axios.post('http://localhost:5000/api/children', data
+                , { headers: headers })
+
+            console.log(rep)
+
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+    }
+
+
 
     return (
         <div className="children-creation-container">
@@ -10,8 +44,8 @@ function ChildrenCreationComponent(){
                 <div className="input-container">
                     <input type="text" placeholder="Name" />
                     <input type="text" placeholder="Last Name" />
-                    <select className="select-age">
-                        <option value="0" disabled selected hidden>Age</option>
+                    <select className="select-age" defaultValue="">
+                        <option value="" hidden>Age</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
@@ -23,7 +57,7 @@ function ChildrenCreationComponent(){
                     </select>
                 </div>
                 <div className="button-container">
-                    <ButtonAppComponent content={"CREATE"}></ButtonAppComponent>
+                    <ButtonAppComponent content={"CREATE"} action={createChild}></ButtonAppComponent>
                 </div>
             </div>
 

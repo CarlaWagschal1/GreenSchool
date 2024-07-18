@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px;
-    padding: 70px 100px;
+    margin: 40px;
+    padding: 50px 100px;
     border: 5px solid var(--vert-fonce);
     border-radius: 10px;
     background-color: var(--signin-background);

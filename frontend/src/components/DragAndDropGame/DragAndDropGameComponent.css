@@ -1,7 +1,6 @@
 .drag-and-drop-game-container {
     width: 80%;
-    position: center;
-    margin: 20px auto;
+    margin: auto;
 }
 
 .drag-and-drop-game-info {
@@ -21,7 +20,7 @@
 .game-content {
     display: flex;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
     flex-direction: column;
 }
 

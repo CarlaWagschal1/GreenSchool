@@ -12,41 +12,44 @@ async function getChildrenController(request, response) {
     }
     catch (error) {
         console.log("Error in get children controller:", error)
-        response.status(500).send('Internal server error');
+        response.status(500).json({message: 'Internal server error'})
     }
 }
 
 async function createChildrenController(request, response) {
-    const {name, lastName, age, educatorId} = request.body;
+    const {name, lastName, age} = request.body;
+    const educatorId = request.user.id;
+    console.log("Educator id:", educatorId)
     if(!name || !lastName || !age || !educatorId) {
-        response.status(400).send('Name, lastName, age, and EducatorId are required');
+        response.status(400).json({message: 'Name, last name, age, and educator id are required'})
         return;
     }
-    const educator = await getEducatorById(response, educatorId);
+    const educator = await getEducatorById(educatorId);
     if (!educator) {
-        response.status(400).send('Educator does not exist');
+        response.status(400).json({message: 'Educator does not exist'});
         return;
     }
 
     try {
         await createChildren(name, lastName, age, educatorId, response);
-        response.status(201).send('Children created');
+        response.status(201).json({message: 'Child created'});
     }
     catch (error) {
         console.log("Error in create children controller:", error)
-        response.status(500).send('Internal server error');
+        response.status(500).json({message: 'Internal server error'})
     }
 }
 
 async function getChildrenByEducatorIdController(request, response) {
-    const educatorId = request.query.educatorId;
+    const educatorId = request.user.id;
     if (!educatorId) {
-        response.status(400).send('Educator id is required');
+        response.status(400).json({message: 'Educator id is required'})
         return;
     }
 
-    if (!await getEducatorById(response, educatorId)) {
-        response.status(400).send('Educator does not exist');
+    const educator = await getEducatorById(educatorId);
+    if (!educator) {
+        response.status(400).json({message: 'Educator does not exist'})
         return;
     }
 
@@ -56,7 +59,7 @@ async function getChildrenByEducatorIdController(request, response) {
     }
     catch (error) {
         console.log("Error in get children by Educator id controller:", error)
-        response.status(500).send('Internal server error');
+        response.status(500).json({message: 'Internal server error'})
     }
 }
 

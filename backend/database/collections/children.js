@@ -1,16 +1,16 @@
 const {getDB} = require('../db');
 
-async function getChildren(request, response) {
+async function getChildren() {
     const db = getDB();
     try {
         return await db.collection('children').find().toArray();
     }
     catch (error) {
         console.log("Error in get children:", error)
-        response.status(500).send('Internal server error');
+        throw new Error('Internal server error');
     }
 }
-async function createChildren(name, lastName, age, educatorId, response) {
+async function createChildren(name, lastName, age, educatorId) {
     const db = getDB();
     try {
         await db.collection('children').insertOne({
@@ -22,7 +22,7 @@ async function createChildren(name, lastName, age, educatorId, response) {
     }
     catch (error) {
         console.log("Error in create children:", error)
-        response.status(500).send('Internal server error');
+        throw new Error('Internal server error');
     }
 }
 
@@ -33,7 +33,7 @@ async function getChildrenByEducatorId(response, educatorId) {
     }
     catch (error) {
         console.log("Error in get children by Educator id:", error)
-        response.status(500).send('Internal server error');
+        throw new Error('Internal server error');
     }
 }
 

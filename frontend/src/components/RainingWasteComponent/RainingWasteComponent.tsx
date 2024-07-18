@@ -50,7 +50,7 @@ const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
     };
 
     const handleCatch = (id: number, type: string) => {
-        if (type === binType) {
+        if (type === binType || binType === 'all') {
             setScore((prevScore) => prevScore + 1);
         } else {
             setScore((prevScore) => prevScore - 1);
@@ -69,7 +69,7 @@ const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
         <main>
             <div className="raining-waste">
                 <div className="raining-waste-info">
-                    <h1>Jeu de Tri des Déchets</h1>
+                    <h1>Raining Waste</h1>
                 </div>
                 {score >= 10 ? (
                     <h2 className="raining-waste-final-message">Jeu terminé! Score final: {score}</h2>

@@ -53,10 +53,15 @@ async function manageAPI(request, response) {
                     response.status(405).send('Method not allowed');
                 }
                 break;
-            case '/api/children':
-                if(method === 'GET' && 'EducatorId' in params){
+            case '/api/children/educator':
+                if(method === 'GET'){
                     await getChildrenByEducatorIdController(request, response);
-                } else if (method === 'GET') {
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/children':
+                if (method === 'GET') {
                     await getChildrenController(request, response);
                 } else if (method === 'POST') {
                     await createChildrenController(request, response);

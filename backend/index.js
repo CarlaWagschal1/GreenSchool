@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const {connectDB} = require('./database/db');
+const authenticateJWT = require('./authMiddleware');
 
+const manageToken = require('./database/queryManagers/authToken');
 const manageAPI = require('./database/queryManagers/api');
 
 
@@ -26,8 +28,30 @@ app.use(express.json());
 const handleRequest = async (request, response) => {
     console.log('Request received:', request.method, request.url);
 
-    if(request.url.includes('/api')){
-        await manageAPI(request, response);
+    if(request.url.includes('/auth')){
+        console.log("in auth")
+        await manageToken(request, response);
+    } else if(request.url.includes('/api')){
+        if((request.url.includes('/api/signin') || request.url.includes('/api/login'))&& request.method === 'POST'){
+            await manageAPI(request, response);
+        }
+        else{
+            console.log("in else")
+            console.log(request.headers.authorization);
+            //verify the token
+            if(request.headers.authorization){
+                console.log("in if")
+                const token = request.headers.authorization.split(' ')[1];
+                console.log('Token:', token);
+                authenticateJWT(request, response, () => {
+                    manageAPI(request, response);
+                });
+            }
+            else {
+                response.status(403).send('Forbidden');
+            }
+        }
+
     }
     else{
         response.status(404).send('Not found');

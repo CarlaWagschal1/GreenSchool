@@ -2,11 +2,7 @@ body{
     background-color: var(--background-color);
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
+
 
 .container-home-page-content {
     display: grid;
