@@ -2,7 +2,14 @@ import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import axios from "axios";
 
 import "./ChildrenCreationComponent.css";
-function ChildrenCreationComponent(){
+
+interface ChildrenCreationComponentProps {
+    onCreate: (creation: boolean) => void;
+
+}
+function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
+
+
 
     const createChild = async () => {
         try {
@@ -26,7 +33,7 @@ function ChildrenCreationComponent(){
                 , { headers: headers })
 
             console.log(rep)
-
+            onCreate(true);
 
         }
         catch (error) {

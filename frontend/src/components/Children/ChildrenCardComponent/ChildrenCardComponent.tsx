@@ -1,6 +1,10 @@
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import "./ChildrenCardComponent.css";
+import {ChildrenInterface} from "../../../interfaces/ChildrenInterface";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
+/*
 interface ChildrenCardComponentProps {
     // Props type definition
     name: string;
@@ -8,8 +12,43 @@ interface ChildrenCardComponentProps {
     age: number;
 }
 
+ */
 
-function ChildrenCardComponent(props: ChildrenCardComponentProps) {
+
+function ChildrenCardComponent(props: ChildrenInterface) {
+    const navigate = useNavigate();
+
+    const toPlay = async () => {
+        console.log('props:', props)
+
+        try {
+            const data = {
+                childrenId: props._id,
+                educatorToken: localStorage.getItem('token')
+            }
+            console.log(data)
+
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + (localStorage.getItem('token') || '')
+            };
+
+            const response = await axios.post('http://localhost:5000/api/children/play', data, { headers: headers });
+            if(response.data.childrenToken){
+                localStorage.setItem('childrenToken', response.data.childrenToken);
+                navigate('/welcome');
+            }
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+
+
+    }
+
+
+
     return (
         <>
             <div className="children-card">
@@ -20,7 +59,7 @@ function ChildrenCardComponent(props: ChildrenCardComponentProps) {
                 </div>
                 <div className="children-card-buttons">
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"PLAY"}></ButtonAppComponent>
+                        <ButtonAppComponent content={"PLAY"} action={toPlay}></ButtonAppComponent>
                     </div>
                     <div className="children-card-buttons-separator">
                         <ButtonAppComponent content={"EDIT"}></ButtonAppComponent>

@@ -1,0 +1,36 @@
+.children-logout {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--logout-children-background);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--logout-children-box-shadow);
+    font-family: Arial, sans-serif;
+}
+
+.children-logout-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.children-logout-content input {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--logout-children-input);
+}
+
+
+.close-img {
+    position: absolute;
+    right: 0;
+    top:0;
+    scale: 0.4;
+    cursor: pointer;
+}

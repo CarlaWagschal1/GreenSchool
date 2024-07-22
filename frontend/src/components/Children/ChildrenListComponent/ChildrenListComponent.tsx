@@ -65,18 +65,24 @@ function ChildrenListComponent(){
         popup.style.display = "none";
     }
 
+    const handleCreate = (creation: boolean) => {
+        if(creation){
+            closePopup();
+        }
+    }
+
 
     return(
         <main>
+            <div className="children-btn-creation">
+                <ButtonAppComponent content={"NEW CHILD"} action={openPopUp}></ButtonAppComponent>
+            </div>
             <div className="children-list-content">
                 <h1 className="children-list-title">Children List</h1>
-                <div className="children-btn-creation">
-                    <ButtonAppComponent content={"NEW CHILD"} action={openPopUp}></ButtonAppComponent>
-                </div>
                 <div className="children-list-container">
                     {children.map((child) => {
                         return (
-                            <ChildrenCardComponent key={child.id} name={child.name} lastName={child.lastName} age={child.age} ></ChildrenCardComponent>
+                            <ChildrenCardComponent key={child._id} _id={child._id} name={child.name} lastName={child.lastName} age={child.age} ></ChildrenCardComponent>
                         )
                     })}
                 </div>
@@ -85,7 +91,7 @@ function ChildrenListComponent(){
                 <div className="children-creation-popup-content">
                     <div className="children-creation-css">
                         <div className="children-creation-popup-component">
-                            <ChildrenCreationComponent></ChildrenCreationComponent>
+                            <ChildrenCreationComponent onCreate={handleCreate}></ChildrenCreationComponent>
                         </div>
                         <div className="children-creation-popup-close">
                             <ButtonAppComponent content={"CLOSE"} action={closePopup}></ButtonAppComponent>
@@ -93,9 +99,6 @@ function ChildrenListComponent(){
                     </div>
                 </div>
 
-            </div>
-            <div className="home-button">
-                <ButtonAppComponent content={"HOME"}></ButtonAppComponent>
             </div>
         </main>
     )

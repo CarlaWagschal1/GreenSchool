@@ -124,6 +124,19 @@ async function getEducatorById(id) {
     }
 }
 
+
+async function logoutChildren(id, password) {
+    const db = getDB();
+    try {
+        const educator = await db.collection('educators').findOne({_id: new ObjectId(id)});
+        return await bcryptjs.compare(password, educator.childrenLogoutPassword);
+    }
+    catch (error) {
+        console.log("Error in logout children:", error);
+        throw new Error('Internal server error');
+    }
+}
+
 module.exports = {
     getEducators,
     emailAlreadyExists,
@@ -131,5 +144,6 @@ module.exports = {
     createEducator,
     changeChildrenLogoutPassword,
     loginEducator,
-    getEducatorById
+    getEducatorById,
+    logoutChildren
 };

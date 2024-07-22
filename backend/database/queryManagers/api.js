@@ -2,13 +2,15 @@ const {
     getEducatorsController,
     createEducatorsController,
     loginController,
-    changeChildrenLogoutPasswordController
+    changeChildrenLogoutPasswordController,
+    logoutChildrenController
 } = require('../controllers/educatorController');
 
 const {
     getChildrenController,
     createChildrenController,
-    getChildrenByEducatorIdController
+    getChildrenByEducatorIdController,
+    playChildrenController
 } = require('../controllers/childrenController');
 
 
@@ -65,6 +67,23 @@ async function manageAPI(request, response) {
                     await getChildrenController(request, response);
                 } else if (method === 'POST') {
                     await createChildrenController(request, response);
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/children/play':
+                if (method === 'POST') {
+                    console.log('Play')
+                    await playChildrenController(request, response);
+                    console.log('Play end')
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/children/logout':
+                if (method === 'POST') {
+                    console.log('Logout')
+                    await logoutChildrenController(request, response);
                 } else {
                     response.status(405).send('Method not allowed');
                 }

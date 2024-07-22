@@ -4,6 +4,9 @@ import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
 import "./WelcomePageContentComponent.css";
 import WasteGameIMG from "../../mocks/img/waste-game-img.png";
 import { useNavigate } from 'react-router-dom';
+import LogOutIMG from "../../assets/logout.png";
+import ChildrenLogoutComponent from "../ChildrenLogoutComponent/ChildrenLogoutComponent";
+
 
 const gamesList: Game[] = [
     { name: "Drag and drop", img: WasteGameIMG, url: '/game1'},
@@ -20,6 +23,23 @@ export default function WelcomePageContentComponent() {
         navigate('/scan');
     }
 
+    const handleHideLogOutPopup = (cancel: boolean) => {
+        if(cancel){
+            hideLogOutPopup();
+        }
+
+    }
+
+    const showLogOutPopup = () => {
+        const logoutPopup = document.querySelector('.logout-popup') as HTMLDivElement;
+        logoutPopup.style.display = "block";
+    }
+
+    const hideLogOutPopup = () => {
+        const logoutPopup = document.querySelector('.logout-popup') as HTMLDivElement;
+        logoutPopup.style.display = "none";
+    }
+
     return(
         <main>
             <div className="container-home-page-content">
@@ -29,6 +49,16 @@ export default function WelcomePageContentComponent() {
                 </div>
                 <div className="game-scroll">
                     <GameScrollComponent gamesList={gamesList}></GameScrollComponent>
+                </div>
+            </div>
+            <div className="logout-button">
+                <img src={LogOutIMG} alt={"Log Out"} onClick={showLogOutPopup}/>
+            </div>
+            <div className="logout-popup">
+                <div className="logout-popup-content">
+                    <div className="logout-popup-component">
+                        <ChildrenLogoutComponent cancelLogout={handleHideLogOutPopup}></ChildrenLogoutComponent>
+                    </div>
                 </div>
             </div>
         </main>

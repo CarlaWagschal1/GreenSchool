@@ -1,9 +1,12 @@
 const {
     getChildren,
+    getChildrenById,
     createChildren,
-    getChildrenByEducatorId
+    getChildrenByEducatorId,
+    verifyEducatorWithChildren
 } = require('../collections/children');
 const {getEducatorById} = require('../collections/educators');
+const jwt = require('jsonwebtoken');
 
 async function getChildrenController(request, response) {
     try {
@@ -63,8 +66,51 @@ async function getChildrenByEducatorIdController(request, response) {
     }
 }
 
+
+async function playChildrenController(request, response) {
+    console.log("Play children controller")
+    console.log("Request body:", request.body)
+    const {childrenId, educatorToken} = request.body;
+
+    const decoded = jwt.verify(educatorToken, process.env.JWT_SECRET);
+    console.log("Decoded:", decoded)
+    const educatorId = decoded.id;
+
+
+    if (!childrenId || !educatorId) {
+        response.status(400).json({message: 'Children id and educator id are required'})
+        return;
+    }
+
+    const educator = await getEducatorById(educatorId);
+    console.log("educator:", educator)
+    if (!educator) {
+        response.status(400).json({message: 'Educator does not exist'})
+        return;
+    }
+
+    const children = await getChildrenById(childrenId);
+    console.log("Children:", children)
+    if (!children) {
+        response.status(400).json({message: 'Children does not exist'})
+        return;
+    }
+
+
+    try {
+        await verifyEducatorWithChildren(educatorId, childrenId);
+        const childrenToken = jwt.sign({id: children._id, educatorId: educatorId}, process.env.JWT_SECRET, {expiresIn: '1h'});
+        response.status(200).json({childrenToken: childrenToken})
+    }
+    catch (error) {
+        console.log("Error in connect children controller:", error)
+        response.status(500).json({message: 'Internal server error'})
+    }
+}
+
 module.exports = {
     getChildrenController,
     createChildrenController,
-    getChildrenByEducatorIdController
+    getChildrenByEducatorIdController,
+    playChildrenController
 }

@@ -1,4 +1,5 @@
 const {getDB} = require('../db');
+const {ObjectId} = require("mongodb");
 
 async function getChildren() {
     const db = getDB();
@@ -10,6 +11,18 @@ async function getChildren() {
         throw new Error('Internal server error');
     }
 }
+
+async function getChildrenById(childrenId) {
+    const db = getDB();
+    try {
+        return await db.collection('children').findOne({_id: new ObjectId(childrenId)});
+    }
+    catch (error) {
+        console.log("Error in get children by id:", error)
+        throw new Error('Internal server error');
+    }
+}
+
 async function createChildren(name, lastName, age, educatorId) {
     const db = getDB();
     try {
@@ -37,8 +50,25 @@ async function getChildrenByEducatorId(response, educatorId) {
     }
 }
 
+async function verifyEducatorWithChildren(educatorId, childId) {
+    const db = getDB();
+    try {
+        const child = await db.collection('children').findOne({_id: childId});
+        if (!child) {
+            return false;
+        }
+        return child.educatorId === educatorId;
+    }
+    catch (error) {
+        console.log("Error in verify educator with children:", error)
+        throw new Error('Internal server error');
+    }
+}
+
 module.exports = {
     getChildren,
+    getChildrenById,
     createChildren,
-    getChildrenByEducatorId
+    getChildrenByEducatorId,
+    verifyEducatorWithChildren
 }

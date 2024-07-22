@@ -2,7 +2,7 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import ProtectedRoute from "../utils/ProtectedRoute";
+import ProtectedRouteEducator from "../utils/ProtectedRouteEducator";
 
 import WelcomePage from "./pages/WelcomePage/WelcomePage.tsx";
 import ScanPage from "./pages/ScanPage/ScanPage";
@@ -13,6 +13,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import HomePage from "./pages/HomePage/HomePage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import ChildrenManagePage from "./pages/ChildrenManagePage/ChildrenManagePage";
+import ProtectedRouteChildren from "../utils/ProtectedRouteChildren";
 
 function App() {
 
@@ -28,25 +29,25 @@ function App() {
 
                 //Pages for children
                 <Route path="/welcome" element={
-                    <ProtectedRoute childrenRoute={<WelcomePage/>}>
-                    </ProtectedRoute>} />
+                    <ProtectedRouteChildren childrenRoute={<WelcomePage/>}>
+                    </ProtectedRouteChildren>} />
                 <Route path="/scan" element={
-                    <ProtectedRoute childrenRoute={<ScanPage/>}>
-                    </ProtectedRoute>}/>
+                    <ProtectedRouteChildren childrenRoute={<ScanPage/>}>
+                    </ProtectedRouteChildren>}/>
                 <Route path="/answer" element={
-                    <ProtectedRoute childrenRoute={<AnswerPage/>}>
-                    </ProtectedRoute>}/>
+                    <ProtectedRouteChildren childrenRoute={<AnswerPage/>}>
+                    </ProtectedRouteChildren>}/>
                 <Route path="/game1" element={
-                    <ProtectedRoute childrenRoute={<DragAndDropPage/>}>
-                    </ProtectedRoute>}/>
+                    <ProtectedRouteChildren childrenRoute={<DragAndDropPage/>}>
+                    </ProtectedRouteChildren>}/>
                 <Route path="/game2" element={
-                    <ProtectedRoute childrenRoute={<RainingWastePage/>}>
-                    </ProtectedRoute>}/>
+                    <ProtectedRouteChildren childrenRoute={<RainingWastePage/>}>
+                    </ProtectedRouteChildren>}/>
 
                 //Pages for educators
                 <Route path="/childrenManage" element={
-                    <ProtectedRoute childrenRoute={<ChildrenManagePage/>}>
-                    </ProtectedRoute>}/>
+                    <ProtectedRouteEducator childrenRoute={<ChildrenManagePage/>}>
+                    </ProtectedRouteEducator>}/>
 
             </Routes>
         </Router>
