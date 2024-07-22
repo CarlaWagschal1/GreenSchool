@@ -13,6 +13,10 @@ const {
     playChildrenController
 } = require('../controllers/childrenController');
 
+const {
+    addScoreController,
+} = require('../controllers/scoreController');
+
 
 
 async function manageAPI(request, response) {
@@ -88,7 +92,14 @@ async function manageAPI(request, response) {
                     response.status(405).send('Method not allowed');
                 }
                 break;
-
+            case '/api/scores':
+                if(method === 'POST') {
+                    await addScoreController(request, response);
+                }
+                else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
 
             default:
                 console.log('Request not found')

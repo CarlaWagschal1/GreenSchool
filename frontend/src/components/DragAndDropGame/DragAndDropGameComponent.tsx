@@ -1,4 +1,6 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+
 import BinComponent from "./BinComponent";
 import WasteComponent from "./WasteComponent";
 import Bouteille from '../../mocks/img/bouteille.png';
@@ -35,12 +37,85 @@ function DragAndDropGameComponent(){
     const [wasteItems, setWasteItems] = useState(initialWasteItems);
     const sizeWasteItems = initialWasteItems.length;
 
+    const [startTime, setStartTime] = useState<Date | null>(null);
+    const [errorList, setErrorList] = useState<string[]>([]);
+
+    useEffect(() => {
+        setStartTime(new Date());
+    }, []);
+
+    useEffect(() => {
+        if (wasteItems.length === 0) {
+            registerScore();
+        }
+    }, [wasteItems]);
+
+    const getElapsedTime = () => {
+        const endTime = new Date();
+        console.log('Start time:', startTime);
+        console.log('End time:', endTime);
+        if (startTime) {
+            const elapsed = (endTime.getTime() - startTime.getTime()) / 1000; // to seconds
+            return `${elapsed} seconds`;
+        }
+        return null;
+    };
+
+    const registerScore = async () => {
+        const elapsedTime = getElapsedTime();
+
+        console.log('Score:', score, 'Elapsed time:', elapsedTime, 'Errors:', errorList);
+
+        const childrenToken = localStorage.getItem('childrenToken');
+
+        console.log("falseResults:", errorList)
+
+
+
+
+        if (!childrenToken) {
+            console.error('No children token found');
+            return;
+        }
+
+        try {
+            const data = {
+                childrenToken,
+                gameID: 'sorting-waste',
+                score: score,
+                date: new Date().toISOString(),
+                errors: errorList,
+                elapsedTime: elapsedTime
+            };
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + (localStorage.getItem('token') || '')
+            }
+
+            console.log(data);
+            console.log(headers);
+
+            const rep = await axios.post('http://localhost:5000/api/scores', data, {headers: headers});
+
+            console.log(rep);
+            if(rep.status === 200){
+                console.log('Score registered');
+            }
+        }
+        catch (error) {
+            console.error(error);
+        }
+
+
+    }
+
     const handleDrop = (type: string) => (item: { name: string; img: string; type: string }) => {
         console.log(item, type);
         if (item.type === type) {
             setScore((prevScore) => prevScore + 1);
             setWasteItems((prevItems) => prevItems.filter((wasteItem) => wasteItem.name !== item.name));
         } else {
+            setErrorList((prevErrorList) => [...prevErrorList, item.name]);
             setScore((prevScore) => prevScore - 1);
         }
     };

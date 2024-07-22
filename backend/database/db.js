@@ -18,6 +18,8 @@ const connectDB = async (callback) => {
         console.log("Collection 'educators' created");
         await _db.createCollection('children');
         console.log("Collection 'children' created");
+        await _db.createCollection('scores');
+        console.log("Collection 'scores' created");
 
         console.log('MongoDB connected');
         return callback(null);
