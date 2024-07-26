@@ -1,5 +1,5 @@
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
-import ScanDisplayComponent from "../../components/ScanDisplayComponent/ScanDisplayComponent";
+import ScanDisplayComponent from "../../components/ChildrenPart/ScanDisplayComponent/ScanDisplayComponent";
 
 
 function ScanPage(){

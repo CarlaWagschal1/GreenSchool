@@ -1,4 +1,4 @@
-import RainingWasteComponent from "../../components/RainingWasteComponent/RainingWasteComponent";
+import RainingWasteComponent from "../../components/ChildrenPart/Games/RainingWasteComponent/RainingWasteComponent";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import ButtonAppComponent from "../../components/ButtonAppComponent/ButtonAppComponent";
 import {useState} from "react";

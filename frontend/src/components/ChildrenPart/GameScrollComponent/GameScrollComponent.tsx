@@ -1,4 +1,4 @@
-import {Game} from "../../interfaces/GameInterface.tsx";
+import {Game} from "../../../interfaces/GameInterface.tsx";
 import GameScrollItemComponent from "./GameScrollItemComponent";
 import "./GameScrollComponent.css";
 

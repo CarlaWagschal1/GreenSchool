@@ -38,13 +38,16 @@ function ChildrenCardComponent(props: ChildrenInterface) {
                 localStorage.setItem('childrenToken', response.data.childrenToken);
                 navigate('/welcome');
             }
-
         }
         catch (error) {
             console.log(error)
         }
+    }
 
-
+    const seeStats = async() => {
+        console.log('see stats')
+        localStorage.setItem('childrenID', props._id.toString());
+        navigate('/children-stats');
     }
 
 
@@ -62,10 +65,10 @@ function ChildrenCardComponent(props: ChildrenInterface) {
                         <ButtonAppComponent content={"PLAY"} action={toPlay}></ButtonAppComponent>
                     </div>
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"EDIT"}></ButtonAppComponent>
+                        <ButtonAppComponent content={"EDIT"} ></ButtonAppComponent>
                     </div>
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"STATS"}></ButtonAppComponent>
+                        <ButtonAppComponent content={"STATS"} action={seeStats}></ButtonAppComponent>
                     </div>
                 </div>
             </div>

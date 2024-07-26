@@ -1,4 +1,4 @@
-import DragAndDropGameComponent from "../../components/DragAndDropGame/DragAndDropGameComponent";
+import DragAndDropGameComponent from "../../components/ChildrenPart/Games/DragAndDropGame/DragAndDropGameComponent";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 
 function DragAndDropPage() {

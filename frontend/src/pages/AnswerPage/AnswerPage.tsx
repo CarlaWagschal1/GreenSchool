@@ -1,5 +1,5 @@
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
-import AnswerWasteComponent from "../../components/AnswerWasteComponent/AnswerWasteComponent";
+import AnswerWasteComponent from "../../components/ChildrenPart/AnswerWasteComponent/AnswerWasteComponent";
 import {useLocation} from "react-router-dom";
 
 

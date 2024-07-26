@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
 import FallingWaste from './FallingWaste';
 import TrashBin from './TrashBin';
-import Bouteille from '../../mocks/img/bouteille.png';
-import Armoire from '../../mocks/img/armoire.png';
-import Trognon from '../../mocks/img/trognon.png';
-import PoubelleDnd from '../../mocks/img/poubelle-tri-dnd.png';
-import Table from '../../mocks/img/table.png';
-import Cookie from '../../mocks/img/cookie.png';
-import Carton from '../../mocks/img/carton.png';
+import Bouteille from '../../../../mocks/img/bouteille.png';
+import Armoire from '../../../../mocks/img/armoire.png';
+import Trognon from '../../../../mocks/img/trognon.png';
+import PoubelleDnd from '../../../../mocks/img/poubelle-tri-dnd.png';
+import Table from '../../../../mocks/img/table.png';
+import Cookie from '../../../../mocks/img/cookie.png';
+import Carton from '../../../../mocks/img/carton.png';
 
 import './RainingWasteComponent.css';
 

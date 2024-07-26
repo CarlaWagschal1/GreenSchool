@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import ChildrenManagePage from "./pages/ChildrenManagePage/ChildrenManagePage";
 import ProtectedRouteChildren from "../utils/ProtectedRouteChildren";
+import ChildrenStatsPage from "./pages/ChildrenStatPage/ChildrenStatsPage";
 
 function App() {
 
@@ -47,6 +48,9 @@ function App() {
                 //Pages for educators
                 <Route path="/childrenManage" element={
                     <ProtectedRouteEducator childrenRoute={<ChildrenManagePage/>}>
+                    </ProtectedRouteEducator>}/>
+                <Route path="/children-stats" element={
+                    <ProtectedRouteEducator childrenRoute={<ChildrenStatsPage/>}>
                     </ProtectedRouteEducator>}/>
 
             </Routes>

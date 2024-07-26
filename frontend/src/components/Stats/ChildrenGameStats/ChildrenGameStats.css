@@ -1,0 +1,120 @@
+.game-list {
+    max-width: 350px;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    position: relative;
+    height: calc(100vh - 200px);
+    gap: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.stat-display {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 4px solid var(--vert-fonce);
+    height: calc(100vh - 200px);
+    border-radius: 15px;
+    background-color: var(--game-stat-card-background);
+    margin-right: 20px;
+    margin-left: 15px;
+}
+
+.date-choice {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    height: 10%;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+
+}
+
+.date-choice button {
+    font-size: 1rem;
+    font-family: Inter, sans-serif;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-right: 2px solid var(--vert-fonce);
+
+    border-left : none;
+    border-top: none;
+}
+
+.active {
+    background-color: var(--game-stat-card-background);
+    border-bottom: transparent;
+}
+.no-active {
+    background-color: var(--background-color);
+    border-bottom: 2px solid var(--vert-fonce);
+}
+
+.date-choice button:last-child {
+    border-right: none;
+}
+
+.statistics {
+    position: relative;
+    display: flex;
+    height: 90%;
+    width: 100%;
+}
+
+.stats-ok {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.chart-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+}
+
+.stats-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 100%;
+    font-family: Inter, sans-serif;
+}
+
+.no-stats {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-family: Inter, sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1250px) {
+    .chart-container {
+        scale: 0.8;
+    }
+}
+
+

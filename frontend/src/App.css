@@ -53,6 +53,12 @@ body {
     --logout-children-box-shadow : rgba(0, 90, 53, 0.48);
     --logout-children-input : #e1eacd;
 
+  /* GameStatsCard */
+    --game-stat-card-background : #c3e0ba;
+    --game-stat-card-shadow : rgba(0, 90, 53, 0.48);
+    --game-stat-card-background-hover : rgba(141, 161, 137, 0.85);
+
+
   padding: 0;
   margin: 0;
   height: 100%;

@@ -1,9 +1,9 @@
-import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
+import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import axios from 'axios';
 
 import './ChildrenLogoutComponent.css';
 
-import Close from '../../assets/close.png';
+import Close from '../../../assets/close.png';
 import {useNavigate} from "react-router-dom";
 
 interface ChildrenLogoutComponentProps {

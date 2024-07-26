@@ -11,12 +11,12 @@ async function getScores() {
     }
 }
 
-async function addScore(childrenId, gameID, score, date, errors, elapsedTime) {
+async function addScore(childrenId, gameId, score, date, errors, elapsedTime) {
     const db = getDB();
     try {
         await db.collection('scores').insertOne({
             childrenId,
-            gameID,
+            gameId,
             score,
             date,
             errors,
@@ -41,8 +41,20 @@ async function getScoresByChildrenId(childrenId) {
     }
 }
 
+async function getScoresByChildrenIdAndGameId(childrenId, gameId) {
+    const db = getDB();
+    try {
+        return await db.collection('scores').find({childrenId, gameId}).toArray();
+    }
+    catch (error) {
+        console.log("Error in get Scores by children id and game id:", error);
+        throw new Error('Internal server error');
+    }
+}
+
 module.exports = {
     getScores,
     addScore,
-    getScoresByChildrenId
+    getScoresByChildrenId,
+    getScoresByChildrenIdAndGameId
 }

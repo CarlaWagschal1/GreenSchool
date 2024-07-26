@@ -1,6 +1,6 @@
 import Webcam from "react-webcam";
 import {useCallback, useEffect, useRef, useState} from "react";
-import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
+import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
 
 import "./ScanDisplayComponent.css";

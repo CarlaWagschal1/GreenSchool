@@ -1,4 +1,4 @@
-import {Game} from "../../interfaces/GameInterface";
+import {Game} from "../../../interfaces/GameInterface";
 import "./GameScrollItemComponent.css";
 import {useNavigate} from "react-router-dom";
 

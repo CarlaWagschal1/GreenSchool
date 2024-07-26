@@ -1,7 +1,8 @@
 const {
     getScores,
     addScore,
-    getScoresByChildrenId
+    getScoresByChildrenId,
+    getScoresByChildrenIdAndGameId
 }
 = require('../collections/scores');
 
@@ -52,18 +53,13 @@ async function addScoreController(request, response) {
 }
 
 async function getScoresByChildrenIdController(request, response) {
-    const {childrenToken} = request.body;
-    if (!childrenToken) {
-        response.status(400).json({message: 'Children token is required'});
-        return;
-    }
-    const childrenId = jwt.verify(childrenToken, process.env.JWT_SECRET).id;
-    if (!childrenId) {
-        response.status(400).json({message: 'Invalid token'});
+    const childId = request.params.childrenId;
+    if(!childId) {
+        response.status(400).json({message: 'Children id is required'});
         return;
     }
     try {
-        const scores = await getScoresByChildrenId(childrenId);
+        const scores = await getScoresByChildrenId(childId);
         response.status(200).json(scores);
     }
     catch (error) {
@@ -72,8 +68,28 @@ async function getScoresByChildrenIdController(request, response) {
     }
 }
 
+
+async function getScoresByChildrenIdAndGameIdController(request, response) {
+    const childId = request.params.childrenId;
+    const gameId = request.params.gameId;
+    if(!childId || !gameId) {
+        response.status(400).json({message: 'Children id and game id are required'});
+        return;
+    }
+    try {
+        const scores = await getScoresByChildrenIdAndGameId(childId, gameId);
+        response.status(200).json(scores);
+    }
+    catch (error) {
+        console.log("Error in get Scores by children id and game id controller:", error)
+        response.status(500).json({message: 'Internal server error'});
+    }
+
+}
+
 module.exports = {
     getScoresController,
     addScoreController,
-    getScoresByChildrenIdController
+    getScoresByChildrenIdController,
+    getScoresByChildrenIdAndGameIdController
 }

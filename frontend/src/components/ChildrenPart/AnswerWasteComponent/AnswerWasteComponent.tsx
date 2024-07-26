@@ -1,4 +1,4 @@
-import PoubelleTri from '../../mocks/img/poubelle-tri.jpg';
+import PoubelleTri from '../../../mocks/img/poubelle-tri.jpg';
 import './AnswerWasteComponent.css';
 
 interface wasteProps {

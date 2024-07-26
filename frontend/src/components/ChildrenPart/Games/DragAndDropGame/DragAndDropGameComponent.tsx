@@ -3,16 +3,16 @@ import axios from 'axios';
 
 import BinComponent from "./BinComponent";
 import WasteComponent from "./WasteComponent";
-import Bouteille from '../../mocks/img/bouteille.png';
-import Armoire from '../../mocks/img/armoire.png';
-import Trognon from '../../mocks/img/trognon.png';
-import PoubelleDnd from '../../mocks/img/poubelle-tri-dnd.png';
-import Table from '../../mocks/img/table.png';
-import Cookie from '../../mocks/img/cookie.png';
-import Carton from '../../mocks/img/carton.png';
+import Bouteille from '../../../../mocks/img/bouteille.png';
+import Armoire from '../../../../mocks/img/armoire.png';
+import Trognon from '../../../../mocks/img/trognon.png';
+import PoubelleDnd from '../../../../mocks/img/poubelle-tri-dnd.png';
+import Table from '../../../../mocks/img/table.png';
+import Cookie from '../../../../mocks/img/cookie.png';
+import Carton from '../../../../mocks/img/carton.png';
 
 import './DragAndDropGameComponent.css'
-import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
+import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
 
 interface WasteItem {
@@ -33,7 +33,7 @@ const initialWasteItems: WasteItem[] = [
 function DragAndDropGameComponent(){
     const navigate = useNavigate();
 
-    const [score, setScore] = useState(0);
+    const [scoreError, setScoreError] = useState(0);
     const [wasteItems, setWasteItems] = useState(initialWasteItems);
     const sizeWasteItems = initialWasteItems.length;
 
@@ -56,7 +56,7 @@ function DragAndDropGameComponent(){
         console.log('End time:', endTime);
         if (startTime) {
             const elapsed = (endTime.getTime() - startTime.getTime()) / 1000; // to seconds
-            return `${elapsed} seconds`;
+            return `${elapsed}`;
         }
         return null;
     };
@@ -64,7 +64,7 @@ function DragAndDropGameComponent(){
     const registerScore = async () => {
         const elapsedTime = getElapsedTime();
 
-        console.log('Score:', score, 'Elapsed time:', elapsedTime, 'Errors:', errorList);
+        console.log('Score:', scoreError, 'Elapsed time:', elapsedTime, 'Errors:', errorList);
 
         const childrenToken = localStorage.getItem('childrenToken');
 
@@ -82,7 +82,7 @@ function DragAndDropGameComponent(){
             const data = {
                 childrenToken,
                 gameID: 'sorting-waste',
-                score: score,
+                score: scoreError,
                 date: new Date().toISOString(),
                 errors: errorList,
                 elapsedTime: elapsedTime
@@ -112,11 +112,10 @@ function DragAndDropGameComponent(){
     const handleDrop = (type: string) => (item: { name: string; img: string; type: string }) => {
         console.log(item, type);
         if (item.type === type) {
-            setScore((prevScore) => prevScore + 1);
             setWasteItems((prevItems) => prevItems.filter((wasteItem) => wasteItem.name !== item.name));
         } else {
             setErrorList((prevErrorList) => [...prevErrorList, item.name]);
-            setScore((prevScore) => prevScore - 1);
+            setScoreError((prevScore) => prevScore + 1);
         }
     };
 
@@ -133,14 +132,14 @@ function DragAndDropGameComponent(){
                     <h1>Sorting of Waste</h1>
                 </div>
                 {isGameOver ? (
-                    <h2 className="drag-and-drop-game-final-message">Game Over! Final score: {score} / {sizeWasteItems}</h2>
+                    <h2 className="drag-and-drop-game-final-message">Game Over! Final score: {scoreError} / {sizeWasteItems}</h2>
                 ) : (
                     <div className="game-content">
 
                         <h2 className="drag-and-drop-game-info" style={ {display:"none"}
 
                         }
-                        >Score: {score} / {sizeWasteItems}</h2>
+                        >Score: {scoreError} </h2>
 
                         <div className="game-container">
                             <div className="bin-waste-container">

@@ -15,6 +15,8 @@ const {
 
 const {
     addScoreController,
+    getScoresByChildrenIdController,
+    getScoresByChildrenIdAndGameIdController
 } = require('../controllers/scoreController');
 
 
@@ -31,6 +33,24 @@ async function manageAPI(request, response) {
 
 
     try {
+        if (url.startsWith('/api/scores/children') && method === 'GET') {
+            const pathParts = url.split('/');
+            console.log('Path parts:', pathParts);
+            if (pathParts.length === 7 && pathParts[5] === 'game') {
+                const childrenId = pathParts[4];
+                const gameId = pathParts[6];
+                request.params = { childrenId, gameId };
+                await getScoresByChildrenIdAndGameIdController(request, response);
+                return;
+            } else if (pathParts.length === 5) {
+                const childrenId = pathParts[4];
+                request.params = { childrenId };
+                await getScoresByChildrenIdController(request, response);
+                return;
+            }
+        }
+
+
         switch (url) {
             case '/api/educators':
                 if (method === 'GET') {
