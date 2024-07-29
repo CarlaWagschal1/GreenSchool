@@ -1,0 +1,37 @@
+.lessons-creation-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid var(--vert-fonce);
+    border-radius: var(--card-border-radius);
+    padding: 40px;
+    background-color: var(--lessons-creation-content-background);
+    box-shadow: 0 0 10px var(--lessons-creation-content-shadow);
+}
+
+.lessons-creation-content h1 {
+    margin-bottom: 20px;
+    font-family: Inter, sans-serif;
+    font-size: 2rem;
+}
+
+.lessons-creation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Inter, sans-serif;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.lessons-creation-form input text {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--signin-input);
+}

@@ -33,7 +33,7 @@ function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
                 console.log(rep);
                 if(rep.status === 200){
                     localStorage.removeItem('childrenToken');
-                    navigate('/childrenManage');
+                    navigate('/childrenManager');
                 }
             }
             catch (error) {

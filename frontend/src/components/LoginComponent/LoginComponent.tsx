@@ -26,7 +26,7 @@ function LoginComponent(){
             if(rep.data.token){
                 console.log(rep.data.token)
                 localStorage.setItem('token', rep.data.token);
-                navigate('/childrenManage');
+                navigate('/childrenManager');
             }
         }
         catch (error) {

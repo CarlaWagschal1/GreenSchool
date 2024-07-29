@@ -15,6 +15,9 @@ import SignInPage from "./pages/SignInPage/SignInPage";
 import ChildrenManagePage from "./pages/ChildrenManagePage/ChildrenManagePage";
 import ProtectedRouteChildren from "../utils/ProtectedRouteChildren";
 import ChildrenStatsPage from "./pages/ChildrenStatPage/ChildrenStatsPage";
+import LessonsCreationPage from "./pages/LessonsCreationPage/LessonsCreationPage";
+import EducatorWelcomePage from "./pages/EducatorWelcomePage/EducatorWelcomePage";
+import LessonsManagerPage from "./pages/LessonsManagerPage/LessonsManagerPage";
 
 function App() {
 
@@ -46,11 +49,20 @@ function App() {
                     </ProtectedRouteChildren>}/>
 
                 //Pages for educators
-                <Route path="/childrenManage" element={
+                <Route path="/educator" element={
+                    <ProtectedRouteEducator childrenRoute={<EducatorWelcomePage/>}>
+                    </ProtectedRouteEducator>}/>
+                <Route path="/childrenManager" element={
                     <ProtectedRouteEducator childrenRoute={<ChildrenManagePage/>}>
                     </ProtectedRouteEducator>}/>
                 <Route path="/children-stats" element={
                     <ProtectedRouteEducator childrenRoute={<ChildrenStatsPage/>}>
+                    </ProtectedRouteEducator>}/>
+                <Route path="/lessonsManager" element={
+                    <ProtectedRouteEducator childrenRoute={<LessonsManagerPage/>}>
+                    </ProtectedRouteEducator>}/>
+                <Route path="/newLesson" element={
+                    <ProtectedRouteEducator childrenRoute={<LessonsCreationPage/>}>
                     </ProtectedRouteEducator>}/>
 
             </Routes>

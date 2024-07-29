@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const multer = require('multer');
+const path = require('path');
 const {connectDB} = require('./database/db');
 const authenticateJWT = require('./authMiddleware');
 
@@ -24,6 +26,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+const upload = multer({ dest: 'uploads/' });
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const handleRequest = async (request, response) => {
     console.log('Request received:', request.method, request.url);
@@ -32,6 +37,7 @@ const handleRequest = async (request, response) => {
         console.log("in auth")
         await manageToken(request, response);
     } else if(request.url.includes('/api')){
+        console.log("in api")
         if((request.url.includes('/api/signin') || request.url.includes('/api/login'))&& request.method === 'POST'){
             await manageAPI(request, response);
         }

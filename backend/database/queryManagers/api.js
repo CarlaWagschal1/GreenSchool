@@ -19,7 +19,30 @@ const {
     getScoresByChildrenIdAndGameIdController
 } = require('../controllers/scoreController');
 
+const {
+    getLessonsController,
+    createLessonController
+} = require('../controllers/lessonsController');
 
+const {
+    getChaptersController,
+    createChapterController,
+    getChaptersByLessonIdController
+} = require("../controllers/chaptersController");
+
+const multer = require('multer');
+const path = require("path");
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../../uploads/'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + file.originalname)
+    }
+});
+
+const upload = multer({ storage: storage });
 
 async function manageAPI(request, response) {
     console.log('Request received:', request.method, request.url);
@@ -117,6 +140,43 @@ async function manageAPI(request, response) {
                     await addScoreController(request, response);
                 }
                 else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/lessons':
+                if (method === 'GET') {
+                    await getLessonsController(request, response);
+                } else if (method === 'POST') {
+                    upload.single('files')(request, response, async (err) => {
+                        console.log('Request file:', request.file);
+                        if (err) {
+                            console.error('Multer error:', err);
+                            return response.status(500).json({ message: 'File upload error', error: err.message });
+                        }
+                        try {
+                            await createLessonController(request, response);
+                        } catch (createLessonError) {
+                            console.error('Create lesson error:', createLessonError);
+                            return response.status(500).json({ message: 'Lesson creation error', error: createLessonError.message });
+                        }
+                    });
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/chapters':
+                if (method === 'GET') {
+                    await getChaptersController(request, response);
+                } else if (method === 'POST') {
+                    await createChapterController(request, response);
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/chapters/lesson':
+                if (method === 'GET') {
+                    await getChaptersByLessonIdController(request, response);
+                } else {
                     response.status(405).send('Method not allowed');
                 }
                 break;
