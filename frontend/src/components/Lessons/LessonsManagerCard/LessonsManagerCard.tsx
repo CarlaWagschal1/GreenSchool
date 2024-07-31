@@ -1,6 +1,8 @@
 import {Lesson} from "../../../interfaces/LessonInterface";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 
+import "./LessonsManagerCard.css";
+
 
 interface LessonsManagerCardProps {
     lesson: Lesson;
@@ -23,11 +25,19 @@ function LessonsManagerCard({lesson}: LessonsManagerCardProps) {
   return (
     <>
         <div className="lessons-manager-card">
-            <p>{lesson.name}</p>
-            <p>{lesson.description}</p>
-            <img src={`http://localhost:5000${lesson.imageUrl}`} alt={lesson.name} />
-            <ButtonAppComponent content={"Edit"} action={() => onEdit(lesson.id)}/>
-            <ButtonAppComponent content={"Delete"} action={() => onDelete(lesson.id)}/>
+            <div className="lessons-manager-card-content">
+                <div className="lessons-manager-card-info">
+                    <h2>{lesson.name}</h2>
+                    <p>{lesson.description}</p>
+                </div>
+                <div className="lessons-manager-card-img-container">
+                    <img src={`http://localhost:5000${lesson.imageUrl}`} alt={lesson.name} />
+                </div>
+            </div>
+            <div className="lessons-manager-card-buttons">
+                <ButtonAppComponent content={"Edit"} action={() => onEdit(lesson._id)} type={"edit"}/>
+                <ButtonAppComponent content={"Delete"} action={() => onDelete(lesson._id)} type={"delete"}/>
+            </div>
         </div>
     </>
   );

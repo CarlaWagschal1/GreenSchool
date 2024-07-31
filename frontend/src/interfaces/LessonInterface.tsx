@@ -1,5 +1,5 @@
 export interface Lesson {
-    id: number;
+    _id: number;
     name: string;
     description: string;
     imageUrl: string;

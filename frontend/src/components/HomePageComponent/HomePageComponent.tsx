@@ -26,8 +26,8 @@ const HomePageComponent = () => {
                 <div className="connection-container">
                     <h1 className="join-us-text">Join us and start your journey to a greener future!</h1>
                     <div className="button-container-home">
-                        <ButtonAppComponent content="LOGIN" action={goToLoginPage}></ButtonAppComponent>
-                        <ButtonAppComponent content="SIGN IN" action={goToSignInPage}></ButtonAppComponent>
+                        <ButtonAppComponent content="LOGIN" action={goToLoginPage} type={"classic"}></ButtonAppComponent>
+                        <ButtonAppComponent content="SIGN IN" action={goToSignInPage} type={"classic"}></ButtonAppComponent>
                     </div>
                 </div>
 

@@ -2,35 +2,16 @@ import ChildrenCardComponent from "../ChildrenCardComponent/ChildrenCardComponen
 import "./ChildrenListComponent.css";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import ChildrenCreationComponent from "../ChildrenCreationComponent/ChildrenCreationComponent";
+import Close from "../../../assets/close.png";
 
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {ChildrenInterface} from "../../../interfaces/ChildrenInterface";
-/*
-const children = [
-    {
-        id: 1,
-        name: "John",
-        lastName: "Doe",
-        age: 5
-    },
-    {
-        id: 2,
-        name: "Jane",
-        lastName: "Doe",
-        age: 7
-    },
-    {
-        id: 3,
-        name: "Jack",
-        lastName: "Doe",
-        age: 9
-    }
-]
+import {useNavigate} from "react-router-dom";
 
- */
 
 function ChildrenListComponent(){
+    const navigate = useNavigate();
     const [children, setChildren] = useState<ChildrenInterface[]>([]);
 
     const getChildren = async () => {
@@ -71,11 +52,15 @@ function ChildrenListComponent(){
         }
     }
 
+    const goToHome = () => {
+        navigate("/educator");
+    }
+
 
     return(
         <main>
             <div className="children-btn-creation">
-                <ButtonAppComponent content={"NEW CHILD"} action={openPopUp}></ButtonAppComponent>
+                <ButtonAppComponent content={"NEW CHILD"} action={openPopUp} type={"new"}></ButtonAppComponent>
             </div>
             <div className="children-list-content">
                 <h1 className="children-list-title">Children List</h1>
@@ -94,11 +79,14 @@ function ChildrenListComponent(){
                             <ChildrenCreationComponent onCreate={handleCreate}></ChildrenCreationComponent>
                         </div>
                         <div className="children-creation-popup-close">
-                            <ButtonAppComponent content={"CLOSE"} action={closePopup}></ButtonAppComponent>
+                            <img src={Close} onClick={closePopup} alt="close" className="children-creation-popup-close-img"></img>
                         </div>
                     </div>
                 </div>
 
+            </div>
+            <div className="children-list-home-btn">
+                <ButtonAppComponent content={"BACK"} action={goToHome} type={"classic"}></ButtonAppComponent>
             </div>
         </main>
     )

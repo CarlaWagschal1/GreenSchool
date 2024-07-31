@@ -5,6 +5,8 @@ import GameStatsCard from "../GameStatsCard/GameStatsCard";
 
 import './ChildrenGameStats.css';
 import GameStatsCharts from "../GameStatsCharts/GameStatsCharts";
+import {useNavigate} from "react-router-dom";
+import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 
 interface gameStatsInterface {
     totalGames: number;
@@ -37,6 +39,7 @@ const gameMock = [
 
 
 function ChildrenGameStats() {
+    const navigate = useNavigate();
 
     const [selectedPeriod, setSelectedPeriod] = useState<'7days' | '30days' | 'Always'>('7days');
     const [scores, setScores] = useState<ScoreInterface[]>([]);
@@ -136,52 +139,62 @@ function ChildrenGameStats() {
     }
 
 
-
+    const goBack = () => {
+        navigate('/children-manager');
+    }
 
 
 
     return (
     <main>
-        <div className="game-list">
-            <GameStatsCard nameGame="Sorting Waste" gameId="sorting-waste" onClick={handleClick} isSelected={'sorting-waste' === gameID}></GameStatsCard>
-            <GameStatsCard nameGame="Drag and Drop" gameId="drag-and-drop" onClick={handleClick} isSelected={'drag-and-drop' === gameID}></GameStatsCard>
-            {gameMock.map(game => (
-                <GameStatsCard key={game.id} nameGame={game.name} gameId={game.id} onClick={handleClick} isSelected={game.id === gameID}></GameStatsCard>
-            ))}
-        </div>
-        <div className="stat-display">
-            <div className="date-choice">
-                <button className={selectedPeriod === '7days' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('7days')}>
-                    7 days
-                </button>
-                <button className={selectedPeriod === '30days' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('30days')}>
-                    30 days
-                </button>
-                <button className={selectedPeriod === 'Always' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('Always')}>
-                    Always
-                </button>
-            </div>
-            <div className="statistics">
-                {stats ? (
-                    <div className="stats-ok">
-                        <div className="chart-container">
-                            <GameStatsCharts labels={labels} timeData={timeData} scoreData={scoreData} gameType={gameID} />
-                        </div>
-                        <div className="stats-info">
-                            <p>Number of games played : {stats.totalGames}</p>
-                            <p>Average playing time: {stats.averageTime.toFixed(2)} secondes</p>
-                            <h2>Top 3 most common mistakes</h2>
-                            <ul>
-                                {stats.topErrors.map(([error, count]: [string, number]) => (
-                                    <li key={error}>{error}: {count} times</li>
-                                ))}
-                            </ul>
-                        </div>
+        <div className="children-game-stats-container">
+            <h2>Game Stats of </h2>
+            <div className="children-game-stats-content">
+                <div className="game-list">
+                    <GameStatsCard nameGame="Sorting Waste" gameId="sorting-waste" onClick={handleClick} isSelected={'sorting-waste' === gameID}></GameStatsCard>
+                    <GameStatsCard nameGame="Drag and Drop" gameId="drag-and-drop" onClick={handleClick} isSelected={'drag-and-drop' === gameID}></GameStatsCard>
+                    {gameMock.map(game => (
+                        <GameStatsCard key={game.id} nameGame={game.name} gameId={game.id} onClick={handleClick} isSelected={game.id === gameID}></GameStatsCard>
+                    ))}
+                </div>
+                <div className="stat-display">
+                    <div className="date-choice">
+                        <button className={selectedPeriod === '7days' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('7days')}>
+                            7 days
+                        </button>
+                        <button className={selectedPeriod === '30days' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('30days')}>
+                            30 days
+                        </button>
+                        <button className={selectedPeriod === 'Always' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('Always')}>
+                            Always
+                        </button>
                     </div>
-                ) : (
-                    <p className="no-stats">Pas encore de statistiques</p>
-                )}
+                    <div className="statistics">
+                        {stats ? (
+                            <div className="stats-ok">
+                                <div className="chart-container">
+                                    <GameStatsCharts labels={labels} timeData={timeData} scoreData={scoreData} gameType={gameID} />
+                                </div>
+                                <div className="stats-info">
+                                    <p>Number of games played : {stats.totalGames}</p>
+                                    <p>Average playing time: {stats.averageTime.toFixed(2)} secondes</p>
+                                    <h2>Top 3 most common mistakes</h2>
+                                    <ul>
+                                        {stats.topErrors.map(([error, count]: [string, number]) => (
+                                            <li key={error}>{error}: {count} times</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        ) : (
+                            <p className="no-stats">Pas encore de statistiques</p>
+                        )}
+                    </div>
+                </div>
             </div>
+        </div>
+        <div className="children-game-stat-back-btn">
+            <ButtonAppComponent content={"BACK"} action={goBack} type={"classic"} />
         </div>
     </main>
     );

@@ -14,7 +14,7 @@ const ProtectedRouteEducator: React.FC<ProtectedRouteProps> = ({ childrenRoute }
         const token = localStorage.getItem('token');
         console.log('Token:', token)
         const childrenToken = localStorage.getItem('childrenToken');
-        console.log('Token:', childrenToken)
+        console.log('Token children:', childrenToken)
         if (!token) {
             setIsAuthenticated(false);
             return;
@@ -31,6 +31,7 @@ const ProtectedRouteEducator: React.FC<ProtectedRouteProps> = ({ childrenRoute }
 
             console.log('Token validation response:', responseEducator.data)
             if (responseEducator.data.isValid) {
+                console.log('Token is valid')
                 setIsAuthenticated(true);
             } else {
                 localStorage.removeItem('token');

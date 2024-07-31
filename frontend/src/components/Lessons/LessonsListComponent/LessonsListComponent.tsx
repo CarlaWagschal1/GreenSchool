@@ -2,8 +2,13 @@ import {Lesson} from "../../../interfaces/LessonInterface";
 import {useEffect, useState} from "react";
 import LessonsManagerCard from "../LessonsManagerCard/LessonsManagerCard";
 
+import "./LessonsListComponent.css";
+import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
+import {useNavigate} from "react-router-dom";
+
 
 function LessonsListComponent() {
+    const navigate = useNavigate();
 
     const [lessons, setLessons] = useState<Lesson[]>([]);
 
@@ -28,18 +33,38 @@ function LessonsListComponent() {
         fetchLessons().catch(console.error);
     }, [])
 
+    const goToNewLesson = () => {
+        navigate("/new-lesson")
+    }
+
+    const goToHome = () => {
+        navigate("/educator");
+    }
+
 
 
     return (
         <main>
-            <h1>Lessons</h1>
-            <p>Here are the lessons</p>
-            <div>
-                {lessons.map((lesson) => {
-                    return (
-                        <LessonsManagerCard lesson={lesson}></LessonsManagerCard>
-                    )
-                })}
+            <div className="lessons-list-container">
+                <h1>Lessons</h1>
+                <div className="lessons-list-content">
+                    {(lessons.length === 0) ?
+                        (<div className="no-lessons-found-container">
+                            <p>No lessons found</p>
+                            <ButtonAppComponent content={"New Lesson"} action={goToNewLesson} type={"new"}/>
+                        </div>) :
+                        lessons.map((lesson) => {
+                        return (
+                            <LessonsManagerCard key={lesson._id} lesson={lesson}></LessonsManagerCard>
+                        )
+                    })}
+                </div>
+            </div>
+            <div className="lesson-home-btn">
+                <ButtonAppComponent content={"BACK"} action={goToHome} type={"classic"}></ButtonAppComponent>
+            </div>
+            <div className="lesson-creation-btn">
+                <ButtonAppComponent content={"New Lesson"} action={goToNewLesson} type={"new"}></ButtonAppComponent>
             </div>
         </main>
     )

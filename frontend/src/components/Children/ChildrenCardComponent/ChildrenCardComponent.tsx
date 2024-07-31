@@ -62,13 +62,13 @@ function ChildrenCardComponent(props: ChildrenInterface) {
                 </div>
                 <div className="children-card-buttons">
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"PLAY"} action={toPlay}></ButtonAppComponent>
+                        <ButtonAppComponent content={"PLAY"} action={toPlay} type={"play"}></ButtonAppComponent>
                     </div>
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"EDIT"} ></ButtonAppComponent>
+                        <ButtonAppComponent content={"EDIT"} type={"edit"}></ButtonAppComponent>
                     </div>
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"STATS"} action={seeStats}></ButtonAppComponent>
+                        <ButtonAppComponent content={"STATS"} action={seeStats} type={"stats"}></ButtonAppComponent>
                     </div>
                 </div>
             </div>

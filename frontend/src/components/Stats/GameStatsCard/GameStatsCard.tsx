@@ -25,7 +25,7 @@ function GameStatsCard(props: GameStatsInterface) {
             <div className={`${props.isSelected ? 'game-stat-card-selected' : 'game-stat-card'}`} onClick={handleClick}>
                 <h2 className="card-title">{props.nameGame}</h2>
                 <div className="handle-btn-game-stats-card">
-                    <ButtonAppComponent content={"See Stats "} action={handleClick}></ButtonAppComponent>
+                    <ButtonAppComponent content={"See Stats "} action={handleClick} type={"classic"}></ButtonAppComponent>
                 </div>
             </div>
         </>

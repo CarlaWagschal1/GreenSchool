@@ -26,7 +26,7 @@ function LoginComponent(){
             if(rep.data.token){
                 console.log(rep.data.token)
                 localStorage.setItem('token', rep.data.token);
-                navigate('/childrenManager');
+                navigate('/educator');
             }
         }
         catch (error) {
@@ -49,12 +49,12 @@ function LoginComponent(){
                         <input type="text" placeholder="Email" />
                         <input type="password" placeholder="Password" />
                     </div>
-                    <ButtonAppComponent content={"Login"} action={login} />
+                    <ButtonAppComponent content={"Login"} action={login} type={"classic"}/>
                 </div>
 
             </div>
             <div className="home-button">
-                <ButtonAppComponent content={"Home"} action={goToHome}/>
+                <ButtonAppComponent content={"Home"} action={goToHome} type={"classic"}/>
             </div>
         </main>
     )

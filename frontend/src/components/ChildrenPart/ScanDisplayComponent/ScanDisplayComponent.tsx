@@ -47,13 +47,13 @@ function ScanDisplayComponent () {
                         <Webcam ref={webcamRef} mirrored={true} screenshotFormat="image/jpeg"/>
 
                         <div className="btn-capture">
-                            <ButtonAppComponent content={"TAKE A PICTURE"} action={capture}></ButtonAppComponent>
+                            <ButtonAppComponent content={"TAKE A PICTURE"} action={capture} type={"classic"}></ButtonAppComponent>
                         </div>
                     </div>
                 )}
 
                 <div className="btn-retake">
-                    <ButtonAppComponent content={"Home"} action={navigateToHomePage}></ButtonAppComponent>
+                    <ButtonAppComponent content={"Home"} action={navigateToHomePage} type={"classic"}></ButtonAppComponent>
                 </div>
 
             </div>

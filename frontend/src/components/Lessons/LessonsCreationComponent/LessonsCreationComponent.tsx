@@ -2,9 +2,11 @@ import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import "./LessonsCreationComponent.css";
 
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 
 function LessonsCreationComponent() {
+    const navigate = useNavigate();
 
 
     const createLesson = async () => {
@@ -36,6 +38,10 @@ function LessonsCreationComponent() {
         }
     }
 
+    const goBack = () => {
+        navigate("/lessons-manager")
+    }
+
 
 
 
@@ -49,9 +55,12 @@ function LessonsCreationComponent() {
                 <label htmlFor="lessonDescription">Lesson description:</label>
                 <input type="text" id="lessonDescription" name="lessonDescription" required maxLength={150}/>
                 <label htmlFor="image">Image:</label>
-                <input type="file" id="image" name="image" required />
-                <ButtonAppComponent content={"Create lesson"} action={createLesson}/>
+                <input type="file" id="image" name="image" accept="image/*" required />
+                <ButtonAppComponent content={"Create lesson"} action={createLesson} type={"classic"}/>
             </div>
+        </div>
+        <div className="lesson-back-btn">
+            <ButtonAppComponent content={"BACK"} action={goBack} type={"classic"}></ButtonAppComponent>
         </div>
     </main>
   );

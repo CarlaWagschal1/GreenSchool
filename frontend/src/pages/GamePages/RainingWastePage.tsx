@@ -19,10 +19,10 @@ const RainingWastePage = () => {
                 <div className="raining-waste-choice">
                     <h1 className="choice-title">Choose a waste type</h1>
                     <div className="button-container">
-                        <ButtonAppComponent content={"Recyclable"} action={() => setWasteType("recyclable")}></ButtonAppComponent>
-                        <ButtonAppComponent content={"Food"} action={() => setWasteType("food")}></ButtonAppComponent>
-                        <ButtonAppComponent content={"Bulky"} action={() => setWasteType("bulky")}></ButtonAppComponent>
-                        <ButtonAppComponent content={"All"} action={() => setWasteType("all")}></ButtonAppComponent>
+                        <ButtonAppComponent content={"Recyclable"} action={() => setWasteType("recyclable")} type={"classic"}></ButtonAppComponent>
+                        <ButtonAppComponent content={"Food"} action={() => setWasteType("food")} type={"classic"}></ButtonAppComponent>
+                        <ButtonAppComponent content={"Bulky"} action={() => setWasteType("bulky")} type={"classic"}></ButtonAppComponent>
+                        <ButtonAppComponent content={"All"} action={() => setWasteType("all")} type={"classic"}></ButtonAppComponent>
                     </div>
                 </div>
 

@@ -157,7 +157,7 @@ function DragAndDropGameComponent(){
                     </div>
                 )}
                 <div className="button-home">
-                    <ButtonAppComponent content={"BACK"} action={navigateToHomePage}/>
+                    <ButtonAppComponent content={"BACK"} action={navigateToHomePage} type={"classic"}/>
                 </div>
 
             </div>

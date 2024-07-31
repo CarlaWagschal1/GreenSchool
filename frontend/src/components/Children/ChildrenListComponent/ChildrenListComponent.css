@@ -14,7 +14,7 @@
 }
 
 .children-btn-creation {
-    scale: 0.8;
+    scale: 0.7;
     position: absolute;
     right: 0;
     top: 0;
@@ -31,27 +31,7 @@
     padding: 10px;
 }
 
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-}
 
-/* Track */
-::-webkit-scrollbar-track {
-    background: var(--scrollbar-track-background);
-    border-radius: var(--scrollbar-border-radius);
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb-background);
-    border-radius: var(--scrollbar-border-radius);
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-hover-background);
-}
 
 .children-creation-popup {
     display: none;
@@ -74,6 +54,7 @@
 }
 
 .children-creation-css {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,6 +67,22 @@
 
 
 .children-creation-popup-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    scale: 0.7;
+}
+
+.children-creation-popup-close img {
+    width: 30px;
+    height: 30px;
+}
+
+
+.children-list-home-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
     scale: 0.7;
 }
 

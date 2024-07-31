@@ -64,7 +64,7 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
                     </select>
                 </div>
                 <div className="button-container">
-                    <ButtonAppComponent content={"CREATE"} action={createChild}></ButtonAppComponent>
+                    <ButtonAppComponent content={"CREATE"} action={createChild} type={"classic"}></ButtonAppComponent>
                 </div>
             </div>
 

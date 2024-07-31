@@ -33,7 +33,7 @@ function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
                 console.log(rep);
                 if(rep.status === 200){
                     localStorage.removeItem('childrenToken');
-                    navigate('/childrenManager');
+                    navigate('/children-manager');
                 }
             }
             catch (error) {
@@ -51,7 +51,7 @@ function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
           <div className="children-logout-content">
             <h1>Please enter your log out password</h1>
             <input type={"password"} />
-            <ButtonAppComponent content="LOG OUT" action={LogOut}></ButtonAppComponent>
+            <ButtonAppComponent content="LOG OUT" action={LogOut} type={"classic"}></ButtonAppComponent>
           </div>
           <img className="close-img" src={Close} alt={"close"} onClick={handleCancel}/>
       </div>

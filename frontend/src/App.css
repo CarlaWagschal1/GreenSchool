@@ -16,6 +16,17 @@ body {
   --button-border-color : #fff;
   --button-shadow : rgba(0,0,0,0.38);
 
+
+  /* Delete Button */
+  --delete-button-color : rgba(255, 0, 0, 0.75);
+  --delete-button-color-hover : rgba(255, 20, 32, 0.38);
+  --delete-button-border-color : #fff;
+
+  /* Play Button */
+  --play-button-color : #36a136;
+  --play-button-color-hover : rgba(54, 161, 54, 0.75);
+  --play-button-border-color : #fff;
+
   /* Header */
   --background-header-color : #bad8b6;
 
@@ -64,6 +75,15 @@ body {
     --lessons-creation-content-background : #c3e0ba;
     --lessons-creation-content-shadow : rgba(0, 90, 53, 0.48);
 
+  /* LessonsManagerCard */
+    --lessons-manager-card-background : #c3e0ba;
+    --lessons-manager-card-shadow : rgba(0, 90, 53, 0.48);
+    --lessons-manager-card-img-shadow : rgba(0, 0, 0, 0.50);
+
+  /* EducatorWelcomeComponent */
+      --educator-welcome-card-background : #c3e0ba;
+      --educator-welcome-card-shadow : rgba(0, 90, 53, 0.48);
+      --educator-welcome-card-background-hover : rgba(183, 211, 174, 0.85);
 
   padding: 0;
   margin: 0;
@@ -84,4 +104,27 @@ main {
   display: grid;
   grid-template-rows: auto auto;
   height: 100%;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-background);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-background);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-background);
 }

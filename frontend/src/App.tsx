@@ -52,16 +52,16 @@ function App() {
                 <Route path="/educator" element={
                     <ProtectedRouteEducator childrenRoute={<EducatorWelcomePage/>}>
                     </ProtectedRouteEducator>}/>
-                <Route path="/childrenManager" element={
+                <Route path="/children-manager" element={
                     <ProtectedRouteEducator childrenRoute={<ChildrenManagePage/>}>
                     </ProtectedRouteEducator>}/>
                 <Route path="/children-stats" element={
                     <ProtectedRouteEducator childrenRoute={<ChildrenStatsPage/>}>
                     </ProtectedRouteEducator>}/>
-                <Route path="/lessonsManager" element={
+                <Route path="/lessons-manager" element={
                     <ProtectedRouteEducator childrenRoute={<LessonsManagerPage/>}>
                     </ProtectedRouteEducator>}/>
-                <Route path="/newLesson" element={
+                <Route path="/new-lesson" element={
                     <ProtectedRouteEducator childrenRoute={<LessonsCreationPage/>}>
                     </ProtectedRouteEducator>}/>
 

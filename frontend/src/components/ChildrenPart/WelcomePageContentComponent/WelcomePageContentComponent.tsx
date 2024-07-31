@@ -45,7 +45,7 @@ export default function WelcomePageContentComponent() {
             <div className="container-home-page-content">
                 <h2 className="welcome-text">WELCOME TO GREENSCHOOL !</h2>
                 <div className="button-container">
-                    <ButtonAppComponent content={"CLASS YOUR WASTE"} action={navigateToScanPage}></ButtonAppComponent>
+                    <ButtonAppComponent content={"CLASS YOUR WASTE"} action={navigateToScanPage} type={"classic"}></ButtonAppComponent>
                 </div>
                 <div className="game-scroll">
                     <GameScrollComponent gamesList={gamesList}></GameScrollComponent>
