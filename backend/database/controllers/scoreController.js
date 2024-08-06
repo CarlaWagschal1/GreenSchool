@@ -27,17 +27,20 @@ async function getScoresController(request, response) {
 async function addScoreController(request, response) {
     const {childrenToken, gameID, score, date, errors, elapsedTime} = request.body;
 
-    if (!childrenToken || !score || !date || !errors || !elapsedTime) {
+    if (!childrenToken || score < 0 || score == null || !date || !errors || !elapsedTime) {
+        console.log("Error in add score controller: missing fields")
         response.status(400).json({message: 'Children token, score, date, false results and time are required'});
         return;
     }
     const childrenId = jwt.verify(childrenToken, process.env.JWT_SECRET).id;
     if (!childrenId) {
+        console.log("Error in add score controller: invalid token")
         response.status(400).json({message: 'Invalid token'});
         return;
     }
     const existChildren = await getChildrenById(childrenId);
     if (!existChildren) {
+        console.log("Error in add score controller: invalid children")
         response.status(400).json({message: 'Invalid children'});
         return;
     }

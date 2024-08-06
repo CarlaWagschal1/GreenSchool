@@ -19,14 +19,12 @@ function ChildrenCardComponent(props: ChildrenInterface) {
     const navigate = useNavigate();
 
     const toPlay = async () => {
-        console.log('props:', props)
 
         try {
             const data = {
                 childrenId: props._id,
                 educatorToken: localStorage.getItem('token')
             }
-            console.log(data)
 
             const headers = {
                 'Content-Type': 'application/json',

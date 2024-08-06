@@ -22,7 +22,6 @@ async function getChildrenController(request, response) {
 async function createChildrenController(request, response) {
     const {name, lastName, age} = request.body;
     const educatorId = request.user.id;
-    console.log("Educator id:", educatorId)
     if(!name || !lastName || !age || !educatorId) {
         response.status(400).json({message: 'Name, last name, age, and educator id are required'})
         return;
@@ -68,12 +67,9 @@ async function getChildrenByEducatorIdController(request, response) {
 
 
 async function playChildrenController(request, response) {
-    console.log("Play children controller")
-    console.log("Request body:", request.body)
     const {childrenId, educatorToken} = request.body;
 
     const decoded = jwt.verify(educatorToken, process.env.JWT_SECRET);
-    console.log("Decoded:", decoded)
     const educatorId = decoded.id;
 
 
@@ -83,14 +79,14 @@ async function playChildrenController(request, response) {
     }
 
     const educator = await getEducatorById(educatorId);
-    console.log("educator:", educator)
+
     if (!educator) {
         response.status(400).json({message: 'Educator does not exist'})
         return;
     }
 
     const children = await getChildrenById(childrenId);
-    console.log("Children:", children)
+
     if (!children) {
         response.status(400).json({message: 'Children does not exist'})
         return;
@@ -108,9 +104,28 @@ async function playChildrenController(request, response) {
     }
 }
 
+async function getChildrenByIdController(request, response) {
+    const childrenId = request.params.childrenId;
+    console.log("childrenId in controller:", childrenId);
+    if(!childrenId) {
+        response.status(400).json({message: 'Children id is required'})
+        return;
+    }
+    try {
+        const children = await getChildrenById(childrenId);
+        response.status(200).json(children);
+    }
+    catch (error) {
+        console.log("Error in get children by id controller:", error)
+        response.status(500).json({message: 'Internal server error'})
+    }
+}
+
+
 module.exports = {
     getChildrenController,
     createChildrenController,
     getChildrenByEducatorIdController,
-    playChildrenController
+    playChildrenController,
+    getChildrenByIdController
 }

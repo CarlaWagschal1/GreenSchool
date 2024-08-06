@@ -8,6 +8,14 @@
     height: 100%;
 }
 
+.children-game-stats-title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: Inter, sans-serif;
+}
+
 .children-game-stats-content {
     position: relative;
     display: flex;
@@ -49,6 +57,7 @@
 }
 
 .date-choice {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
@@ -60,6 +69,7 @@
 }
 
 .date-choice button {
+    position: relative;
     font-size: 1rem;
     font-family: Inter, sans-serif;
     cursor: pointer;
@@ -120,6 +130,22 @@
     height: 100%;
     font-family: Inter, sans-serif;
 }
+
+.game-info-center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.game-info-center h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
 
 .no-stats {
     position: relative;

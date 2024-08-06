@@ -52,8 +52,7 @@ function DragAndDropGameComponent(){
 
     const getElapsedTime = () => {
         const endTime = new Date();
-        console.log('Start time:', startTime);
-        console.log('End time:', endTime);
+
         if (startTime) {
             const elapsed = (endTime.getTime() - startTime.getTime()) / 1000; // to seconds
             return `${elapsed}`;
@@ -64,13 +63,8 @@ function DragAndDropGameComponent(){
     const registerScore = async () => {
         const elapsedTime = getElapsedTime();
 
-        console.log('Score:', scoreError, 'Elapsed time:', elapsedTime, 'Errors:', errorList);
 
         const childrenToken = localStorage.getItem('childrenToken');
-
-        console.log("falseResults:", errorList)
-
-
 
 
         if (!childrenToken) {
@@ -92,14 +86,12 @@ function DragAndDropGameComponent(){
                 'Authorization': 'Bearer ' + (localStorage.getItem('token') || '')
             }
 
-            console.log(data);
-            console.log(headers);
 
             const rep = await axios.post('http://localhost:5000/api/scores', data, {headers: headers});
 
-            console.log(rep);
+
             if(rep.status === 200){
-                console.log('Score registered');
+                console.log('Score sorting waste registered');
             }
         }
         catch (error) {

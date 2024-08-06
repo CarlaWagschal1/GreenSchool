@@ -34,19 +34,15 @@ const handleRequest = async (request, response) => {
     console.log('Request received:', request.method, request.url);
 
     if(request.url.includes('/auth')){
-        console.log("in auth")
         await manageToken(request, response);
     } else if(request.url.includes('/api')){
-        console.log("in api")
         if((request.url.includes('/api/signin') || request.url.includes('/api/login'))&& request.method === 'POST'){
             await manageAPI(request, response);
         }
         else{
-            console.log("in else")
             console.log(request.headers.authorization);
             //verify the token
             if(request.headers.authorization){
-                console.log("in if")
                 const token = request.headers.authorization.split(' ')[1];
                 console.log('Token:', token);
                 authenticateJWT(request, response, () => {

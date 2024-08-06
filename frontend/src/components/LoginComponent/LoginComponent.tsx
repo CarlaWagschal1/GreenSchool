@@ -22,7 +22,7 @@ function LoginComponent(){
             }
 
             const rep = await axios.post('http://localhost:5000/api/login', data, { headers: headers });
-            console.log(rep);
+
             if(rep.data.token){
                 console.log(rep.data.token)
                 localStorage.setItem('token', rep.data.token);

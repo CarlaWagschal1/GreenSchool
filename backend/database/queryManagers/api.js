@@ -10,7 +10,7 @@ const {
     getChildrenController,
     createChildrenController,
     getChildrenByEducatorIdController,
-    playChildrenController
+    playChildrenController, getChildrenByIdController
 } = require('../controllers/childrenController');
 
 const {
@@ -58,7 +58,6 @@ async function manageAPI(request, response) {
     try {
         if (url.startsWith('/api/scores/children') && method === 'GET') {
             const pathParts = url.split('/');
-            console.log('Path parts:', pathParts);
             if (pathParts.length === 7 && pathParts[5] === 'game') {
                 const childrenId = pathParts[4];
                 const gameId = pathParts[6];
@@ -69,6 +68,16 @@ async function manageAPI(request, response) {
                 const childrenId = pathParts[4];
                 request.params = { childrenId };
                 await getScoresByChildrenIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/children') && method === 'GET') {
+            const pathParts = url.split('/');
+            if (pathParts.length === 4) {
+                const childrenId = pathParts[3];
+                request.params = { childrenId };
+                await getChildrenByIdController(request, response);
                 return;
             }
         }
@@ -87,7 +96,6 @@ async function manageAPI(request, response) {
                 }
                 break;
             case '/api/signin':
-                console.log('Signin')
                 if (method === 'POST') {
                     console.log('Post')
                     await createEducatorsController(request, response);

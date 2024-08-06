@@ -48,11 +48,31 @@ function ChildrenGameStats() {
     const [labels, setLabels] = useState<string[]>([]);
     const [timeData, setTimeData] = useState<number[]>([]);
     const [scoreData, setScoreData] = useState<number[]>([]);
+    const [gamesWithoutError, setGamesWithoutError] = useState<number>(0);
+
+    const [childName, setChildName] = useState<string>('');
 
     const childrenID = localStorage.getItem('childrenID');
 
+    const findChildName = async() => {
+        try {
+            const token = localStorage.getItem('token');
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+            const rep = await axios.get(`http://localhost:5000/api/children/${childrenID}`, {headers: headers});
+            console.log(rep)
+            setChildName(rep.data.name);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
 
     useEffect(() => {
+        findChildName();
 
         const fetchScores = async () => {
             try {
@@ -78,11 +98,18 @@ function ChildrenGameStats() {
             const filteredScores = filterScoresByPeriod(scores, selectedPeriod);
             setStats(calculateStats(filteredScores));
             const labels = filteredScores.map((score) => score.date);
+
+            labels.forEach((label, index) => {
+                labels[index] = label.slice(5, 10); // Write the date in mm-dd format
+            });
+
             const timeData = filteredScores.map((score) => Number(score.elapsedTime));
             const scoreData = filteredScores.map((score) => score.score);
+            const gamesWithoutError = filteredScores.filter(score => score.errors.length === 0).length;
             setLabels(labels);
             setTimeData(timeData);
             setScoreData(scoreData);
+            setGamesWithoutError(gamesWithoutError);
         }
         else {
             setStats(null);
@@ -148,11 +175,11 @@ function ChildrenGameStats() {
     return (
     <main>
         <div className="children-game-stats-container">
-            <h2>Game Stats of </h2>
+            <h2 className="children-game-stats-title">Game Stats of {childName}</h2>
             <div className="children-game-stats-content">
                 <div className="game-list">
                     <GameStatsCard nameGame="Sorting Waste" gameId="sorting-waste" onClick={handleClick} isSelected={'sorting-waste' === gameID}></GameStatsCard>
-                    <GameStatsCard nameGame="Drag and Drop" gameId="drag-and-drop" onClick={handleClick} isSelected={'drag-and-drop' === gameID}></GameStatsCard>
+                    <GameStatsCard nameGame="Raining Waste" gameId="raining-waste" onClick={handleClick} isSelected={'raining-waste' === gameID}></GameStatsCard>
                     {gameMock.map(game => (
                         <GameStatsCard key={game.id} nameGame={game.name} gameId={game.id} onClick={handleClick} isSelected={game.id === gameID}></GameStatsCard>
                     ))}
@@ -176,14 +203,19 @@ function ChildrenGameStats() {
                                     <GameStatsCharts labels={labels} timeData={timeData} scoreData={scoreData} gameType={gameID} />
                                 </div>
                                 <div className="stats-info">
-                                    <p>Number of games played : {stats.totalGames}</p>
-                                    <p>Average playing time: {stats.averageTime.toFixed(2)} secondes</p>
-                                    <h2>Top 3 most common mistakes</h2>
-                                    <ul>
-                                        {stats.topErrors.map(([error, count]: [string, number]) => (
-                                            <li key={error}>{error}: {count} times</li>
-                                        ))}
-                                    </ul>
+                                    <div className="game-info-center">
+                                        <p>Number of games played : {stats.totalGames}</p>
+                                        <p>Number of games without error: {gamesWithoutError}</p>
+                                        <p>Average playing time: {stats.averageTime.toFixed(2)} secondes</p>
+                                        <div className="game-stat-mistakes">
+                                            <h3>Top 3 most common mistakes</h3>
+                                            <ul>
+                                                {stats.topErrors.map(([error, count]: [string, number]) => (
+                                                    <li key={error}>{error}: {count} times</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         ) : (

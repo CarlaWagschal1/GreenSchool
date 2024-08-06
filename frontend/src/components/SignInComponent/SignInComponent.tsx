@@ -13,7 +13,6 @@ function SignInComponent() {
         const password = (document.querySelector('input[type="password"]') as HTMLInputElement).value;
         const confirmPassword = (document.querySelectorAll('input[type="password"]')[1] as HTMLInputElement).value;
         if (password === confirmPassword) {
-            console.log("confirm ")
 
             try {
                 const rep = await axios.post('http://localhost:5000/api/signin', {

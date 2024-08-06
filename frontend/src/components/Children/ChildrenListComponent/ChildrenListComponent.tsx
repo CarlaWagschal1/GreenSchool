@@ -25,7 +25,6 @@ function ChildrenListComponent(){
 
             if (rep.data) {
                 setChildren(rep.data);
-                console.log(rep.data);
             }
         } catch (error) {
             console.log(error);

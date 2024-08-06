@@ -14,7 +14,7 @@ function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
     const navigate = useNavigate();
 
     const LogOut = async () => {
-        console.log('Log Out')
+
 
         const password = document.querySelector('input') as HTMLInputElement;
         if (password) {
@@ -30,7 +30,7 @@ function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
 
 
                 const rep = await axios.post('http://localhost:5000/api/children/logout', data, {headers: headers});
-                console.log(rep);
+
                 if(rep.status === 200){
                     localStorage.removeItem('childrenToken');
                     navigate('/children-manager');

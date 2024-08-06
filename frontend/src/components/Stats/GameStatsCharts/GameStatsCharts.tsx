@@ -45,7 +45,7 @@ const GameStatsCharts: React.FC<GameStatsChartsProps> = ({ gameType, labels, tim
         labels,
         datasets: [
             {
-                label: gameType === ('sorting-waste' || 'drag-and-drop') ? 'Error' :'Score',
+                label: (gameType === 'sorting-waste') || (gameType === 'raining-waste') ? 'Error' :'Score',
                 data: scoreData,
                 borderColor: 'rgba(153, 102, 255, 1)',
                 backgroundColor: 'rgba(153, 102, 255, 0.2)',
@@ -60,7 +60,7 @@ const GameStatsCharts: React.FC<GameStatsChartsProps> = ({ gameType, labels, tim
                 <Line data={timeChartData} />
             </div>
             <div>
-                {gameType === ('sorting-waste' || 'drag-and-drop') ?
+                {(gameType === 'sorting-waste') || (gameType === 'raining-waste') ?
                 (<h3> Errors </h3>) :
                 (<h3> Score </h3>)
                 }

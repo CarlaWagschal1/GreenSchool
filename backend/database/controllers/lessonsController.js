@@ -9,7 +9,6 @@ const {getEducatorById} = require('../collections/educators');
 async function getLessonsController(request, response) {
     try {
         const lessons = await getLessons();
-        console.log("Lessons in controller:", lessons);
         response.status(200).json(lessons);
     }
     catch (error) {
@@ -39,7 +38,7 @@ async function createLessonController(request, response) {
     const {name, description} = request.body;
     const educatorId = request.user.id;
     const imageUrl = request.file ? `/uploads/${request.file.filename}` : null;
-    console.log("name", name, "description", description, "imageUrl", imageUrl, "educatorId", educatorId);
+
     if (!name || !description || !imageUrl || !educatorId) {
         response.status(400).json({message: 'Name, description, image url, and educator id are required'})
         return;

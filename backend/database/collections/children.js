@@ -13,9 +13,11 @@ async function getChildren() {
 }
 
 async function getChildrenById(childrenId) {
+    console.log("Children id:", childrenId);
     const db = getDB();
     try {
-        return await db.collection('children').findOne({_id: new ObjectId(childrenId)});
+        const childrenObjId = new ObjectId(childrenId);
+        return await db.collection('children').findOne({_id: childrenObjId})
     }
     catch (error) {
         console.log("Error in get children by id:", error)

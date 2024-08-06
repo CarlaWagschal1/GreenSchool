@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import axios from 'axios';
+
 import FallingWaste from './FallingWaste';
 import TrashBin from './TrashBin';
 import Bouteille from '../../../../mocks/img/bouteille.png';
@@ -33,11 +35,74 @@ const initialWasteItems: WasteItem[] = [
 ];
 
 const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
-    const [score, setScore] = useState(0);
+    const [score, setScore] = useState<number>(0);
     const [wasteItems, setWasteItems] = useState(initialWasteItems);
     const [binType, setBinType] = useState<string>(wasteType);
     const [binPosition, setBinPosition] = useState({ left: 0, width: 50, height: 80 });
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const [startTime, setStartTime] = useState<Date | null>(null);
+    const [scoreError, setScoreError] = useState<number>(0);
+    const [errorList, setErrorList] = useState<string[]>([]);
+
+    useEffect(() => {
+        setStartTime(new Date());
+    }, []);
+
+    useEffect(() => {
+        if (score >= 10) {
+            registerScore();
+        }
+    }, [score]);
+
+    const getElapsedTime = () => {
+        const endTime = new Date();
+
+        if (startTime) {
+            const elapsed = (endTime.getTime() - startTime.getTime()) / 1000; // to seconds
+            return `${elapsed}`;
+        }
+        return null;
+    };
+
+    const registerScore = async () => {
+        const elapsedTime = getElapsedTime();
+
+        const childrenToken = localStorage.getItem('childrenToken');
+
+
+        if (!childrenToken) {
+            console.error('No children token found');
+            return;
+        }
+
+        try {
+            const data = {
+                childrenToken,
+                gameID: 'raining-waste',
+                score: scoreError,
+                date: new Date().toISOString(),
+                errors: errorList,
+                elapsedTime: elapsedTime
+            };
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + (localStorage.getItem('token') || '')
+            }
+
+
+            const rep = await axios.post('http://localhost:5000/api/scores', data, {headers: headers});
+
+            if(rep.status === 200){
+                console.log('Score raining waste registered');
+            }
+        }
+        catch (error) {
+            console.error(error);
+        }
+
+
+    }
 
     const generateUniquePosition = (existingItems: WasteItem[], containerWidth: number) => {
         let newLeft: number;
@@ -53,7 +118,8 @@ const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
         if (type === binType || binType === 'all') {
             setScore((prevScore) => prevScore + 1);
         } else {
-            setScore((prevScore) => prevScore - 1);
+            setScoreError((prevScore) => prevScore + 1);
+            setErrorList((prevErrorList) => [...prevErrorList, wasteItems.find((item) => item.id === id)?.name || '']);
         }
 
         setWasteItems((prevItems) =>
