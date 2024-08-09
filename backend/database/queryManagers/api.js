@@ -21,13 +21,17 @@ const {
 
 const {
     getLessonsController,
-    createLessonController
+    createLessonController,
+    getLessonByIdController,
+    deleteLessonController
 } = require('../controllers/lessonsController');
 
 const {
     getChaptersController,
     createChapterController,
-    getChaptersByLessonIdController
+    getChaptersByLessonIdController,
+    getChapterByIdController,
+    deleteChapterController
 } = require("../controllers/chaptersController");
 
 const multer = require('multer');
@@ -74,10 +78,63 @@ async function manageAPI(request, response) {
 
         if(url.startsWith('/api/children') && method === 'GET') {
             const pathParts = url.split('/');
-            if (pathParts.length === 4) {
+            if (pathParts.length === 4 && pathParts[3] !== 'educator') {
                 const childrenId = pathParts[3];
                 request.params = { childrenId };
                 await getChildrenByIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/lessons') && method === 'GET') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                console.log('Path parts:', pathParts)
+                const lessonId = pathParts[3];
+                console.log('Lesson id:', lessonId)
+                request.params = { lessonId };
+                console.log('Request params:', request.params)
+                await getLessonByIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/lessons') && method === 'DELETE') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const lessonId = pathParts[3];
+                request.params = { lessonId };
+                await deleteLessonController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/chapters') && method === 'GET') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const chapterId = pathParts[3];
+                request.params = { chapterId };
+                await getChapterByIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/chapters') && method === 'DELETE') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const chapterId = pathParts[3];
+                request.params = { chapterId };
+                await deleteChapterController(request, response);
+                return;
+            }
+        }
+
+        if (url.startsWith('/api/chapters/lesson') && method === 'GET') {
+            const pathParts = url.split('/');
+            if (pathParts.length === 5) {
+                const lessonId = pathParts[4];
+                request.params = { lessonId };
+                await getChaptersByLessonIdController(request, response);
                 return;
             }
         }
@@ -176,18 +233,22 @@ async function manageAPI(request, response) {
                 if (method === 'GET') {
                     await getChaptersController(request, response);
                 } else if (method === 'POST') {
-                    await createChapterController(request, response);
-                } else {
+                    upload.single('files')(request, response, async (err) => {
+                        if (err) {
+                            console.error('Multer error:', err);
+                            return response.status(500).json({ message: 'File upload error', error: err.message });
+                        }
+                        try {
+                            await createChapterController(request, response);
+                        } catch (createChapterError) {
+                            console.error('Create chapter error:', createChapterError);
+                            return response.status(500).json({ message: 'Chapter creation error', error: createChapterError.message });
+                        }
+                    });                } else {
                     response.status(405).send('Method not allowed');
                 }
                 break;
-            case '/api/chapters/lesson':
-                if (method === 'GET') {
-                    await getChaptersByLessonIdController(request, response);
-                } else {
-                    response.status(405).send('Method not allowed');
-                }
-                break;
+
 
             default:
                 console.log('Request not found')

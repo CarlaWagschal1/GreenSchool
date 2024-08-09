@@ -13,7 +13,6 @@ async function getChildren() {
 }
 
 async function getChildrenById(childrenId) {
-    console.log("Children id:", childrenId);
     const db = getDB();
     try {
         const childrenObjId = new ObjectId(childrenId);

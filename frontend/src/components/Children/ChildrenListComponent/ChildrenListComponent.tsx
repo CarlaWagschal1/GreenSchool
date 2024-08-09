@@ -15,6 +15,7 @@ function ChildrenListComponent(){
     const [children, setChildren] = useState<ChildrenInterface[]>([]);
 
     const getChildren = async () => {
+        console.log("token: ", localStorage.getItem('token'));
         try {
             const headers = {
                 'Content-Type': 'application/json',

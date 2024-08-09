@@ -74,6 +74,9 @@ body {
   /* LessonsCreationComponent */
     --lessons-creation-content-background : #c3e0ba;
     --lessons-creation-content-shadow : rgba(0, 90, 53, 0.48);
+    --lesson-creation-input : #e1eacd;
+    --lesson-creation-upload-img : #c1cea5;
+    --lesson-creation-upload-img-hover : rgba(193, 206, 165, 0.75);
 
   /* LessonsManagerCard */
     --lessons-manager-card-background : #c3e0ba;
@@ -84,6 +87,18 @@ body {
       --educator-welcome-card-background : #c3e0ba;
       --educator-welcome-card-shadow : rgba(0, 90, 53, 0.48);
       --educator-welcome-card-background-hover : rgba(183, 211, 174, 0.85);
+
+  /* ChaptersListComponent */
+    --chapter-list-card-background : #c3e0ba;
+    --chapter-list-card-shadow : rgba(0, 90, 53, 0.48);
+
+    /* ChapterCreationPopup */
+    --chapter-creation-popup-background : #c3e0ba;
+    --chapter-creation-popup-background-box-shadow : rgba(0, 90, 53, 0.48);
+    --chapter-creation-input : #e1eacd;
+    --chapter-creation-upload-img : #c1cea5;
+    --chapter-creation-upload-img-hover : rgba(193, 206, 165, 0.75);
+
 
   padding: 0;
   margin: 0;

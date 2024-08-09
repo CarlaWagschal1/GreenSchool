@@ -1,5 +1,6 @@
 import Enfant from "../../assets/enfants.png";
 import Lesson from "../../assets/livre.png";
+import LogOut from "../../assets/logout.png";
 
 import "./EducatorWelcomeComponent.css";
 import {useNavigate} from "react-router-dom";
@@ -13,6 +14,14 @@ function EducatorWelcomeComponent() {
 
     const goToLessonsManager = () => {
         navigate('/lessons-manager');
+    }
+
+    const logout = () => {
+        if (localStorage.getItem('token')) {
+            localStorage.removeItem('token');
+        }
+        localStorage.clear();
+        navigate('/');
     }
 
 
@@ -49,6 +58,9 @@ function EducatorWelcomeComponent() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="logout-educator-container">
+                <img src={LogOut} alt={"Log Out"} onClick={logout}/>
             </div>
         </main>
     );

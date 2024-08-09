@@ -1,10 +1,15 @@
 const {
     getLessons,
     getLessonById,
-    createLesson
+    createLesson,
+    getLessonsByEducatorId,
+    deleteLesson
 } = require('../collections/lessons');
 
 const {getEducatorById} = require('../collections/educators');
+const {
+    deleteChaptersByLessonId
+} = require('../collections/chapters');
 
 async function getLessonsController(request, response) {
     try {
@@ -18,14 +23,15 @@ async function getLessonsController(request, response) {
 }
 
 async function getLessonByIdController(request, response) {
-    const {id} = request.params;
-    if (!id) {
+    const {lessonId} = request.params;
+    console.log("Id:", lessonId)
+    if (!lessonId) {
         response.status(400).json({message: 'Id is required'})
         return;
     }
 
     try {
-        const lesson = await getLessonById(id);
+        const lesson = await getLessonById(lessonId);
         response.status(200).json(lesson);
     }
     catch (error) {
@@ -51,7 +57,9 @@ async function createLessonController(request, response) {
 
     try {
         await createLesson(educatorId, name, description, imageUrl);
-        response.status(201).json({message: 'Lesson created'});
+        const newLesson = await getLessonsByEducatorId(educatorId);
+        const newLessonId = newLesson[newLesson.length - 1]._id;
+        response.status(201).json({message: 'Lesson created', lessonId: newLessonId});
     }
     catch (error) {
         console.log("Error in create lesson controller:", error)
@@ -59,8 +67,27 @@ async function createLessonController(request, response) {
     }
 }
 
+async function deleteLessonController(request, response) {
+    const {lessonId} = request.params;
+    if (!lessonId) {
+        response.status(400).json({message: 'Id is required'})
+        return;
+    }
+
+    try {
+        await deleteChaptersByLessonId(lessonId);
+        await deleteLesson(lessonId);
+        response.status(200).json({message: 'Lesson deleted'});
+    }
+    catch (error) {
+        console.log("Error in delete lesson controller:", error)
+        response.status(500).json({message: 'Internal server error'})
+    }
+}
+
 module.exports = {
     getLessonsController,
     getLessonByIdController,
-    createLessonController
+    createLessonController,
+    deleteLessonController
 }

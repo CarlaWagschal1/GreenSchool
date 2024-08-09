@@ -18,6 +18,7 @@ import ChildrenStatsPage from "./pages/ChildrenStatPage/ChildrenStatsPage";
 import LessonsCreationPage from "./pages/LessonsCreationPage/LessonsCreationPage";
 import EducatorWelcomePage from "./pages/EducatorWelcomePage/EducatorWelcomePage";
 import LessonsManagerPage from "./pages/LessonsManagerPage/LessonsManagerPage";
+import LessonsModificationPage from "./pages/LessonsModificationPage/LessonsModificationPage";
 
 function App() {
 
@@ -63,6 +64,10 @@ function App() {
                     </ProtectedRouteEducator>}/>
                 <Route path="/new-lesson" element={
                     <ProtectedRouteEducator childrenRoute={<LessonsCreationPage/>}>
+                    </ProtectedRouteEducator>}/>
+                <Route path="/lessons-modification/:lessonId"
+                       element={
+                    <ProtectedRouteEducator childrenRoute={<LessonsModificationPage/>}>
                     </ProtectedRouteEducator>}/>
 
             </Routes>

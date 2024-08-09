@@ -41,6 +41,12 @@ function LessonsListComponent() {
         navigate("/educator");
     }
 
+    const handleDelete = (deleted: boolean) => {
+        if(deleted){
+            fetchLessons().catch(console.error);
+        }
+    }
+
 
 
     return (
@@ -55,7 +61,7 @@ function LessonsListComponent() {
                         </div>) :
                         lessons.map((lesson) => {
                         return (
-                            <LessonsManagerCard key={lesson._id} lesson={lesson}></LessonsManagerCard>
+                            <LessonsManagerCard key={lesson._id} lesson={lesson} isDeleted={handleDelete}></LessonsManagerCard>
                         )
                     })}
                 </div>

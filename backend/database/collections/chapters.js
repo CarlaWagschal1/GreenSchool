@@ -1,4 +1,5 @@
 const {getDB} = require('../db');
+const ObjectId = require('mongodb').ObjectId;
 
 
 async function getChapters() {
@@ -23,13 +24,14 @@ async function getChapterById(chapterId) {
     }
 }
 
-async function createChapter(lessonId, name, description) {
+async function createChapter(lessonId, name, description, imageUrl) {
     const db = getDB();
     try {
         await db.collection('chapters').insertOne({
             lessonId,
             name,
-            description
+            description,
+            imageUrl
         });
     }
     catch (error) {
@@ -49,9 +51,34 @@ async function getChaptersByLessonId(lessonId) {
     }
 }
 
+async function deleteChapter(chapterId) {
+    const db = getDB();
+    try {
+        const objectId = new ObjectId(chapterId);
+        await db.collection('chapters').deleteOne({ _id: objectId });
+    }
+    catch (error) {
+        console.log("Error in delete Chapter:", error);
+        throw new Error('Internal server error');
+    }
+}
+
+async function deleteChaptersByLessonId(lessonId) {
+    const db = getDB();
+    try {
+        await db.collection('chapters').deleteMany({ lessonId });
+    }
+    catch (error) {
+        console.log("Error in delete Chapters by lesson id:", error);
+        throw new Error('Internal server error');
+    }
+}
+
 module.exports = {
     getChapters,
     getChapterById,
     createChapter,
-    getChaptersByLessonId
+    getChaptersByLessonId,
+    deleteChapter,
+    deleteChaptersByLessonId
 }

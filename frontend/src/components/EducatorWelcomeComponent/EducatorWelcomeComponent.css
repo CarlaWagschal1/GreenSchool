@@ -38,6 +38,13 @@
     .card {
         margin: 10px;
     }
+
+    .logout-educator-container {
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        cursor: pointer;
+    }
 }
 
 .card {
@@ -98,4 +105,18 @@
     font-family: Inter, sans-serif;
     align-content: center;
     text-align: center;
+}
+
+
+.logout-educator-container {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.logout-educator-container img {
+    position: relative;
+    width: 75px;
+    height: auto;
 }

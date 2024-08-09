@@ -18,10 +18,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 730px;
+    width: 1300px;
     height: calc(100vh - 200px);
     overflow-y: auto;
     gap: 20px;
+}
+
+@media screen and (max-width: 1325px) {
+    .lessons-list-content {
+        width: 900px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .lessons-list-content {
+        width: 600px;
+    }
 }
 
 .lesson-home-btn {

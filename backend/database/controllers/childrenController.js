@@ -106,7 +106,6 @@ async function playChildrenController(request, response) {
 
 async function getChildrenByIdController(request, response) {
     const childrenId = request.params.childrenId;
-    console.log("childrenId in controller:", childrenId);
     if(!childrenId) {
         response.status(400).json({message: 'Children id is required'})
         return;

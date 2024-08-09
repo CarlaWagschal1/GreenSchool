@@ -2,7 +2,8 @@ const {
     getChapters,
     getChapterById,
     createChapter,
-    getChaptersByLessonId
+    getChaptersByLessonId,
+    deleteChapter
 } = require('../collections/chapters');
 
 const {getLessonById} = require('../collections/lessons');
@@ -37,7 +38,14 @@ async function getChapterByIdController(request, response) {
 
 async function createChapterController(request, response) {
     const {lessonId, name, description} = request.body;
-    if (!lessonId || !name || !description) {
+    const imageUrl = request.file ? `/uploads/${request.file.filename}` : null;
+    console.log('Request body:', request.body)
+    console.log('Lesson id:', lessonId)
+    console.log('Name:', name)
+    console.log('Description:', description)
+    console.log('Image URL:', imageUrl)
+
+    if (!lessonId || !name || !description || !imageUrl) {
         response.status(400).json({message: 'Lesson id, name, and description are required'})
         return;
     }
@@ -48,7 +56,7 @@ async function createChapterController(request, response) {
     }
 
     try {
-        await createChapter(lessonId, name, description);
+        await createChapter(lessonId, name, description, imageUrl);
         response.status(201).json({message: 'Chapter created'});
     }
     catch (error) {
@@ -80,10 +88,30 @@ async function getChaptersByLessonIdController(request, response) {
     }
 }
 
+async function deleteChapterController(request, response) {
+    const {chapterId} = request.params;
+    if (!chapterId) {
+        response.status(400).json({message: 'Id is required'})
+        return;
+    }
+
+    try {
+        await deleteChapter(chapterId);
+        response.status(200).json({message: 'Chapter deleted'});
+    }
+    catch (error) {
+        console.log("Error in delete chapter controller:", error)
+        response.status(500).json({message: 'Internal server error'})
+    }
+}
+
+
+
 module.exports = {
     getChaptersController,
     getChapterByIdController,
     createChapterController,
-    getChaptersByLessonIdController
+    getChaptersByLessonIdController,
+    deleteChapterController,
 }
 
