@@ -137,6 +137,68 @@ async function logoutChildren(id, password) {
     }
 }
 
+async function changePassword(educatorId, password, newPassword) {
+    const db = getDB();
+    try {
+        const isMatch = await checkPassword(educatorId, password);
+        if (!isMatch) {
+            throw new Error('Invalid password');
+        }
+
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(newPassword, salt);
+        await db.collection('educators').updateOne({_id: new ObjectId(educatorId)}, {
+            $set: {
+                password: hashedPassword
+            }
+        });
+    }
+    catch (error) {
+        console.log("Error in change password:", error);
+        throw new Error('Internal server error');
+    }
+}
+
+async function changeEmail(educatorId, newEmail, password) {
+    const db = getDB();
+    try {
+        const isMatch = await checkPassword(educatorId, password);
+        if (!isMatch) {
+            throw new Error('Invalid password');
+        }
+
+        await db.collection('educators').updateOne({_id: new ObjectId(educatorId)}, {
+            $set: {
+                email: newEmail
+            }
+        });
+    }
+    catch (error) {
+        console.log("Error in change email:", error);
+        throw new Error('Internal server error');
+    }
+}
+
+async function changeUsername(educatorId, password, newUsername) {
+    const db = getDB();
+    try {
+        const isMatch = await checkPassword(educatorId, password);
+        if (!isMatch) {
+            throw new Error('Invalid password');
+        }
+
+        await db.collection('educators').updateOne({_id: new ObjectId(educatorId)}, {
+            $set: {
+                name: newUsername
+            }
+        });
+    }
+    catch (error) {
+        console.log("Error in change username:", error);
+        throw new Error('Internal server error');
+    }
+}
+
 module.exports = {
     getEducators,
     emailAlreadyExists,
@@ -145,5 +207,8 @@ module.exports = {
     changeChildrenLogoutPassword,
     loginEducator,
     getEducatorById,
-    logoutChildren
+    logoutChildren,
+    changePassword,
+    changeEmail,
+    changeUsername
 };

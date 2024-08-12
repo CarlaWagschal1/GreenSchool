@@ -1,5 +1,6 @@
 import Enfant from "../../assets/enfants.png";
 import Lesson from "../../assets/livre.png";
+import Profile from "../../assets/profil.png";
 import LogOut from "../../assets/logout.png";
 
 import "./EducatorWelcomeComponent.css";
@@ -14,6 +15,10 @@ function EducatorWelcomeComponent() {
 
     const goToLessonsManager = () => {
         navigate('/lessons-manager');
+    }
+
+    const goToProfile = () => {
+        navigate('/profile');
     }
 
     const logout = () => {
@@ -55,6 +60,15 @@ function EducatorWelcomeComponent() {
                         <div className="card-content">
                             <h2>Coming soon</h2>
                             <p>Manage your coming soon</p>
+                        </div>
+                    </div>
+                    <div className="card" onClick={goToProfile}>
+                        <div className="card-img">
+                            <img src={Profile} alt="profil"/>
+                        </div>
+                        <div className="card-content">
+                            <h2>Profile</h2>
+                            <p>Manage your profile</p>
                         </div>
                     </div>
                 </div>

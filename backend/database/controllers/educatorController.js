@@ -6,7 +6,10 @@ const {
     getEducatorById,
     changeChildrenLogoutPassword,
     getEducatorByEmail,
-    logoutChildren
+    logoutChildren,
+    changePassword,
+    changeEmail,
+    changeUsername
 } = require('../collections/educators');
 
 const jwt = require('jsonwebtoken');
@@ -18,6 +21,27 @@ async function getEducatorsController(request, response) {
     }
     catch (error) {
         console.log("Error in get Educators controller:", error)
+        response.status(500).json({message: 'Internal server error'});
+    }
+}
+
+async function getEducatorByIdController(request, response) {
+    const id = request.user.id;
+    if (!id) {
+        response.status(400).json({message: 'Id is required'});
+        return;
+    }
+
+    try {
+        const educator = await getEducatorById(id);
+        if (!educator) {
+            response.status(400).json({message: 'Educator does not exist'});
+            return;
+        }
+        response.status(200).json(educator);
+    }
+    catch (error) {
+        console.log("Error in get Educator by id controller:", error)
         response.status(500).json({message: 'Internal server error'});
     }
 }
@@ -49,7 +73,7 @@ async function createEducatorsController(request, response) {
 
 async function changeChildrenLogoutPasswordController(request, response) {
     const {password, newChildrenLogoutPassword} = request.body;
-    const educatorId = request.query.educatorId;
+    const educatorId = request.user;
     if (!password || !newChildrenLogoutPassword || !educatorId) {
         response.status(400).json({message: 'Password, new password, and EducatorId are required'});
         return;
@@ -129,10 +153,96 @@ async function logoutChildrenController(request, response) {
     }
 }
 
+
+async function changePasswordController(request, response) {
+    console.log("In change password controller")
+    const {password, newPassword} = request.body;
+    if (!password || !newPassword) {
+        console.log("Password, new password and token are required")
+        response.status(400).json({message: 'Password, new password and token are required'});
+        return;
+    }
+    const id = request.user;
+    try {
+        const educator = await getEducatorById(id);
+        if (!educator) {
+            console.log("Invalid credentials get educator by id change password controller")
+            response.status(400).json({message: 'Invalid credentials'});
+            return;
+        }
+        await changePassword(id, password, newPassword);
+        response.status(200).json({message: 'Password changed'});
+    }
+    catch (error) {
+        console.log("Error in change password controller:", error)
+        response.status(500).json({message: 'Internal server error'});
+    }
+}
+
+async function changeEmailController(request, response) {
+    const {newEmail, password} = request.body;
+    if (!newEmail || !password) {
+        response.status(400).json({message: 'Email, new email, password and token are required'});
+        return;
+    }
+    const id = request.user;
+    if (!id) {
+        response.status(400).json({message: 'Invalid token'});
+        return;
+    }
+    try {
+        const educator = await getEducatorById(id);
+        if (!educator) {
+            response.status(400).json({message: 'Invalid credentials'});
+            return;
+        }
+        await changeEmail(id, newEmail, password);
+        response.status(200).json({message: 'Email changed'});
+    }
+    catch (error) {
+        console.log("Error in change email controller:", error)
+        response.status(500).json({message: 'Internal server error'});
+    }
+}
+
+async function changeUsernameController(request, response) {
+    console.log("In change username controller")
+    const {newUsername, password} = request.body;
+    if (!newUsername || !password) {
+        console.log("New username and password are required")
+        response.status(400).json({message: 'New username and password are required'});
+        return;
+    }
+    const id = request.user;
+    if (!id) {
+        console.log("Invalid token")
+        response.status(400).json({message: 'Invalid token'});
+        return;
+    }
+    try {
+        const educator = await getEducatorById(id);
+        if (!educator) {
+            console.log("Invalid credentials get educator by id change username controller")
+            response.status(400).json({message: 'Invalid credentials'});
+            return;
+        }
+        await changeUsername(id, password, newUsername);
+        response.status(200).json({message: 'Username changed'});
+    }
+    catch (error) {
+        console.log("Error in change username controller:", error)
+        response.status(500).json({message: 'Internal server error'});
+    }
+}
+
 module.exports = {
     getEducatorsController,
+    getEducatorByIdController,
     createEducatorsController,
     loginController,
     changeChildrenLogoutPasswordController,
-    logoutChildrenController
+    logoutChildrenController,
+    changePasswordController,
+    changeEmailController,
+    changeUsernameController
 };

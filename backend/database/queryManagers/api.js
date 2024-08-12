@@ -1,9 +1,13 @@
 const {
     getEducatorsController,
+    getEducatorByIdController,
     createEducatorsController,
     loginController,
     changeChildrenLogoutPasswordController,
-    logoutChildrenController
+    logoutChildrenController,
+    changePasswordController,
+    changeEmailController,
+    changeUsernameController
 } = require('../controllers/educatorController');
 
 const {
@@ -141,13 +145,28 @@ async function manageAPI(request, response) {
 
 
         switch (url) {
+            case '/api/educator':
+                if (method === 'GET') {
+                    await getEducatorByIdController(request, response);
+                } else if (method === 'PATCH') {
+                    if ('newChildrenLogoutPassword' in request.body) {
+                        await changeChildrenLogoutPasswordController(request, response);
+                    } else if ('newPassword' in request.body) {
+                        await changePasswordController(request, response);
+                    } else if('newEmail' in request.body) {
+                        await changeEmailController(request, response);
+                    } else if ('newUsername' in request.body) {
+                        await changeUsernameController(request, response);
+                    } else {
+                        response.status(400).send('Bad request');
+                    }
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
             case '/api/educators':
                 if (method === 'GET') {
                     await getEducatorsController(request, response);
-                } else if (method === 'PATCH') {
-                    if (params.educatorId && 'newChildrenLogoutPassword' in request.body) {
-                        await changeChildrenLogoutPasswordController(request, response);
-                    }
                 } else {
                     response.status(405).send('Method not allowed');
                 }

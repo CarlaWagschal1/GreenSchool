@@ -99,6 +99,15 @@ body {
     --chapter-creation-upload-img : #c1cea5;
     --chapter-creation-upload-img-hover : rgba(193, 206, 165, 0.75);
 
+  /* Profile */
+    --profile-background : #c3e0ba;
+    --profile-shadow : rgba(0, 90, 53, 0.48);
+    --profile-input : #e1eacd;
+    --profile-link : #22938a;
+    --profile-popup-background : rgba(0,0,0,0.5);
+    --profile-popup-content-background : #c3e0ba;
+    --profile-popup-content-box-shadow : rgba(0, 90, 53, 0.48);
+    --profile-popup-sucess-background: #9bc291;
 
   padding: 0;
   margin: 0;

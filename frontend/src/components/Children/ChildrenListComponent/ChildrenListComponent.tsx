@@ -83,7 +83,6 @@ function ChildrenListComponent(){
                         </div>
                     </div>
                 </div>
-
             </div>
             <div className="children-list-home-btn">
                 <ButtonAppComponent content={"BACK"} action={goToHome} type={"classic"}></ButtonAppComponent>
