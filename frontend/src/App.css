@@ -109,6 +109,17 @@ body {
     --profile-popup-content-box-shadow : rgba(0, 90, 53, 0.48);
     --profile-popup-sucess-background: #9bc291;
 
+  /* ChildrenLessonCard */
+    --children-lesson-card-background : #c3e0ba;
+    --children-lesson-card-background-hover : rgba(141, 161, 137, 0.85);
+    --children-lesson-card-shadow : rgba(0, 90, 53, 0.48);
+    --children-lesson-card-img-shadow : rgba(0, 0, 0, 0.50);
+
+  /* ChildrenLessonListComponent */
+    --children-lesson-list-popup-background : #c3e0ba;
+    --children-lesson-list-popup-background-box-shadow : rgba(0, 90, 53, 0.48);
+
+
   padding: 0;
   margin: 0;
   height: 100%;
@@ -135,6 +146,7 @@ main {
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 15px;
 }
 
 /* Track */

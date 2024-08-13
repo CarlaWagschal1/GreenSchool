@@ -20,6 +20,8 @@ import EducatorWelcomePage from "./pages/EducatorWelcomePage/EducatorWelcomePage
 import LessonsManagerPage from "./pages/LessonsManagerPage/LessonsManagerPage";
 import LessonsModificationPage from "./pages/LessonsModificationPage/LessonsModificationPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ChildrenLessonPage from "./pages/ChildrenLessonPage/ChildrenLessonPage";
+import ChildrenLessonListPage from "./pages/ChildrenLessonListPage/ChildrenLessonListPage";
 
 function App() {
 
@@ -49,6 +51,13 @@ function App() {
                 <Route path="/game2" element={
                     <ProtectedRouteChildren childrenRoute={<RainingWastePage/>}>
                     </ProtectedRouteChildren>}/>
+                <Route path="/children-lesson-list" element={
+                    <ProtectedRouteChildren childrenRoute={<ChildrenLessonListPage/>}>
+                    </ProtectedRouteChildren>}/>
+                <Route path="/children-lesson/:lessonId" element={
+                    <ProtectedRouteChildren childrenRoute={<ChildrenLessonPage/>}>
+                    </ProtectedRouteChildren>}/>
+
 
                 //Pages for educators
                 <Route path="/educator" element={

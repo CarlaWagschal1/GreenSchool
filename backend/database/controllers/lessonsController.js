@@ -85,9 +85,27 @@ async function deleteLessonController(request, response) {
     }
 }
 
+async function getLessonsByEducatorIdController(request, response) {
+    const educatorId = request.user.id;
+    if (!educatorId) {
+        response.status(400).json({message: 'Educator id is required'})
+        return;
+    }
+
+    try {
+        const lessons = await getLessonsByEducatorId(educatorId);
+        response.status(200).json(lessons);
+    }
+    catch (error) {
+        console.log("Error in get lessons by educator id controller:", error)
+        response.status(500).json({message: 'Internal server error'})
+    }
+}
+
 module.exports = {
     getLessonsController,
     getLessonByIdController,
     createLessonController,
-    deleteLessonController
+    deleteLessonController,
+    getLessonsByEducatorIdController
 }

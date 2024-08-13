@@ -48,7 +48,9 @@ async function createLesson(educatorId, name, description, imageUrl) {
 async function getLessonsByEducatorId(educatorId) {
     const db = getDB();
     try {
-        return await db.collection('lessons').find({ educatorId }).toArray();
+        const lessons = await db.collection('lessons').find({ educatorId: educatorId }).toArray();
+        console.log("Lessons by educator id:", lessons);
+        return lessons;
     }
     catch (error) {
         console.log("Error in get Lessons by educator id:", error);

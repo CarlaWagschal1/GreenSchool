@@ -27,7 +27,8 @@ const {
     getLessonsController,
     createLessonController,
     getLessonByIdController,
-    deleteLessonController
+    deleteLessonController,
+    getLessonsByEducatorIdController
 } = require('../controllers/lessonsController');
 
 const {
@@ -92,7 +93,7 @@ async function manageAPI(request, response) {
 
         if(url.startsWith('/api/lessons') && method === 'GET') {
             const pathParts = url.split('/');
-            if(pathParts.length === 4) {
+            if(pathParts.length === 4 && pathParts[3] !== 'educator') {
                 console.log('Path parts:', pathParts)
                 const lessonId = pathParts[3];
                 console.log('Lesson id:', lessonId)
@@ -244,6 +245,13 @@ async function manageAPI(request, response) {
                             return response.status(500).json({ message: 'Lesson creation error', error: createLessonError.message });
                         }
                     });
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/lessons/educator':
+                if (method === 'GET') {
+                    await getLessonsByEducatorIdController(request, response);
                 } else {
                     response.status(405).send('Method not allowed');
                 }

@@ -27,12 +27,16 @@
     width: 100%;
 }
 
+.lessons-modification-infos h2 {
+    padding-left: 100px;
+}
+
 .lessons-modification-description{
     white-space: pre-wrap;
     text-align: center;
     overflow: auto;
-    width: 100%;
-    font-size: 0.8rem;
+    width: 80%;
+    font-size: 1rem;
 }
 
 .lessons-modification-img-container {

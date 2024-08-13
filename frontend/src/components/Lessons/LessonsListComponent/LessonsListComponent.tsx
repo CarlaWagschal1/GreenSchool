@@ -20,7 +20,7 @@ function LessonsListComponent() {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/api/lessons", {headers: headers});
+            const response = await fetch("http://localhost:5000/api/lessons/educator", {headers: headers});
             const data = await response.json();
             console.log("Fetched lessons:", data);
             setLessons(data);

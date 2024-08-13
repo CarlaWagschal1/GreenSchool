@@ -70,10 +70,10 @@ function LessonsCreationComponent() {
         <div className="lessons-creation-content">
             <h1> Create a lesson</h1>
             <div className="lessons-creation-form">
-                <label htmlFor="lessonName">Lesson name (50 characters max):</label>
-                <input type="text" id="lessonName" name="lessonName" required maxLength={50} placeholder="Lesson Name"/>
-                <label htmlFor="lessonDescription" >Lesson description (150 characsters max):</label>
-                <textarea id="lessonDescription" name="lessonDescription" required maxLength={150} placeholder="Lesson Description"/>
+                <label htmlFor="lessonName">Lesson name (75 characters max):</label>
+                <input type="text" id="lessonName" name="lessonName" required maxLength={75} placeholder="Lesson Name"/>
+                <label htmlFor="lessonDescription" >Lesson description (300 characsters max):</label>
+                <textarea id="lessonDescription" name="lessonDescription" required maxLength={300} placeholder="Lesson Description"/>
                 <label htmlFor="image" className="upload-lesson-img">File: {fileName}
                     <input type="file" id="image" name="image" accept="image/*" required />
                 </label>
