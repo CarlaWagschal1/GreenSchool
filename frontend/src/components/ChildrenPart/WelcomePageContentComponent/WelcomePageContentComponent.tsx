@@ -1,20 +1,10 @@
-import GameScrollComponent from "../GameScrollComponent/GameScrollComponent.tsx";
-import {Game} from "../../../interfaces/GameInterface.tsx";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import "./WelcomePageContentComponent.css";
-import WasteGameIMG from "../../../mocks/img/waste-game-img.png";
 import { useNavigate } from 'react-router-dom';
 import LogOutIMG from "../../../assets/logout.png";
+import GameIMG from "../../../assets/de.png";
+import LessonIMG from "../../../assets/ampoule.png";
 import ChildrenLogoutComponent from "../../Children/ChildrenLogoutComponent/ChildrenLogoutComponent";
-
-
-const gamesList: Game[] = [
-    { name: "Drag and drop", img: WasteGameIMG, url: '/game1'},
-    { name: "Raining Waste", img: WasteGameIMG, url: '/game2' },
-    { name: "Game 3", img: WasteGameIMG, url: '/game3' },
-    // Add other games as necessary
-];
-
 
 export default function WelcomePageContentComponent() {
     const navigate = useNavigate();
@@ -40,6 +30,14 @@ export default function WelcomePageContentComponent() {
         logoutPopup.style.display = "none";
     }
 
+    const goToGameChoice = () => {
+        navigate('/game-choice');
+    }
+
+    const goToLessonChoice = () => {
+        navigate('/children-lesson-list');
+    }
+
     return(
         <main>
             <div className="container-home-page-content">
@@ -47,8 +45,19 @@ export default function WelcomePageContentComponent() {
                 <div className="button-container">
                     <ButtonAppComponent content={"CLASS YOUR WASTE"} action={navigateToScanPage} type={"classic"}></ButtonAppComponent>
                 </div>
-                <div className="game-scroll">
-                    <GameScrollComponent gamesList={gamesList}></GameScrollComponent>
+                <div className="welcome-children-choice-container">
+                    <div className="welcome-children-choice" onClick={goToGameChoice}>
+                        <p>GAME</p>
+                        <div className="welcome-children-choice-img">
+                            <img src={GameIMG} alt={"Game"}></img>
+                        </div>
+                    </div>
+                    <div className="welcome-children-choice" onClick={goToLessonChoice}>
+                        <p>LESSON</p>
+                        <div className="welcome-children-choice-img">
+                            <img src={LessonIMG} alt={"Lesson"}></img>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="logout-button">

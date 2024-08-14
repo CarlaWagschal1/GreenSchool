@@ -2,6 +2,7 @@ import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import axios from "axios";
 
 import "./ChildrenCreationComponent.css";
+import {useEffect} from "react";
 
 interface ChildrenCreationComponentProps {
     onCreate: (creation: boolean) => void;
@@ -41,6 +42,19 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
         }
 
     }
+
+    const handleEvent = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            createChild();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keypress', handleEvent);
+        return () => {
+            document.removeEventListener('keypress', handleEvent);
+        }
+    })
 
 
 

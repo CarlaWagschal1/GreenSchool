@@ -2,6 +2,7 @@ import axios from "axios";
 import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 
 import "./ChaptersCreationComponent.css";
+import {useEffect} from "react";
 
 interface ChaptersCreationComponentProps {
     lessonId: string;
@@ -44,6 +45,19 @@ function ChaptersCreationComponent({ lessonId, onCreate }: ChaptersCreationCompo
             console.error(error);
         }
     }
+
+    const handleEvent = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            createChapter();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keypress', handleEvent);
+        return () => {
+            document.removeEventListener('keypress', handleEvent);
+        }
+    })
 
 
 

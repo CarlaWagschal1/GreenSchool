@@ -40,6 +40,14 @@ function LoginComponent(){
         navigate('/home');
     }
 
+    const handleEvent = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            login();
+        }
+    }
+
+    document.addEventListener('keypress', handleEvent);
+
     return (
         <main>
             <div className="login-container">

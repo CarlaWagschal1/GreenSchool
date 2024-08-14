@@ -63,6 +63,20 @@ function LessonsCreationComponent() {
     }, []);
 
 
+    const handleEvent = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            createLesson();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keypress', handleEvent);
+        return () => {
+            document.removeEventListener('keypress', handleEvent);
+        }
+    })
+
+
 
 
   return (

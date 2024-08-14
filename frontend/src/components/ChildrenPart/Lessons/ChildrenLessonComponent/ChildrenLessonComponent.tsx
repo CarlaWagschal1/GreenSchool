@@ -57,10 +57,15 @@ function ChildrenLessonComponent() {
     useEffect(() => {
         fetchLesson().catch(console.error);
         fetchChapters().catch(console.error);
-        setCurrentChapter(chapter[0]);
-        setTotalChapters(chapter.length);
-        setCurrentChapterIndex(0);
-    }, [chapter])
+    }, []);
+
+    useEffect(() => {
+        if (chapter.length > 0) {
+            setCurrentChapter(chapter[0]);
+            setTotalChapters(chapter.length);
+            setCurrentChapterIndex(0);
+        }
+    }, [chapter]);
 
     const changeChapter = (change: string) => {
         if (change === "PREVIOUS") {

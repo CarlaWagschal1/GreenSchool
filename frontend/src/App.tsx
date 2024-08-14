@@ -22,6 +22,7 @@ import LessonsModificationPage from "./pages/LessonsModificationPage/LessonsModi
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ChildrenLessonPage from "./pages/ChildrenLessonPage/ChildrenLessonPage";
 import ChildrenLessonListPage from "./pages/ChildrenLessonListPage/ChildrenLessonListPage";
+import GameChoicePage from "./pages/GameChoicePage/GameChoicePage";
 
 function App() {
 
@@ -56,6 +57,9 @@ function App() {
                     </ProtectedRouteChildren>}/>
                 <Route path="/children-lesson/:lessonId" element={
                     <ProtectedRouteChildren childrenRoute={<ChildrenLessonPage/>}>
+                    </ProtectedRouteChildren>}/>
+                <Route path="game-choice" element={
+                    <ProtectedRouteChildren childrenRoute={<GameChoicePage/>}>
                     </ProtectedRouteChildren>}/>
 
 

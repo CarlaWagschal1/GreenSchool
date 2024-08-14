@@ -65,6 +65,10 @@ function ChildrenLessonListComponent() {
         navigate(`/children-lesson/${lessonSelected?._id}`);
     }
 
+    const goBack = () => {
+        navigate("/welcome");
+    }
+
 
     return (
         <main>
@@ -93,6 +97,9 @@ function ChildrenLessonListComponent() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="children-lesson-list-back-btn">
+                <ButtonAppComponent content={"Back"} type={"classic"} action={goBack}/>
             </div>
         </main>
     )

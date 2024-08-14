@@ -16,6 +16,7 @@
     flex-direction: initial;
     justify-content: center;
     align-items: center;
+    padding: 10px 0;
     width: 100%;
 }
 .children-card-info h1 {
@@ -32,6 +33,9 @@
 .children-card-buttons {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 
 }
 .children-card-buttons-separator {

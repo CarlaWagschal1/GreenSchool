@@ -2,6 +2,7 @@ import ButtonAppComponent from "../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import './SignInComponent.css'
+import {useEffect} from "react";
 
 
 function SignInComponent() {
@@ -40,6 +41,19 @@ function SignInComponent() {
         navigate('/home');
     }
 
+    const handleEvent = (event: KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            createAccount();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keypress', handleEvent);
+        return () => {
+            document.removeEventListener('keypress', handleEvent);
+        }
+    })
+
     return (
         <main>
             <div className="signin-container">
@@ -63,4 +77,4 @@ function SignInComponent() {
     )
 }
 
-export default SignInComponent
+export default SignInComponent;

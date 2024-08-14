@@ -33,6 +33,11 @@ body {
   /* Font */
   --white-font : #fff;
 
+  /* WelcomePageContentComponent */
+  --welcome-children-choice-background : #c3e0ba;
+  --welcome-children-choice-background-hover : rgba(183, 211, 174, 0.85);
+  --welcome-children-choice-shadow : rgba(0, 90, 53, 0.48);
+
   /* GameScrollItem */
   --game-scroll-item-background : #c3e0ba;
   --game-scroll-item-shadow : rgba(0,0,0,0.50);
@@ -118,6 +123,11 @@ body {
   /* ChildrenLessonListComponent */
     --children-lesson-list-popup-background : #c3e0ba;
     --children-lesson-list-popup-background-box-shadow : rgba(0, 90, 53, 0.48);
+
+  /* ChildrenChapterComponent */
+    --children-chapter-card-background : #c3e0ba;
+    --children-chapter-card-shadow : rgba(0, 90, 53, 0.48);
+    --children-chapter-card-img-shadow : rgba(0, 0, 0, 0.50);
 
 
   padding: 0;
