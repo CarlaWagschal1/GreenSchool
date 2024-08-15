@@ -70,7 +70,7 @@
 
 .date-choice button {
     position: relative;
-    font-size: 1rem;
+    font-size: 1.4rem;
     font-family: Inter, sans-serif;
     cursor: pointer;
     height: 100%;
@@ -85,6 +85,8 @@
 .active {
     background-color: var(--game-stat-card-background);
     border-bottom: transparent;
+
+    font-weight: bold;
 }
 .no-active {
     background-color: var(--background-color);
@@ -116,8 +118,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40%;
-    height: 100%;
+    width: 60%;
+    height: calc(100% - 10px);
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.chart-container::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 2px;
+    height: 80%;
+    background-color: var(--vert-fonce);
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .stats-info {
@@ -126,7 +141,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60%;
+    width: 40%;
     height: 100%;
     font-family: Inter, sans-serif;
 }
@@ -135,9 +150,19 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
-    height: 100%;
+    height: calc(100% - 20px);
+    width: calc(90% - 40px);
+    padding: 10px 20px;
+}
+
+.game-info-center-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 .game-info-center h3 {
@@ -165,10 +190,6 @@
     scale: 0.7;
 }
 
-@media screen and (max-width: 1250px) {
-    .chart-container {
-        scale: 0.8;
-    }
-}
+
 
 

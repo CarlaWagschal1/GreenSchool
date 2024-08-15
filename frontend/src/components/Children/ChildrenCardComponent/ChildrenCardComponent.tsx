@@ -34,6 +34,7 @@ function ChildrenCardComponent(props: ChildrenInterface) {
             const response = await axios.post('http://localhost:5000/api/children/play', data, { headers: headers });
             if(response.data.childrenToken){
                 localStorage.setItem('childrenToken', response.data.childrenToken);
+                localStorage.setItem('childrenAge', props.age.toString());
                 navigate('/welcome');
             }
         }

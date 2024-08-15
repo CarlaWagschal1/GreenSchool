@@ -204,6 +204,7 @@ function ChildrenGameStats() {
                                 </div>
                                 <div className="stats-info">
                                     <div className="game-info-center">
+                                        <h2 className="game-info-center-title">Some Numbers</h2>
                                         <p>Number of games played : {stats.totalGames}</p>
                                         <p>Number of games without error: {gamesWithoutError}</p>
                                         <p>Average playing time: {stats.averageTime.toFixed(2)} secondes</p>

@@ -15,10 +15,29 @@
     font-family: Inter, sans-serif;
 }
 
+.raining-waste-final-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
 .raining-waste-final-message {
     font-family: Inter, sans-serif;
     width: 100%;
     text-align: center;
+}
+
+
+.raining-waste-final-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    min-width: 530px;
+    max-width: 830px;
 }
 
 .raining-waste-container {
@@ -38,6 +57,12 @@
 
 }
 
+.raining-waste-content {
+    position : relative;
+    height: 100%;
+    width: 100%;
+}
+
 .game-content-raining {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -50,4 +75,12 @@
 
 .falling-waste {
     display: block;
+}
+
+.raining-waste-button-home {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    scale: 0.7;
 }

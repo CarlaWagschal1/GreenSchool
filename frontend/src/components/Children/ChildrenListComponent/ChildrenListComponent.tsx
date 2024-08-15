@@ -56,6 +56,19 @@ function ChildrenListComponent(){
         navigate("/educator");
     }
 
+    const handleEvent = (e: KeyboardEvent) => {
+        if(e.key === 'Escape'){
+            closePopup();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleEvent);
+        return () => {
+            document.removeEventListener('keydown', handleEvent);
+        }
+    })
+
 
     return(
         <main>

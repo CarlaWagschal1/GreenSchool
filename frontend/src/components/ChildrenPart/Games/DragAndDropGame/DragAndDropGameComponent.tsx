@@ -35,10 +35,23 @@ function DragAndDropGameComponent(){
 
     const [scoreError, setScoreError] = useState(0);
     const [wasteItems, setWasteItems] = useState(initialWasteItems);
-    const sizeWasteItems = initialWasteItems.length;
+    //const sizeWasteItems = initialWasteItems.length;
 
     const [startTime, setStartTime] = useState<Date | null>(null);
     const [errorList, setErrorList] = useState<string[]>([]);
+
+    useEffect(() => {
+        const age = localStorage.getItem('childrenAge');
+        if(age && parseInt(age) < 8){
+            setWasteItems(initialWasteItems.slice(0, 3));
+        }
+        else if (age && parseInt(age) < 12){
+            setWasteItems(initialWasteItems);
+        }
+        else {
+            console.log('Age not found');
+        }
+    }, []);
 
     useEffect(() => {
         setStartTime(new Date());
@@ -113,8 +126,8 @@ function DragAndDropGameComponent(){
 
     const isGameOver = wasteItems.length === 0;
 
-    const navigateToHomePage = () => {
-        navigate('/welcome');
+    const goToGameChoice = () => {
+        navigate('/game-choice');
     }
 
     return (
@@ -124,7 +137,7 @@ function DragAndDropGameComponent(){
                     <h1>Sorting of Waste</h1>
                 </div>
                 {isGameOver ? (
-                    <h2 className="drag-and-drop-game-final-message">Game Over! Final score: {scoreError} / {sizeWasteItems}</h2>
+                    <h2 className="drag-and-drop-game-final-message">Game Over! Number of error: {scoreError} </h2>
                 ) : (
                     <div className="game-content">
 
@@ -149,7 +162,7 @@ function DragAndDropGameComponent(){
                     </div>
                 )}
                 <div className="button-home">
-                    <ButtonAppComponent content={"BACK"} action={navigateToHomePage} type={"classic"}/>
+                    <ButtonAppComponent content={"BACK"} action={goToGameChoice} type={"classic"}/>
                 </div>
 
             </div>

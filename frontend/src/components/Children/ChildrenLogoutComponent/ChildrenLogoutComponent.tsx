@@ -5,6 +5,7 @@ import './ChildrenLogoutComponent.css';
 
 import Close from '../../../assets/close.png';
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 interface ChildrenLogoutComponentProps {
   cancelLogout: (cancel: boolean) => void;
@@ -43,21 +44,37 @@ function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
     }
 
     const handleCancel = () => {
-    cancelLogout(true);
+        cancelLogout(true);
     }
 
-  return (
-      <div className="children-logout">
-          <div className="children-logout-content">
-            <h1>Please enter your log out password</h1>
-            <input type={"password"} />
-            <ButtonAppComponent content="LOG OUT" action={LogOut} type={"classic"}></ButtonAppComponent>
-          </div>
-          <img className="close-img" src={Close} alt={"close"} onClick={handleCancel}/>
-      </div>
+    const handleEvent = (e: KeyboardEvent) => {
+        if(e.key === 'Escape'){
+            cancelLogout(true);
+        }
+        if(e.key === 'Enter'){
+            LogOut();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleEvent);
+        return () => {
+            document.removeEventListener('keydown', handleEvent);
+        }
+    })
+
+    return (
+        <div className="children-logout">
+            <div className="children-logout-content">
+                <h1>Please enter your log out password</h1>
+                <input type={"password"} />
+                <ButtonAppComponent content="LOG OUT" action={LogOut} type={"classic"}></ButtonAppComponent>
+                </div>
+            <img className="close-img" src={Close} alt={"close"} onClick={handleCancel}/>
+        </div>
 
 
-  );
+    );
 }
 
 export default ChildrenLogoutComponent;

@@ -51,7 +51,7 @@ const ProtectedRouteChildren: React.FC<ProtectedChildrenRouteProps> = ({ childre
     }
 
 
-    return isAuthenticated ? (childrenRoute ? <>{childrenRoute}</> : <Outlet />) : <Navigate to="/childrenManage" />;
+    return isAuthenticated ? (childrenRoute ? <>{childrenRoute}</> : <Outlet />) : <Navigate to="/children-manager" />;
 };
 
 export default ProtectedRouteChildren;

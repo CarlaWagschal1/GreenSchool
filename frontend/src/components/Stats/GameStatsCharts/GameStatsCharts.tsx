@@ -21,6 +21,8 @@ ChartJS.register(
     Legend
 );
 
+import './GameStatsCharts.css';
+
 interface GameStatsChartsProps {
     gameType: string;
     labels: string[];
@@ -54,17 +56,21 @@ const GameStatsCharts: React.FC<GameStatsChartsProps> = ({ gameType, labels, tim
     };
 
     return (
-        <div>
-            <div>
-                <h3>Time</h3>
-                <Line data={timeChartData} />
+        <div className="game-stat-chart-container">
+            <div className="game-stat-chart-graph">
+                <h3 className="game-stat-chart-grah-title">Time</h3>
+                <div className="game-stat-chart-graph-line-container">
+                    <Line data={timeChartData} />
+                </div>
             </div>
-            <div>
+            <div className="game-stat-chart-graph">
                 {(gameType === 'sorting-waste') || (gameType === 'raining-waste') ?
-                (<h3> Errors </h3>) :
-                (<h3> Score </h3>)
+                (<h3 className="game-stat-chart-grah-title"> Errors </h3>) :
+                (<h3 className="game-stat-chart-grah-title"> Score </h3>)
                 }
-                <Line data={scoreChartData} />
+                <div className="game-stat-chart-graph-line-container">
+                    <Line data={scoreChartData} />
+                </div>
             </div>
         </div>
     );

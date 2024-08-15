@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import axios from 'axios';
 
 import FallingWaste from './FallingWaste';
@@ -12,6 +12,8 @@ import Cookie from '../../../../mocks/img/cookie.png';
 import Carton from '../../../../mocks/img/carton.png';
 
 import './RainingWasteComponent.css';
+import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
+import {useNavigate} from "react-router-dom";
 
 interface WasteItem {
     name: string;
@@ -21,9 +23,7 @@ interface WasteItem {
     position: { top: number, left: number };
 }
 
-interface RainingWasteProps {
-    wasteType: string;
-}
+
 
 const initialWasteItems: WasteItem[] = [
     { id: 1, name: 'bouteille en plastique', img: Bouteille, type: 'recyclable', position: { top: -300, left: 0 } },
@@ -34,7 +34,10 @@ const initialWasteItems: WasteItem[] = [
     { id: 6, name: 'carton recyclable', img: Carton, type: 'recyclable', position: { top: -300, left: 350 } },
 ];
 
-const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
+const RainingWasteComponent = () => {
+    const navigate = useNavigate();
+    const [wasteType, setWasteType] = useState("none");
+
     const [score, setScore] = useState<number>(0);
     const [wasteItems, setWasteItems] = useState(initialWasteItems);
     const [binType, setBinType] = useState<string>(wasteType);
@@ -44,6 +47,30 @@ const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
     const [startTime, setStartTime] = useState<Date | null>(null);
     const [scoreError, setScoreError] = useState<number>(0);
     const [errorList, setErrorList] = useState<string[]>([]);
+
+    const intialWasteItems = () => {
+        const age = localStorage.getItem('childrenAge');
+        if (age && parseInt(age) < 8) {
+            setWasteItems(initialWasteItems.slice(0, 3));
+        } else if (age && parseInt(age) < 12) {
+            setWasteItems(initialWasteItems);
+        } else {
+            console.log('Age not found');
+        }
+    }
+
+    useEffect(() => {
+        intialWasteItems();
+    }, []);
+
+    useEffect(() => {
+        if(wasteType === "none"){
+            const backBtn = document.querySelector('.raining-waste-button-home') as HTMLDivElement;
+            if(backBtn){
+                backBtn.style.display = 'block';
+            }
+        }
+    }, [wasteType]);
 
     useEffect(() => {
         setStartTime(new Date());
@@ -117,6 +144,13 @@ const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
     const handleCatch = (id: number, type: string) => {
         if (type === binType || binType === 'all') {
             setScore((prevScore) => prevScore + 1);
+            console.log(score)
+            if(score === 9) {
+                const btnBack = document.querySelector('.raining-waste-button-home') as HTMLDivElement;
+                if (btnBack) {
+                    btnBack.style.display = 'none';
+                }
+            }
         } else {
             setScoreError((prevScore) => prevScore + 1);
             setErrorList((prevErrorList) => [...prevErrorList, wasteItems.find((item) => item.id === id)?.name || '']);
@@ -131,14 +165,44 @@ const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
         );
     };
 
+    const playAgain = () => {
+        setScore(0);
+        setScoreError(0);
+        setErrorList([]);
+        intialWasteItems();
+        setStartTime(new Date());
+        setWasteType("none")
+    }
+
+    const backToGameChoice = () => {
+        navigate('/game-choice');
+    }
+
     return (
         <main>
             <div className="raining-waste">
                 <div className="raining-waste-info">
                     <h1>Raining Waste</h1>
                 </div>
-                {score >= 10 ? (
-                    <h2 className="raining-waste-final-message">Jeu terminé! Score final: {score}</h2>
+                { wasteType === "none" ?
+                    <div className="raining-waste-choice">
+                        <h1 className="choice-title">Choose a waste type</h1>
+                        <div className="button-container">
+                            <ButtonAppComponent content={"Recyclable"} action={() => setWasteType("recyclable")} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={"Food"} action={() => setWasteType("food")} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={"Bulky"} action={() => setWasteType("bulky")} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={"All"} action={() => setWasteType("all")} type={"classic"}></ButtonAppComponent>
+                        </div>
+                    </div> :
+                (score >= 10) ?
+                    (
+                    <div className="raining-waste-final-content">
+                        <h2 className="raining-waste-final-message">End of game ! Congratulations !</h2>
+                        <div className="raining-waste-final-btn-container">
+                            <ButtonAppComponent content={"Play Again"} type={"classic"} action={playAgain} />
+                            <ButtonAppComponent content={"Change Game"} type={"classic"} action={backToGameChoice} />
+                        </div>
+                    </div>
                 ) : (
                     <div className="game-content-raining">
                         <h2 className="raining-waste-info">Score: {score}</h2>
@@ -159,6 +223,9 @@ const RainingWasteComponent: React.FC<RainingWasteProps> = ({ wasteType }) => {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className="raining-waste-button-home">
+                <ButtonAppComponent content={"BACK"} action={backToGameChoice} type={"classic"}/>
             </div>
         </main>
     );

@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 import './LoginComponent.css'
+import {useEffect} from "react";
 
 
 function LoginComponent(){
@@ -46,7 +47,13 @@ function LoginComponent(){
         }
     }
 
-    document.addEventListener('keypress', handleEvent);
+    useEffect(() => {
+        document.addEventListener('keydown', handleEvent);
+
+        return () => {
+            document.removeEventListener('keydown', handleEvent);
+        }
+    });
 
     return (
         <main>
