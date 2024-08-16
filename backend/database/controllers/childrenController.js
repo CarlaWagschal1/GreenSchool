@@ -3,8 +3,13 @@ const {
     getChildrenById,
     createChildren,
     getChildrenByEducatorId,
-    verifyEducatorWithChildren
+    verifyEducatorWithChildren,
+    updateChildren,
+    deleteChildren
 } = require('../collections/children');
+
+const {deleteScoresByChildrenId} = require("../collections/scores");
+
 const {getEducatorById} = require('../collections/educators');
 const jwt = require('jsonwebtoken');
 
@@ -120,11 +125,47 @@ async function getChildrenByIdController(request, response) {
     }
 }
 
+async function updateChildrenController(request, response) {
+    const childrenId = request.params.childrenId;
+    const {name, lastName, age} = request.body;
+    if(!childrenId) {
+        response.status(400).json({message: 'Children id is required'})
+        return;
+    }
+    try {
+        await updateChildren(childrenId, name, lastName, age);
+        response.status(200).json({message: 'Children updated'});
+    }
+    catch (error) {
+        console.log("Error in update children controller:", error)
+        response.status(500).json({message: 'Internal server error'})
+    }
+}
+
+async function deleteChildrenController(request, response) {
+    const childrenId = request.params.childrenId;
+    if(!childrenId) {
+        response.status(400).json({message: 'Children id is required'})
+        return;
+    }
+    try {
+        await deleteScoresByChildrenId(childrenId);
+        await deleteChildren(childrenId);
+        response.status(200).json({message: 'Children deleted'});
+    }
+    catch (error) {
+        console.log("Error in delete children controller:", error)
+        response.status(500).json({message: 'Internal server error'})
+    }
+}
+
 
 module.exports = {
     getChildrenController,
     createChildrenController,
     getChildrenByEducatorIdController,
     playChildrenController,
-    getChildrenByIdController
+    getChildrenByIdController,
+    updateChildrenController,
+    deleteChildrenController
 }

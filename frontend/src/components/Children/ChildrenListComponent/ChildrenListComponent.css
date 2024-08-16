@@ -29,11 +29,12 @@
     height: calc(100vh - 200px);
     overflow-y: auto;
     padding: 10px;
+    margin: 20px 0 10px 0;
 }
 
 
 
-.children-creation-popup {
+.children-list-popup {
     display: none;
     position: fixed;
     z-index: 1;
@@ -44,7 +45,7 @@
     background-color: rgba(0,0,0,0.5);
 }
 
-.children-creation-popup-content {
+.children-list-popup-content {
     position: relative;
     display: flex;
     align-items: center;
@@ -53,7 +54,7 @@
     height: 100%;
 }
 
-.children-creation-css {
+.children-list-css {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -66,14 +67,15 @@
 }
 
 
-.children-creation-popup-close{
+.children-list-popup-close{
     position: absolute;
     top: 10px;
     right: 10px;
     scale: 0.7;
+    cursor: pointer;
 }
 
-.children-creation-popup-close img {
+.children-list-popup-close img {
     width: 30px;
     height: 30px;
 }

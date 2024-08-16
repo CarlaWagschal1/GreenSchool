@@ -35,20 +35,24 @@ function ChildrenListComponent(){
     useEffect(() => {
         getChildren();
     }, []);
-    const openPopUp = () => {
-        const popup = document.querySelector(".children-creation-popup") as HTMLDivElement;
+
+
+    const openPopUpCreation = () => {
+        const popup = document.getElementById("children-creation") as HTMLDivElement;
         popup.style.display = "block";
     }
 
-    const closePopup = () => {
+    const closePopupCreation = () => {
         getChildren();
-        const popup = document.querySelector(".children-creation-popup") as HTMLDivElement;
-        popup.style.display = "none";
+        const popup = document.getElementById("children-creation") as HTMLDivElement;
+        if(popup){
+            popup.style.display = "none";
+        }
     }
 
     const handleCreate = (creation: boolean) => {
         if(creation){
-            closePopup();
+            closePopupCreation();
         }
     }
 
@@ -58,7 +62,7 @@ function ChildrenListComponent(){
 
     const handleEvent = (e: KeyboardEvent) => {
         if(e.key === 'Escape'){
-            closePopup();
+            closePopupCreation();
         }
     }
 
@@ -69,34 +73,41 @@ function ChildrenListComponent(){
         }
     })
 
+    const needEdit = (edit: boolean) => {
+        if(edit){
+            getChildren()
+        }
+    }
+
 
     return(
         <main>
             <div className="children-btn-creation">
-                <ButtonAppComponent content={"NEW CHILD"} action={openPopUp} type={"new"}></ButtonAppComponent>
+                <ButtonAppComponent content={"NEW CHILD"} action={openPopUpCreation} type={"new"}></ButtonAppComponent>
             </div>
             <div className="children-list-content">
                 <h1 className="children-list-title">Children List</h1>
                 <div className="children-list-container">
                     {children.map((child) => {
                         return (
-                            <ChildrenCardComponent key={child._id} _id={child._id} name={child.name} lastName={child.lastName} age={child.age} ></ChildrenCardComponent>
+                            <ChildrenCardComponent key={child._id} child={child} isEdit={needEdit} ></ChildrenCardComponent>
                         )
                     })}
                 </div>
             </div>
-            <div className="children-creation-popup">
-                <div className="children-creation-popup-content">
-                    <div className="children-creation-css">
+            <div className="children-list-popup" id="children-creation">
+                <div className="children-list-popup-content">
+                    <div className="children-list-css">
                         <div className="children-creation-popup-component">
                             <ChildrenCreationComponent onCreate={handleCreate}></ChildrenCreationComponent>
                         </div>
-                        <div className="children-creation-popup-close">
-                            <img src={Close} onClick={closePopup} alt="close" className="children-creation-popup-close-img"></img>
+                        <div className="children-list-popup-close">
+                            <img src={Close} onClick={closePopupCreation} alt="close" className="children-creation-popup-close-img"></img>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div className="children-list-home-btn">
                 <ButtonAppComponent content={"BACK"} action={goToHome} type={"classic"}></ButtonAppComponent>
             </div>

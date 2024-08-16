@@ -14,7 +14,10 @@ const {
     getChildrenController,
     createChildrenController,
     getChildrenByEducatorIdController,
-    playChildrenController, getChildrenByIdController
+    playChildrenController,
+    getChildrenByIdController,
+    deleteChildrenController,
+    updateChildrenController
 } = require('../controllers/childrenController');
 
 const {
@@ -87,6 +90,26 @@ async function manageAPI(request, response) {
                 const childrenId = pathParts[3];
                 request.params = { childrenId };
                 await getChildrenByIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/children') && method === 'DELETE') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const childrenId = pathParts[3];
+                request.params = { childrenId };
+                await deleteChildrenController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/children') && method === 'PATCH') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const childrenId = pathParts[3];
+                request.params = { childrenId };
+                await updateChildrenController(request, response);
                 return;
             }
         }

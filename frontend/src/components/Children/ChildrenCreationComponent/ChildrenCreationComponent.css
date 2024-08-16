@@ -1,4 +1,10 @@
-
+.children-creation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
 
 .children-creation-title {
     font-family: Inter, sans-serif;
@@ -11,13 +17,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    width: 100%;
 }
 
-.input-container {
+.input-creation-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+    width: 80%;
+}
+
+.input-creation-container input {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--signin-input);
 }
 
 .select-age {
@@ -26,6 +45,7 @@
     border-radius: 5px;
     border: 3px solid var(--children-creation-select-focus);
     background-color: var(--children-creation-select-background);
+    cursor: pointer;
 }
 
 

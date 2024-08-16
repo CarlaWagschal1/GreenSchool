@@ -52,9 +52,21 @@ async function getScoresByChildrenIdAndGameId(childrenId, gameId) {
     }
 }
 
+async function deleteScoresByChildrenId(childrenId) {
+    const db = getDB();
+    try {
+        await db.collection('scores').deleteMany({childrenId});
+    }
+    catch (error) {
+        console.log("Error in delete Scores by children id:", error);
+        throw new Error('Internal server error');
+    }
+}
+
 module.exports = {
     getScores,
     addScore,
     getScoresByChildrenId,
-    getScoresByChildrenIdAndGameId
+    getScoresByChildrenIdAndGameId,
+    deleteScoresByChildrenId
 }

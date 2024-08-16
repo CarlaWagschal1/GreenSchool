@@ -66,10 +66,36 @@ async function verifyEducatorWithChildren(educatorId, childId) {
     }
 }
 
+async function updateChildren(childrenId, name, lastName, age) {
+    const db = getDB();
+    try {
+        const childrenObjId = new ObjectId(childrenId);
+        await db.collection('children').updateOne({_id: childrenObjId}, {$set: {name, lastName, age}});
+    }
+    catch (error) {
+        console.log("Error in update children:", error)
+        throw new Error('Internal server error');
+    }
+}
+
+async function deleteChildren(childrenId) {
+    const db = getDB();
+    try {
+        const childrenObjId = new ObjectId(childrenId);
+        await db.collection('children').deleteOne({_id: childrenObjId});
+    }
+    catch (error) {
+        console.log("Error in delete children:", error)
+        throw new Error('Internal server error');
+    }
+}
+
 module.exports = {
     getChildren,
     getChildrenById,
     createChildren,
     getChildrenByEducatorId,
-    verifyEducatorWithChildren
+    verifyEducatorWithChildren,
+    updateChildren,
+    deleteChildren
 }
