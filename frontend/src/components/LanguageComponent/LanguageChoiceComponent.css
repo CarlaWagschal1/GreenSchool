@@ -1,0 +1,13 @@
+.language-choice-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.language-choice-component img {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    cursor: pointer;
+}

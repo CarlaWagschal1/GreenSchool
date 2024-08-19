@@ -1,0 +1,112 @@
+.children-edit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.children-edit-title {
+    position: relative;
+    font-family: Inter, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.children-edit-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.children-edit-input-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+
+.children-edit-input-container input {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--signin-input);
+}
+
+.children-edit-select-age {
+    position: relative;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 3px solid var(--children-creation-select-focus);
+    background-color: var(--children-creation-select-background);
+    cursor: pointer;
+}
+
+
+.children-edit-select-age:focus {
+    outline: none;
+    border-color: var(--children-creation-select-focus);
+    background-color: var(--children-creation-select-background);
+}
+
+.children-edit-button-container {
+    position: relative;
+    margin : 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.children-edit-button-container button:last-child {
+    scale: 0.8;
+}
+
+.children-delete-warning-popup {
+    font-family: Inter, sans-serif;
+    z-index: 1;
+    position: absolute;
+    display: none;
+    border: 5px solid var(--delete-button-color);
+    border-radius: 15px;
+    background-color: #88b083;
+    height: 65%;
+    width: 90%;
+}
+
+.children-delete-warning-popup-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: calc(100% - 40px);
+    padding: 20px;
+}
+
+.children-delete-warning-popup-content h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.children-delete-warning-popup-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+

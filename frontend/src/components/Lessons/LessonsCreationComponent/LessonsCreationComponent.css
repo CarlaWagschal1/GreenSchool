@@ -1,0 +1,84 @@
+.lessons-creation-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid var(--vert-fonce);
+    border-radius: var(--card-border-radius);
+    padding: 40px;
+    background-color: var(--lessons-creation-content-background);
+    box-shadow: 0 0 10px var(--lessons-creation-content-shadow);
+}
+
+.lessons-creation-content h1 {
+    position : relative;
+    margin-bottom: 20px;
+    font-family: Inter, sans-serif;
+    font-size: 2rem;
+}
+
+.lessons-creation-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 100%;
+    font-family: Inter, sans-serif;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.lessons-creation-form input[type="text"] {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--lesson-creation-input);
+    font-family: Inter, sans-serif;
+    width: 100%;
+}
+
+.lessons-creation-form input[type="file"] {
+    display: none;
+}
+
+.upload-lesson-img {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--lesson-creation-upload-img);
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-lesson-img:hover {
+    background-color: var(--lesson-creation-upload-img-hover);
+}
+
+#lessonDescription {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--lesson-creation-input);
+    height: 90px;
+    resize: none;
+    font-family: Inter, sans-serif;
+    width: 100%;
+}
+
+.lesson-back-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    scale: 0.7;
+}

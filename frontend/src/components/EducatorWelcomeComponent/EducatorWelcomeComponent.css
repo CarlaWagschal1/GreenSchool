@@ -1,0 +1,189 @@
+.educator-welcome-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.educator-welcome-container h1 {
+    font-size: 2.5rem;
+    margin: 1rem;
+    font-family: Inter, sans-serif;
+}
+
+.container-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+
+@media (max-width: 1040px) {
+    .container-card {
+        position: relative;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+        width: 99%;
+        height: calc(100vh - 200px);
+        margin-top: 10px;
+        overflow-y: auto;
+    }
+
+    .card {
+        margin: 10px;
+    }
+
+    .logout-educator-container {
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        cursor: pointer;
+    }
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    cursor: pointer;
+    gap: 1rem;
+    border : 3px solid var(--vert-fonce);
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--educator-welcome-card-background);
+    box-shadow: 0 0 10px var(--educator-welcome-card-shadow);
+    max-width: 450px;
+    max-height: 250px;
+    min-width: 450px;
+    min-height: 250px;
+}
+
+
+
+
+.card-img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.card-img img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    scale: 0.8;
+}
+
+.card:hover {
+    background-color: var(--educator-welcome-card-background-hover);
+}
+
+
+
+
+
+.card h2 {
+    font-size: 1.5rem;
+    font-family: Inter, sans-serif;
+    align-content: center;
+    text-align: center;
+}
+
+.card p {
+    font-size: 1rem;
+    font-family: Inter, sans-serif;
+    align-content: center;
+    text-align: center;
+}
+
+
+.logout-educator-container {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+}
+
+.logout-educator-container img {
+    position: relative;
+    width: 75px;
+    height: auto;
+}
+
+.welcome-popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.welcome-popup-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.welcome-popup-css {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--children-creation-popup-background);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--children-creation-popup-background-box-shadow);
+    width: 470px;
+    height: 400px;
+    font-family: Inter, sans-serif;
+}
+
+.welcome-popup-css h1 {
+    font-size: 2rem;
+    margin: 1rem;
+    font-family: Inter, sans-serif;
+}
+
+.welcome-popup-css p {
+    font-size: 1rem;
+    margin: 1rem;
+    font-family: Inter, sans-serif;
+    width: 100%;
+}
+
+
+.last-paragraph {
+    text-align: right;
+}
+
+
+.welcome-popup-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.welcome-popup-close img {
+    position: relative;
+    width: 30px;
+    height: auto;
+}

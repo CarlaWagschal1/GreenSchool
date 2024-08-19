@@ -1,0 +1,177 @@
+body {
+  --background-color : #e1eacd;
+  --vert-fonce : #005A35;
+
+  --scrollbar-width : 10px;
+  --scrollbar-border-radius : 50px;
+  --scrollbar-track-background : #f1f1f1;
+  --scrollbar-thumb-background : #888;
+  --scrollbar-thumb-hover-background : #555;
+
+  --card-border-radius : 15px;
+
+  /* Button */
+  --button-color : #F89114;
+  --button-color-hover : rgba(248, 145, 20, 0.75);
+  --button-border-color : #fff;
+  --button-shadow : rgba(0,0,0,0.38);
+
+
+  /* Delete Button */
+  --delete-button-color : rgba(255, 0, 0, 0.75);
+  --delete-button-color-hover : rgba(255, 20, 32, 0.38);
+  --delete-button-border-color : #fff;
+
+  /* Play Button */
+  --play-button-color : #36a136;
+  --play-button-color-hover : rgba(54, 161, 54, 0.75);
+  --play-button-border-color : #fff;
+
+  /* Header */
+  --background-header-color : #bad8b6;
+
+  /* Font */
+  --white-font : #fff;
+
+  /* WelcomePageContentComponent */
+  --welcome-children-choice-background : #c3e0ba;
+  --welcome-children-choice-background-hover : rgba(183, 211, 174, 0.85);
+  --welcome-children-choice-shadow : rgba(0, 90, 53, 0.48);
+
+  /* GameScrollItem */
+  --game-scroll-item-background : #c3e0ba;
+  --game-scroll-item-shadow : rgba(0,0,0,0.50);
+  --game-scroll-item-background-hover : rgba(183, 211, 174, 0.85);
+
+  /* ScanDisplayComponent */
+    --scan-display-webcam-shadow : rgba(0,0,0,0.50);
+
+  /* Game */
+  --game-background : #c3e0ba;
+
+  /* SIGNIN */
+  --signin-background : #c3e0ba;
+  --signin-input : #e1eacd;
+  --signin-shadow: rgba(0, 90, 53, 0.48);
+
+  /* ChildrenCardComponent */
+  --children-card-background : #c3e0ba;
+  --children-card-box-shadow : rgba(0, 90, 53, 0.48);
+
+  /* ChildrenListComponent */
+  --children-creation-popup-background : #c3e0ba;
+  --children-creation-popup-background-box-shadow : rgba(0, 90, 53, 0.48);
+
+  /* ChildrenCreationComponent */
+  --children-creation-select-background : #e1eacd;
+  --children-creation-select-focus : rgba(0, 90, 53, 0.48);
+
+  /* LogoutChildrenComponent */
+    --logout-children-background : #c3e0ba;
+    --logout-children-box-shadow : rgba(0, 90, 53, 0.48);
+    --logout-children-input : #e1eacd;
+
+  /* GameStatsCard */
+    --game-stat-card-background : #c3e0ba;
+    --game-stat-card-shadow : rgba(0, 90, 53, 0.48);
+    --game-stat-card-background-hover : rgba(141, 161, 137, 0.85);
+
+  /* LessonsCreationComponent */
+    --lessons-creation-content-background : #c3e0ba;
+    --lessons-creation-content-shadow : rgba(0, 90, 53, 0.48);
+    --lesson-creation-input : #e1eacd;
+    --lesson-creation-upload-img : #c1cea5;
+    --lesson-creation-upload-img-hover : rgba(193, 206, 165, 0.75);
+
+  /* LessonsManagerCard */
+    --lessons-manager-card-background : #c3e0ba;
+    --lessons-manager-card-shadow : rgba(0, 90, 53, 0.48);
+    --lessons-manager-card-img-shadow : rgba(0, 0, 0, 0.50);
+
+  /* EducatorWelcomeComponent */
+      --educator-welcome-card-background : #c3e0ba;
+      --educator-welcome-card-shadow : rgba(0, 90, 53, 0.48);
+      --educator-welcome-card-background-hover : rgba(183, 211, 174, 0.85);
+
+  /* ChaptersListComponent */
+    --chapter-list-card-background : #c3e0ba;
+    --chapter-list-card-shadow : rgba(0, 90, 53, 0.48);
+
+    /* ChapterCreationPopup */
+    --chapter-creation-popup-background : #c3e0ba;
+    --chapter-creation-popup-background-box-shadow : rgba(0, 90, 53, 0.48);
+    --chapter-creation-input : #e1eacd;
+    --chapter-creation-upload-img : #c1cea5;
+    --chapter-creation-upload-img-hover : rgba(193, 206, 165, 0.75);
+
+  /* Profile */
+    --profile-background : #c3e0ba;
+    --profile-shadow : rgba(0, 90, 53, 0.48);
+    --profile-input : #e1eacd;
+    --profile-link : #22938a;
+    --profile-popup-background : rgba(0,0,0,0.5);
+    --profile-popup-content-background : #c3e0ba;
+    --profile-popup-content-box-shadow : rgba(0, 90, 53, 0.48);
+    --profile-popup-sucess-background: #9bc291;
+
+  /* ChildrenLessonCard */
+    --children-lesson-card-background : #c3e0ba;
+    --children-lesson-card-background-hover : rgba(141, 161, 137, 0.85);
+    --children-lesson-card-shadow : rgba(0, 90, 53, 0.48);
+    --children-lesson-card-img-shadow : rgba(0, 0, 0, 0.50);
+
+  /* ChildrenLessonListComponent */
+    --children-lesson-list-popup-background : #c3e0ba;
+    --children-lesson-list-popup-background-box-shadow : rgba(0, 90, 53, 0.48);
+
+  /* ChildrenChapterComponent */
+    --children-chapter-card-background : #c3e0ba;
+    --children-chapter-card-shadow : rgba(0, 90, 53, 0.48);
+    --children-chapter-card-img-shadow : rgba(0, 0, 0, 0.50);
+
+
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: var(--background-color);
+}
+
+main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#root {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 100%;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-background);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-background);
+  border-radius: var(--scrollbar-border-radius);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-background);
+}

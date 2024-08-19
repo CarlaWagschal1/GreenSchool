@@ -1,0 +1,103 @@
+
+.children-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 15px;
+    background-color: var(--children-card-background);
+    box-shadow: 0 0 10px var(--children-card-box-shadow);
+}
+
+.children-card-info {
+    display: flex;
+    flex-direction: initial;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+}
+.children-card-info h1 {
+    font-size: 1.5rem;
+    font-family: Inter, sans-serif;
+    font-weight: bold;
+    margin: 0 3px;
+}
+
+.children-card-info h1:last-child {
+    margin-left: 10px;
+}
+
+.children-card-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+}
+.children-card-buttons-separator {
+    margin: 0 10px;
+    scale: 0.8;
+}
+
+.children-edit-popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.children-edit-popup-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.children-edit-css {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--children-creation-popup-background);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--children-creation-popup-background-box-shadow);
+    width: 440px;
+    height: 440px;
+}
+
+.children-edit-popup-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+
+.children-edit-popup-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    scale: 0.7;
+    cursor: pointer;
+}
+
+.children-edit-popup-close img {
+    width: 30px;
+    height: 30px;
+}
+
+

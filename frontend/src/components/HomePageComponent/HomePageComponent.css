@@ -1,0 +1,54 @@
+.green-school-text {
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 2.5em;
+    margin: 10px 0;
+    padding: 20px;
+    font-weight: bold;
+    color: var(--vert-fonce);
+}
+
+.green-school-explanation {
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 1.5em;
+    margin: 30px;
+    padding: 20px;
+    color: var(--vert-fonce);
+
+}
+
+.connection-container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.join-us-text {
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 2em;
+    margin: 10px 0;
+    padding: 20px;
+    font-weight: bold;
+    color: var(--vert-fonce);
+
+}
+
+.button-container-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+.button-container-home > button {
+    margin: 20px;
+}
+
+.language-choice {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}

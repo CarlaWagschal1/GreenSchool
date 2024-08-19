@@ -1,0 +1,64 @@
+.children-creation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.children-creation-title {
+    font-family: Inter, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+.children-creation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.input-creation-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.input-creation-container input {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--signin-input);
+}
+
+.select-age {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 3px solid var(--children-creation-select-focus);
+    background-color: var(--children-creation-select-background);
+    cursor: pointer;
+}
+
+
+.select-age:focus {
+    outline: none;
+    border-color: var(--children-creation-select-focus);
+    background-color: var(--children-creation-select-background);
+}
+
+.button-container {
+    margin : 0;
+}
+
+
+
+

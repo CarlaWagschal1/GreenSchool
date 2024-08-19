@@ -1,0 +1,23 @@
+.game-scroll{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.game-choice-title{
+    position: relative;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 2rem;
+    margin: 10px 0;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.game-choice-back-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    scale: 0.7;
+}

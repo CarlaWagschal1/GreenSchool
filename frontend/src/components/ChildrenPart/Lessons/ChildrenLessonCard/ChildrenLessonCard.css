@@ -1,0 +1,63 @@
+.children-lesson-card {
+
+    position: relative;
+    display: grid;
+    grid-template-rows: 30% 70%;
+    grid-template-columns: 400px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 10px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--children-lesson-card-background);
+    width: 400px;
+    height: 400px;
+    cursor: pointer;
+}
+
+.children-lesson-card:hover {
+    background-color: var(--children-lesson-card-background-hover);
+}
+
+.children-lesson-card h2 {
+    font-family: Inter, sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+    white-space: pre-wrap;
+    overflow: hidden;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+
+
+.children-lesson-card-img-container {
+    position: relative;
+    display: flex;
+    width: 170px;
+    height: 170px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 0 0 10px var(--children-lesson-card-img-shadow);
+}
+
+.children-lesson-card-img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.children-lesson-list-back-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    scale: 0.7;
+}

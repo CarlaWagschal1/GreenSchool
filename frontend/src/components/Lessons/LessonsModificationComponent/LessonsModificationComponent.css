@@ -1,0 +1,72 @@
+.lessons-modification-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.lessons-modification-header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.lessons-modification-infos {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.lessons-modification-infos h2 {
+    padding-left: 100px;
+}
+
+.lessons-modification-description{
+    white-space: pre-wrap;
+    text-align: center;
+    overflow: auto;
+    width: 80%;
+    font-size: 1rem;
+}
+
+.lessons-modification-img-container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #000000;
+    box-shadow: 0 0 10px var(--lessons-manager-card-img-shadow);
+}
+
+.lessons-modification-img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.lessons-modification-chapters {
+    position: relative;
+    width: 100%;
+}
+
+.lessons-modification-buttons {
+    position: absolute;
+    left: 0;
+    top: 0;
+    scale: 0.7;
+}
+
+

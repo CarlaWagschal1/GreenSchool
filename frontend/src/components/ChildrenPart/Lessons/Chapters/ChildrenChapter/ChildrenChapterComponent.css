@@ -1,0 +1,116 @@
+.chapter-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: calc(100% - 40px);
+    margin: 20px 110px;
+    font-family: Inter, sans-serif;
+    border: var(--vert-fonce) 2px solid;
+    box-shadow: 0 0 10px var(--children-chapter-card-shadow);
+    border-radius: 200px;
+    padding: 0 20px;
+    background-color: var(--children-chapter-card-background);
+}
+
+
+
+.chapter-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border-bottom: var(--vert-fonce) 2px solid;
+    width: 90%;
+}
+
+.chapter-header h2 {
+    font-size: 1.6rem;
+    text-align: center;
+    white-space: pre-wrap;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.chapter-header h3 {
+    font-size: 1.3rem;
+    text-align: center;
+    white-space: pre-wrap;
+    padding: 0 30px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.chapter-description {
+    position: relative;
+    display: flex;
+    text-align: justify;
+    white-space: pre-wrap;
+    font-size: 1.1rem;
+}
+
+.chapter-content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+
+.chapter-image{
+    position: relative;
+    display: flex;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 0 0 5px var(--children-lesson-card-img-shadow);
+}
+
+.chapter-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.chapter-footer {
+    position: absolute;
+    bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+}
+
+.chapter-footer button:first-child {
+    scale: 0.8;
+}
+
+.chapter-footer button:last-child {
+    scale: 0.8;
+}
+
+.chapter-footer-chapter-index {
+    text-decoration: underline;
+}
+
+.chapter-back-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    scale: 0.7;
+}
