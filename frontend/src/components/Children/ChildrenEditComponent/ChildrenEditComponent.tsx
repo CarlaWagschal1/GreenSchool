@@ -1,6 +1,7 @@
 import {ChildrenInterface} from "../../../interfaces/ChildrenInterface";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import axios from "axios";
+import {useTranslation} from "react-i18next";
 
 import "./ChildrenEditComponent.css";
 
@@ -12,7 +13,7 @@ interface ChildrenEditComponent {
 
 
 function ChildrenEditComponent(props: ChildrenEditComponent) {
-
+    const { t } = useTranslation();
 
 
 
@@ -87,13 +88,13 @@ function ChildrenEditComponent(props: ChildrenEditComponent) {
     return (
     <>
         <div className="children-edit-container">
-            <h1 className="children-edit-title">EDIT PROFILE</h1>
+            <h1 className="children-edit-title">{t('child-edit')}</h1>
             <div className="children-edit-form">
                 <div className=" children-edit-input-container">
-                    <input type="text" placeholder="Name" id={"children-edit-name-" + props.child._id} defaultValue={props.child.name} />
-                    <input type="text" placeholder="Last Name" id={"children-edit-last-name-" + props.child._id} defaultValue={props.child.lastName}/>
+                    <input type="text" placeholder={t('name')} id={"children-edit-name-" + props.child._id} defaultValue={props.child.name} />
+                    <input type="text" placeholder={t('lastName')} id={"children-edit-last-name-" + props.child._id} defaultValue={props.child.lastName}/>
                     <select className="children-edit-select-age" id={"children-edit-age-" + props.child._id} defaultValue={props.child.age}>
-                        <option value="" hidden>Age</option>
+                        <option value="" hidden>{t('age')}</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
@@ -105,18 +106,18 @@ function ChildrenEditComponent(props: ChildrenEditComponent) {
                     </select>
                 </div>
                 <div className="children-edit-button-container">
-                    <ButtonAppComponent content={"EDIT"} action={editChild} type={"classic"}></ButtonAppComponent>
-                    <ButtonAppComponent content={"DELETE CHILD"} type={"delete"} action={showWarning}></ButtonAppComponent>
+                    <ButtonAppComponent content={t('edit')} action={editChild} type={"classic"}></ButtonAppComponent>
+                    <ButtonAppComponent content={t('child-delete')} type={"delete"} action={showWarning}></ButtonAppComponent>
                 </div>
             </div>
         </div>
         <div className="children-delete-warning-popup" id={"children-delete-warning-popup-id-" + props.child._id}>
             <div className="children-delete-warning-popup-content">
-                <h1>Are you sure you want to delete this child?</h1>
-                <p>If you delete this child profile, you will lose all the statistics about him.</p>
+                <h1>{t('child-deletion-warning-title')}</h1>
+                <p>{t('child-deletion-warning-message')}</p>
                 <div className="children-delete-warning-popup-buttons">
-                    <ButtonAppComponent content={"YES"} action={() => deleteChild(props.child._id)} type={"delete"}></ButtonAppComponent>
-                    <ButtonAppComponent content={"NO"} type={"classic"} action={closeWarning}></ButtonAppComponent>
+                    <ButtonAppComponent content={t('yes')} action={() => deleteChild(props.child._id)} type={"delete"}></ButtonAppComponent>
+                    <ButtonAppComponent content={t('no')} type={"classic"} action={closeWarning}></ButtonAppComponent>
                 </div>
             </div>
         </div>

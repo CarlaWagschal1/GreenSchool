@@ -2,11 +2,13 @@ import Webcam from "react-webcam";
 import {useCallback, useEffect, useRef, useState} from "react";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import "./ScanDisplayComponent.css";
 
 function ScanDisplayComponent () {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const webcamRef = useRef<Webcam>(null);
     const [imgSrc, setImgSrc] = useState<string | null>(null);
@@ -47,13 +49,13 @@ function ScanDisplayComponent () {
                         <Webcam ref={webcamRef} mirrored={true} screenshotFormat="image/jpeg"/>
 
                         <div className="btn-capture">
-                            <ButtonAppComponent content={"TAKE A PICTURE"} action={capture} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={t('take-picture')} action={capture} type={"classic"}></ButtonAppComponent>
                         </div>
                     </div>
                 )}
 
                 <div className="btn-retake">
-                    <ButtonAppComponent content={"Home"} action={navigateToHomePage} type={"classic"}></ButtonAppComponent>
+                    <ButtonAppComponent content={t('back')} action={navigateToHomePage} type={"classic"}></ButtonAppComponent>
                 </div>
 
             </div>

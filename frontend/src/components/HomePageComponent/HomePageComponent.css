@@ -45,3 +45,10 @@
 .button-container-home > button {
     margin: 20px;
 }
+
+.language-choice {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+}

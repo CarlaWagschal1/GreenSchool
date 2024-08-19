@@ -8,8 +8,8 @@ import {useNavigate} from "react-router-dom";
 
 
 const gamesList: Game[] = [
-    { name: "Drag and drop", img: WasteGameIMG, url: '/game1'},
-    { name: "Raining Waste", img: WasteGameIMG, url: '/game2' },
+    { name: "drag-and-drop", img: WasteGameIMG, url: '/game1'},
+    { name: "raining-waste", img: WasteGameIMG, url: '/game2' },
     { name: "Game 3", img: WasteGameIMG, url: '/game3' },
     // Add other games as necessary
 ];

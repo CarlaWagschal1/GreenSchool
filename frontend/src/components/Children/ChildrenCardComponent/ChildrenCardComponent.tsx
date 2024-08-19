@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom";
 import ChildrenEditComponent from "../ChildrenEditComponent/ChildrenEditComponent";
 import Close from "../../../assets/close.png";
 import {useEffect} from "react";
+import {useTranslation} from "react-i18next";
 
 
 interface ChildrenCardComponentProps {
@@ -20,6 +21,7 @@ interface ChildrenCardComponentProps {
 
 function ChildrenCardComponent(props: ChildrenCardComponentProps) {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const toPlay = async () => {
 
@@ -95,17 +97,17 @@ function ChildrenCardComponent(props: ChildrenCardComponentProps) {
                 <div className="children-card-info">
                     <h1 className="children-card-name">{props.child.name} </h1>
                     <h1 className="children-card-lastname">{props.child.lastName} :</h1>
-                    <h1 className="children-card-age">{props.child.age} years</h1>
+                    <h1 className="children-card-age">{props.child.age} {t('years-old')}</h1>
                 </div>
                 <div className="children-card-buttons">
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"PLAY"} action={toPlay} type={"play"}></ButtonAppComponent>
+                        <ButtonAppComponent content={t('play')} action={toPlay} type={"play"}></ButtonAppComponent>
                     </div>
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"EDIT"} type={"edit"} action={goEdit}></ButtonAppComponent>
+                        <ButtonAppComponent content={t('edit')} type={"edit"} action={goEdit}></ButtonAppComponent>
                     </div>
                     <div className="children-card-buttons-separator">
-                        <ButtonAppComponent content={"STATS"} action={seeStats} type={"stats"}></ButtonAppComponent>
+                        <ButtonAppComponent content={t('stats')} action={seeStats} type={"stats"}></ButtonAppComponent>
                     </div>
                 </div>
             </div>

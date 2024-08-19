@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 import {Chapter} from "../../../../interfaces/ChapterInterface";
 import ChaptersCreationComponent from "../ChaptersCreationComponent/ChaptersCreationComponent";
 import Close from "../../../../assets/close.png";
@@ -7,6 +8,7 @@ import "./ChaptersListComponent.css";
 import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 
 function ChaptersListComponent() {
+    const { t } = useTranslation();
     const lessonId = window.location.pathname.split("/")[2];
     const [chapterList, setChapterList] = useState<Chapter[]>();
 
@@ -78,9 +80,9 @@ function ChaptersListComponent() {
         <>
             <div className="chapter-list-content">
                 <div className="chapter-list-header">
-                    <h2>Chapters</h2>
+                    <h2>{t('chapter-list')}</h2>
                     <div className="chapter-list-btn-new-chapter-container">
-                        <ButtonAppComponent content={"New Chapter"} type={"classic"} action={newChapter}/>
+                        <ButtonAppComponent content={t('new-chapter')} type={"classic"} action={newChapter}/>
                     </div>
                 </div>
                 <div className="chapter-list-component">
@@ -104,7 +106,7 @@ function ChaptersListComponent() {
                             </div>
                         )
                     }) :
-                    <p>No chapters found</p>}
+                    <p>{t('no-chapter-found')}</p>}
                 </div>
             </div>
             <div className="chapter-creation-popup">

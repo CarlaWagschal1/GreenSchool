@@ -14,6 +14,7 @@ import Carton from '../../../../mocks/img/carton.png';
 import './RainingWasteComponent.css';
 import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
+import { useTranslation} from "react-i18next";
 
 interface WasteItem {
     name: string;
@@ -26,16 +27,17 @@ interface WasteItem {
 
 
 const initialWasteItems: WasteItem[] = [
-    { id: 1, name: 'bouteille en plastique', img: Bouteille, type: 'recyclable', position: { top: -300, left: 0 } },
-    { id: 2, name: 'armoire encombrant', img: Armoire, type: 'bulky', position: { top: -300, left: 70 } },
-    { id: 3, name: 'trognon alimentaire', img: Trognon, type: 'food', position: { top: -300, left: 140 } },
-    { id: 4, name: 'table encombrant', img: Table, type: 'bulky', position: { top: -300, left: 210 } },
-    { id: 5, name: 'cookie alimentaire', img: Cookie, type: 'food', position: { top: -300, left: 280 } },
-    { id: 6, name: 'carton recyclable', img: Carton, type: 'recyclable', position: { top: -300, left: 350 } },
+    { id: 1, name: 'plastic-bottle', img: Bouteille, type: 'recyclable', position: { top: -300, left: 0 } },
+    { id: 2, name: 'bulky-cabinet', img: Armoire, type: 'bulky', position: { top: -300, left: 70 } },
+    { id: 3, name: 'food-core', img: Trognon, type: 'food', position: { top: -300, left: 140 } },
+    { id: 4, name: 'bulky-table', img: Table, type: 'bulky', position: { top: -300, left: 210 } },
+    { id: 5, name: 'food-cookie', img: Cookie, type: 'food', position: { top: -300, left: 280 } },
+    { id: 6, name: 'recyclable-cardboard', img: Carton, type: 'recyclable', position: { top: -300, left: 350 } },
 ];
 
 const RainingWasteComponent = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [wasteType, setWasteType] = useState("none");
 
     const [score, setScore] = useState<number>(0);
@@ -186,26 +188,26 @@ const RainingWasteComponent = () => {
                 </div>
                 { wasteType === "none" ?
                     <div className="raining-waste-choice">
-                        <h1 className="choice-title">Choose a waste type</h1>
+                        <h1 className="choice-title">{t('waste-type-choice')}</h1>
                         <div className="button-container">
-                            <ButtonAppComponent content={"Recyclable"} action={() => setWasteType("recyclable")} type={"classic"}></ButtonAppComponent>
-                            <ButtonAppComponent content={"Food"} action={() => setWasteType("food")} type={"classic"}></ButtonAppComponent>
-                            <ButtonAppComponent content={"Bulky"} action={() => setWasteType("bulky")} type={"classic"}></ButtonAppComponent>
-                            <ButtonAppComponent content={"All"} action={() => setWasteType("all")} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={t('recyclable')} action={() => setWasteType("recyclable")} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={t('food')} action={() => setWasteType("food")} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={t('bulky')} action={() => setWasteType("bulky")} type={"classic"}></ButtonAppComponent>
+                            <ButtonAppComponent content={t('all')} action={() => setWasteType("all")} type={"classic"}></ButtonAppComponent>
                         </div>
                     </div> :
                 (score >= 10) ?
                     (
                     <div className="raining-waste-final-content">
-                        <h2 className="raining-waste-final-message">End of game ! Congratulations !</h2>
+                        <h2 className="raining-waste-final-message">{t('game-over')}</h2>
                         <div className="raining-waste-final-btn-container">
-                            <ButtonAppComponent content={"Play Again"} type={"classic"} action={playAgain} />
-                            <ButtonAppComponent content={"Change Game"} type={"classic"} action={backToGameChoice} />
+                            <ButtonAppComponent content={t('play-again')} type={"classic"} action={playAgain} />
+                            <ButtonAppComponent content={t('change-game')} type={"classic"} action={backToGameChoice} />
                         </div>
                     </div>
                 ) : (
                     <div className="game-content-raining">
-                        <h2 className="raining-waste-info">Score: {score}</h2>
+                        <h2 className="raining-waste-info" style={{display: "none"}}>Score: {score}</h2>
                         <div className="raining-waste-container" ref={containerRef}>
                             {wasteItems.map((wasteItem) => (
                                 <FallingWaste
@@ -225,7 +227,7 @@ const RainingWasteComponent = () => {
                 )}
             </div>
             <div className="raining-waste-button-home">
-                <ButtonAppComponent content={"BACK"} action={backToGameChoice} type={"classic"}/>
+                <ButtonAppComponent content={t('back')} action={backToGameChoice} type={"classic"}/>
             </div>
         </main>
     );

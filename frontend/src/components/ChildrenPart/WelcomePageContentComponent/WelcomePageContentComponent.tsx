@@ -5,9 +5,11 @@ import LogOutIMG from "../../../assets/logout.png";
 import GameIMG from "../../../assets/de.png";
 import LessonIMG from "../../../assets/ampoule.png";
 import ChildrenLogoutComponent from "../../Children/ChildrenLogoutComponent/ChildrenLogoutComponent";
+import { useTranslation} from "react-i18next";
 
 export default function WelcomePageContentComponent() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const navigateToScanPage = () => {
         navigate('/scan');
@@ -41,19 +43,19 @@ export default function WelcomePageContentComponent() {
     return(
         <main>
             <div className="container-home-page-content">
-                <h2 className="welcome-text">WELCOME TO GREENSCHOOL !</h2>
+                <h2 className="welcome-text">{t('welcome-to-greenschool')}</h2>
                 <div className="button-container">
-                    <ButtonAppComponent content={"CLASS YOUR WASTE"} action={navigateToScanPage} type={"classic"}></ButtonAppComponent>
+                    <ButtonAppComponent content={t('class-your-waste')} action={navigateToScanPage} type={"classic"}></ButtonAppComponent>
                 </div>
                 <div className="welcome-children-choice-container">
                     <div className="welcome-children-choice" onClick={goToGameChoice}>
-                        <p>GAME</p>
+                        <p>{t('game')}</p>
                         <div className="welcome-children-choice-img">
                             <img src={GameIMG} alt={"Game"}></img>
                         </div>
                     </div>
                     <div className="welcome-children-choice" onClick={goToLessonChoice}>
-                        <p>LESSON</p>
+                        <p>{t('lesson')}</p>
                         <div className="welcome-children-choice-img">
                             <img src={LessonIMG} alt={"Lesson"}></img>
                         </div>

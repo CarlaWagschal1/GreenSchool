@@ -6,11 +6,13 @@ import ChildrenLessonCard from "../ChildrenLessonCard/ChildrenLessonCard";
 import Close from "../../../../assets/close.png";
 import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import "./ChildrenLessonListComponent.css";
 
 function ChildrenLessonListComponent() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [lessons, setLessons] = useState<Lesson[]>([]);
     const [lessonSelected, setLessonSelected] = useState<Lesson | null>(null);
 
@@ -73,10 +75,10 @@ function ChildrenLessonListComponent() {
     return (
         <main>
             <div className="children-lesson-list">
-                <h1 className="children-lessons-list-title">Which lesson do you want to learn today ?</h1>
+                <h1 className="children-lessons-list-title"> { t('lesson-choice') }</h1>
                 {(lessons.length === 0) ?
                 (<div className="children-no-lessons-found-container">
-                    <p>No lessons found</p>
+                    <p>{t('no-lesson-found')}</p>
                 </div>) :
                 (<div className="children-lessons-list-content">
                     {lessons.map((lesson) => {
@@ -91,7 +93,7 @@ function ChildrenLessonListComponent() {
                     <div className="children-lesson-description-popup-content">
                         <h3 className="children-lesson-description-popup-title">{lessonSelected?.name}</h3>
                         <p className="children-lesson-description-popup-description">{lessonSelected?.description}</p>
-                        <ButtonAppComponent content={"LET'S GO"} type={"classic"} action={goLearn}/>
+                        <ButtonAppComponent content={t('lets-go')} type={"classic"} action={goLearn}/>
                         <div className="children-lesson-description-close-button" onClick={onClose}>
                             <img src={Close} alt={"Close"}/>
                         </div>
@@ -99,7 +101,7 @@ function ChildrenLessonListComponent() {
                 </div>
             </div>
             <div className="children-lesson-list-back-btn">
-                <ButtonAppComponent content={"Back"} type={"classic"} action={goBack}/>
+                <ButtonAppComponent content={t('back')} type={"classic"} action={goBack}/>
             </div>
         </main>
     )

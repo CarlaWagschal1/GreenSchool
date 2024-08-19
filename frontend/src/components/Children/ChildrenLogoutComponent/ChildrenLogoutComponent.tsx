@@ -6,6 +6,7 @@ import './ChildrenLogoutComponent.css';
 import Close from '../../../assets/close.png';
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
+import {useTranslation} from "react-i18next";
 
 interface ChildrenLogoutComponentProps {
   cancelLogout: (cancel: boolean) => void;
@@ -13,6 +14,7 @@ interface ChildrenLogoutComponentProps {
 
 function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const LogOut = async () => {
 
@@ -66,9 +68,9 @@ function ChildrenLogoutComponent({cancelLogout}: ChildrenLogoutComponentProps) {
     return (
         <div className="children-logout">
             <div className="children-logout-content">
-                <h1>Please enter your log out password</h1>
+                <h1>{t('child-logout-message')}</h1>
                 <input type={"password"} />
-                <ButtonAppComponent content="LOG OUT" action={LogOut} type={"classic"}></ButtonAppComponent>
+                <ButtonAppComponent content={t('logout')} action={LogOut} type={"classic"}></ButtonAppComponent>
                 </div>
             <img className="close-img" src={Close} alt={"close"} onClick={handleCancel}/>
         </div>

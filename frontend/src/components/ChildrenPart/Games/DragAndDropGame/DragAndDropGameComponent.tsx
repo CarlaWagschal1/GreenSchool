@@ -14,6 +14,7 @@ import Carton from '../../../../mocks/img/carton.png';
 import './DragAndDropGameComponent.css'
 import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
+import { useTranslation} from "react-i18next";
 
 interface WasteItem {
     name: string;
@@ -22,16 +23,17 @@ interface WasteItem {
 }
 
 const initialWasteItems: WasteItem[] = [
-    {name: 'bouteille recyclable', img: Bouteille, type: 'recyclable'},
-    {name: 'armoire encombrant', img: Armoire, type: 'bulky'},
-    {name: 'trognon alimentaire', img: Trognon, type: 'food'},
-    {name: 'table encombrant', img: Table, type: 'bulky'},
-    {name: 'cookie alimentaire', img: Cookie, type: 'food'},
-    {name: 'carton recyclable', img: Carton, type: 'recyclable'},
+    {name: 'plastic-bottle', img: Bouteille, type: 'recyclable'},
+    {name: 'bulky-cabinet', img: Armoire, type: 'bulky'},
+    {name: 'food-core', img: Trognon, type: 'food'},
+    {name: 'bulky-table', img: Table, type: 'bulky'},
+    {name: 'food-cookie', img: Cookie, type: 'food'},
+    {name: 'recyclable-cardboard', img: Carton, type: 'recyclable'},
 ];
 
 function DragAndDropGameComponent(){
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [scoreError, setScoreError] = useState(0);
     const [wasteItems, setWasteItems] = useState(initialWasteItems);
@@ -134,10 +136,10 @@ function DragAndDropGameComponent(){
         <main>
             <div className="drag-and-drop-game-container">
                 <div className="drag-and-drop-game-info">
-                    <h1>Sorting of Waste</h1>
+                    <h1>{t('drag-and-drop')}</h1>
                 </div>
                 {isGameOver ? (
-                    <h2 className="drag-and-drop-game-final-message">Game Over! Number of error: {scoreError} </h2>
+                    <h2 className="drag-and-drop-game-final-message">{t('game-over')}</h2>
                 ) : (
                     <div className="game-content">
 
@@ -162,7 +164,7 @@ function DragAndDropGameComponent(){
                     </div>
                 )}
                 <div className="button-home">
-                    <ButtonAppComponent content={"BACK"} action={goToGameChoice} type={"classic"}/>
+                    <ButtonAppComponent content={t('back')} action={goToGameChoice} type={"classic"}/>
                 </div>
 
             </div>

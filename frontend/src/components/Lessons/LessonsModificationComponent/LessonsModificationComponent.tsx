@@ -5,9 +5,11 @@ import ChaptersListComponent from "../Chapters/ChaptersListComponent/ChaptersLis
 import "./LessonsModificationComponent.css";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 function LessonsModificationComponent() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [lesson, setLesson] = useState<Lesson>();
 
     useEffect(() => {
@@ -62,7 +64,7 @@ function LessonsModificationComponent() {
                 </div>
             </div>
             <div className="lessons-modification-buttons">
-                <ButtonAppComponent content={"Back"} type={"classic"} action={goToLessonManager}/>
+                <ButtonAppComponent content={t('back')} type={"classic"} action={goToLessonManager}/>
             </div>
         </main>
     )

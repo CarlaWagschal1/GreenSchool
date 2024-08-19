@@ -1,5 +1,6 @@
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import axios from "axios";
+import { useTranslation} from "react-i18next";
 
 import "./ChildrenCreationComponent.css";
 
@@ -8,7 +9,7 @@ interface ChildrenCreationComponentProps {
 
 }
 function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
-
+    const {t} = useTranslation();
 
 
     const createChild = async () => {
@@ -52,13 +53,13 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
 
     return (
         <div className="children-creation-container">
-            <h1 className="children-creation-title">CREATE NEW CHILD PROFILE</h1>
+            <h1 className="children-creation-title">{t('child-creation')}</h1>
             <div className="children-creation-form">
                 <div className="input-creation-container">
-                    <input type="text" placeholder="Name" />
-                    <input type="text" placeholder="Last Name" />
+                    <input type="text" placeholder={t('name')} />
+                    <input type="text" placeholder={t('lastName')} />
                     <select className="select-age" defaultValue="">
-                        <option value="" hidden>Age</option>
+                        <option value="" hidden>{t('age')}</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
@@ -70,7 +71,7 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
                     </select>
                 </div>
                 <div className="button-container">
-                    <ButtonAppComponent content={"CREATE"} action={createChild} type={"classic"}></ButtonAppComponent>
+                    <ButtonAppComponent content={t('create')} action={createChild} type={"classic"}></ButtonAppComponent>
                 </div>
             </div>
 

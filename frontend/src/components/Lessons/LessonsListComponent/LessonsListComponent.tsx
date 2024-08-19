@@ -5,10 +5,12 @@ import LessonsManagerCard from "../LessonsManagerCard/LessonsManagerCard";
 import "./LessonsListComponent.css";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 function LessonsListComponent() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [lessons, setLessons] = useState<Lesson[]>([]);
 
@@ -52,12 +54,12 @@ function LessonsListComponent() {
     return (
         <main>
             <div className="lessons-list-container">
-                <h1>Lessons</h1>
+                <h1>{t('lesson')}</h1>
                 <div className="lessons-list-content">
                     {(lessons.length === 0) ?
                         (<div className="no-lessons-found-container">
-                            <p>No lessons found</p>
-                            <ButtonAppComponent content={"New Lesson"} action={goToNewLesson} type={"new"}/>
+                            <p>{t('no-lesson-found')}</p>
+                            <ButtonAppComponent content={t('new-lesson')} action={goToNewLesson} type={"new"}/>
                         </div>) :
                         lessons.map((lesson) => {
                         return (
@@ -67,10 +69,10 @@ function LessonsListComponent() {
                 </div>
             </div>
             <div className="lesson-home-btn">
-                <ButtonAppComponent content={"BACK"} action={goToHome} type={"classic"}></ButtonAppComponent>
+                <ButtonAppComponent content={t('back')} action={goToHome} type={"classic"}></ButtonAppComponent>
             </div>
             <div className="lesson-creation-btn">
-                <ButtonAppComponent content={"New Lesson"} action={goToNewLesson} type={"new"}></ButtonAppComponent>
+                <ButtonAppComponent content={t('new-lesson')} action={goToNewLesson} type={"new"}></ButtonAppComponent>
             </div>
         </main>
     )

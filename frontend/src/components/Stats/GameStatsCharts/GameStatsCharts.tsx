@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from "react-i18next";
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -31,11 +32,12 @@ interface GameStatsChartsProps {
 }
 
 const GameStatsCharts: React.FC<GameStatsChartsProps> = ({ gameType, labels, timeData, scoreData }) => {
+    const { t } = useTranslation();
     const timeChartData = {
         labels,
         datasets: [
             {
-                label: 'Time (s)',
+                label: t('time'),
                 data: timeData,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -47,7 +49,7 @@ const GameStatsCharts: React.FC<GameStatsChartsProps> = ({ gameType, labels, tim
         labels,
         datasets: [
             {
-                label: (gameType === 'sorting-waste') || (gameType === 'raining-waste') ? 'Error' :'Score',
+                label: (gameType === 'sorting-waste') || (gameType === 'raining-waste') ? t('error') : t('score'),
                 data: scoreData,
                 borderColor: 'rgba(153, 102, 255, 1)',
                 backgroundColor: 'rgba(153, 102, 255, 0.2)',
@@ -58,15 +60,15 @@ const GameStatsCharts: React.FC<GameStatsChartsProps> = ({ gameType, labels, tim
     return (
         <div className="game-stat-chart-container">
             <div className="game-stat-chart-graph">
-                <h3 className="game-stat-chart-grah-title">Time</h3>
+                <h3 className="game-stat-chart-grah-title">{t('time')}</h3>
                 <div className="game-stat-chart-graph-line-container">
                     <Line data={timeChartData} />
                 </div>
             </div>
             <div className="game-stat-chart-graph">
                 {(gameType === 'sorting-waste') || (gameType === 'raining-waste') ?
-                (<h3 className="game-stat-chart-grah-title"> Errors </h3>) :
-                (<h3 className="game-stat-chart-grah-title"> Score </h3>)
+                (<h3 className="game-stat-chart-grah-title"> {t('errors')} </h3>) :
+                (<h3 className="game-stat-chart-grah-title"> {t('score')} </h3>)
                 }
                 <div className="game-stat-chart-graph-line-container">
                     <Line data={scoreChartData} />

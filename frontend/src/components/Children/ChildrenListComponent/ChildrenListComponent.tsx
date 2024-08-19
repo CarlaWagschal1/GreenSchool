@@ -8,10 +8,12 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {ChildrenInterface} from "../../../interfaces/ChildrenInterface";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 
 function ChildrenListComponent(){
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [children, setChildren] = useState<ChildrenInterface[]>([]);
 
     const getChildren = async () => {
@@ -83,10 +85,10 @@ function ChildrenListComponent(){
     return(
         <main>
             <div className="children-btn-creation">
-                <ButtonAppComponent content={"NEW CHILD"} action={openPopUpCreation} type={"new"}></ButtonAppComponent>
+                <ButtonAppComponent content={t('new-child')} action={openPopUpCreation} type={"new"}></ButtonAppComponent>
             </div>
             <div className="children-list-content">
-                <h1 className="children-list-title">Children List</h1>
+                <h1 className="children-list-title">{t('children-list')}</h1>
                 <div className="children-list-container">
                     {children.map((child) => {
                         return (
@@ -109,7 +111,7 @@ function ChildrenListComponent(){
             </div>
 
             <div className="children-list-home-btn">
-                <ButtonAppComponent content={"BACK"} action={goToHome} type={"classic"}></ButtonAppComponent>
+                <ButtonAppComponent content={t('back')} action={goToHome} type={"classic"}></ButtonAppComponent>
             </div>
         </main>
     )

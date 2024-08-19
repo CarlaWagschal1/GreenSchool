@@ -4,10 +4,12 @@ import axios from "axios";
 
 import './LoginComponent.css'
 import {useEffect} from "react";
+import { useTranslation } from "react-i18next";
 
 
 function LoginComponent(){
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const login = async () => {
         const email = (document.querySelectorAll('input[type="text"]')[0] as HTMLInputElement).value;
@@ -58,18 +60,18 @@ function LoginComponent(){
     return (
         <main>
             <div className="login-container">
-                <h1 className="login-title">LOGIN</h1>
+                <h1 className="login-title">{t('login')}</h1>
                 <div className="login-form">
                     <div className="input-container">
-                        <input type="text" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
+                        <input type="text" placeholder={t('email')} />
+                        <input type="password" placeholder={t('password')} />
                     </div>
-                    <ButtonAppComponent content={"Login"} action={login} type={"classic"}/>
+                    <ButtonAppComponent content={t('login')} action={login} type={"classic"}/>
                 </div>
 
             </div>
             <div className="home-button">
-                <ButtonAppComponent content={"Home"} action={goToHome} type={"classic"}/>
+                <ButtonAppComponent content={t('back')} action={goToHome} type={"classic"}/>
             </div>
         </main>
     )

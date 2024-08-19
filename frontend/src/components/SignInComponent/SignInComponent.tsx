@@ -3,10 +3,12 @@ import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import './SignInComponent.css'
 import {useEffect} from "react";
+import { useTranslation} from "react-i18next";
 
 
 function SignInComponent() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const createAccount = async () => {
         const name = (document.querySelectorAll('input[type="text"]')[0] as HTMLInputElement).value;
@@ -24,6 +26,7 @@ function SignInComponent() {
                 console.log(rep.data)
                 if(rep.data.token){
                     localStorage.setItem('token', rep.data.token);
+                    localStorage.setItem('firstConnection', 'true');
                     navigate('/educator');
                 }
             }
@@ -57,20 +60,20 @@ function SignInComponent() {
     return (
         <main>
             <div className="signin-container">
-                <h1 className="signin-title">SIGN IN</h1>
+                <h1 className="signin-title">{t('signin')}</h1>
                 <div className="signin-form">
                     <div className="input-container">
-                        <input type="text" placeholder="Name" />
-                        <input type="text" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <input type="password" placeholder="Confirm Password" />
+                        <input type="text" placeholder={t('name')} />
+                        <input type="text" placeholder={t('email')} />
+                        <input type="password" placeholder={t('password')} />
+                        <input type="password" placeholder={t('confirm-password')} />
                     </div>
-                    <ButtonAppComponent content={"Sign In"} action={createAccount} type={"classic"}/>
+                    <ButtonAppComponent content={t('signin')} action={createAccount} type={"classic"}/>
                 </div>
 
             </div>
             <div className="home-button">
-                <ButtonAppComponent content={"Home"} action={goToHome} type={"classic"}/>
+                <ButtonAppComponent content={t('back')} action={goToHome} type={"classic"}/>
             </div>
         </main>
 

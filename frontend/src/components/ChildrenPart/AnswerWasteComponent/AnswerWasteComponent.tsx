@@ -1,18 +1,19 @@
 import PoubelleTri from '../../../mocks/img/poubelle-tri.jpg';
 import './AnswerWasteComponent.css';
+import { useTranslation} from "react-i18next";
 
 interface wasteProps {
     waste: string;
 }
 
 function AnswerWasteComponent(props: wasteProps){
-
+    const { t } = useTranslation();
 
     return (
     <main>
         <div className="container-answer-waste">
             <div className="answer-content">
-                You have to put your waste in the <a className="answer-bold>" style={{fontWeight: "bold"}}>{props.waste}</a> bin
+                {t('scan-waste-answer-content')} <a className="answer-bold>" style={{fontWeight: "bold"}}>{props.waste}</a> {t('bin')}
             </div>
             <div className="answer-img">
                 <img src={PoubelleTri} alt="Poubelle de tri"/>

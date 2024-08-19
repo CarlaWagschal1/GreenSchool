@@ -6,6 +6,7 @@ import GameStatsCard from "../GameStatsCard/GameStatsCard";
 import './ChildrenGameStats.css';
 import GameStatsCharts from "../GameStatsCharts/GameStatsCharts";
 import {useNavigate} from "react-router-dom";
+import { useTranslation} from "react-i18next";
 import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 
 interface gameStatsInterface {
@@ -40,6 +41,7 @@ const gameMock = [
 
 function ChildrenGameStats() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [selectedPeriod, setSelectedPeriod] = useState<'7days' | '30days' | 'Always'>('7days');
     const [scores, setScores] = useState<ScoreInterface[]>([]);
@@ -141,7 +143,33 @@ function ChildrenGameStats() {
         const averageTime = totalGames > 0 ? totalTime / totalGames : 0;
 
         const errorCounts: { [key: string]: number } = {};
-        filteredScores.forEach(score => {
+        // the next step can be delete, it was necessary with a rename of some waste object before the translation to not lose every statistics
+        const filteredScoresRenamed = filteredScores.map(score => {
+            const newErrors = score.errors.map(error => {
+                if ((error === 'bouteille recyclable') || (error ==='bouteille plastique') || (error === 'bouteille en plastique')) {
+                    return 'plastic-bottle';
+                }
+                if (error === 'armoire encombrant') {
+                    return 'bulky-cabinet';
+                }
+                if (error === 'trognon alimentaire') {
+                    return 'food-core';
+                }
+                if (error === 'table encombrant') {
+                    return 'bulky-table';
+                }
+                if (error === 'cookie alimentaire') {
+                    return 'food-cookie';
+                }
+                if (error === 'carton recyclable') {
+                    return 'recyclable-cardboard';
+                }
+                return error;
+            });
+            return {...score, errors: newErrors};
+        });
+
+        filteredScoresRenamed.forEach(score => {
             score.errors.forEach(error => {
                 errorCounts[error] = (errorCounts[error] || 0) + 1;
             });
@@ -175,11 +203,11 @@ function ChildrenGameStats() {
     return (
     <main>
         <div className="children-game-stats-container">
-            <h2 className="children-game-stats-title">Game Stats of {childName}</h2>
+            <h2 className="children-game-stats-title">{t('game-stats-of')} {childName}</h2>
             <div className="children-game-stats-content">
                 <div className="game-list">
-                    <GameStatsCard nameGame="Sorting Waste" gameId="sorting-waste" onClick={handleClick} isSelected={'sorting-waste' === gameID}></GameStatsCard>
-                    <GameStatsCard nameGame="Raining Waste" gameId="raining-waste" onClick={handleClick} isSelected={'raining-waste' === gameID}></GameStatsCard>
+                    <GameStatsCard nameGame={t('drag-and-drop')} gameId="sorting-waste" onClick={handleClick} isSelected={'sorting-waste' === gameID}></GameStatsCard>
+                    <GameStatsCard nameGame={t('raining-waste')} gameId="raining-waste" onClick={handleClick} isSelected={'raining-waste' === gameID}></GameStatsCard>
                     {gameMock.map(game => (
                         <GameStatsCard key={game.id} nameGame={game.name} gameId={game.id} onClick={handleClick} isSelected={game.id === gameID}></GameStatsCard>
                     ))}
@@ -187,13 +215,13 @@ function ChildrenGameStats() {
                 <div className="stat-display">
                     <div className="date-choice">
                         <button className={selectedPeriod === '7days' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('7days')}>
-                            7 days
+                            {t('seven-days')}
                         </button>
                         <button className={selectedPeriod === '30days' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('30days')}>
-                            30 days
+                            {t('thirty-days')}
                         </button>
                         <button className={selectedPeriod === 'Always' ? 'active' : 'no-active'} onClick={() => setSelectedPeriod('Always')}>
-                            Always
+                            {t('all-time')}
                         </button>
                     </div>
                     <div className="statistics">
@@ -204,15 +232,15 @@ function ChildrenGameStats() {
                                 </div>
                                 <div className="stats-info">
                                     <div className="game-info-center">
-                                        <h2 className="game-info-center-title">Some Numbers</h2>
-                                        <p>Number of games played : {stats.totalGames}</p>
-                                        <p>Number of games without error: {gamesWithoutError}</p>
-                                        <p>Average playing time: {stats.averageTime.toFixed(2)} secondes</p>
+                                        <h2 className="game-info-center-title">{t('some-numbers')}</h2>
+                                        <p>{t('number-of-games-played')} : {stats.totalGames}</p>
+                                        <p>{t('number-of-games-without-error')} : {gamesWithoutError}</p>
+                                        <p>{t('average-time-per-game')} : {stats.averageTime.toFixed(2)} secondes</p>
                                         <div className="game-stat-mistakes">
-                                            <h3>Top 3 most common mistakes</h3>
+                                            <h3>{t('top-3-most-common-errors')}</h3>
                                             <ul>
                                                 {stats.topErrors.map(([error, count]: [string, number]) => (
-                                                    <li key={error}>{error}: {count} times</li>
+                                                    <li key={error}>{t(error)}: {count} {t('times')}</li>
                                                 ))}
                                             </ul>
                                         </div>
@@ -220,14 +248,14 @@ function ChildrenGameStats() {
                                 </div>
                             </div>
                         ) : (
-                            <p className="no-stats">Pas encore de statistiques</p>
+                            <p className="no-stats">{t('no-statistics')}</p>
                         )}
                     </div>
                 </div>
             </div>
         </div>
         <div className="children-game-stat-back-btn">
-            <ButtonAppComponent content={"BACK"} action={goBack} type={"classic"} />
+            <ButtonAppComponent content={t('back')} action={goBack} type={"classic"} />
         </div>
     </main>
     );

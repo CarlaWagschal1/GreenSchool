@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import { useTranslation } from "react-i18next";
 
 import './ProfileComponent.css';
 import {useNavigate} from "react-router-dom";
@@ -8,6 +9,7 @@ import Close from "../../../assets/close.png";
 
 function ProfileComponent() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -237,37 +239,37 @@ function ProfileComponent() {
     <main>
         <div className="profile-container">
             <div className="profile-header">
-                <h1>Profile</h1>
+                <h1>{t('profile')}</h1>
             </div>
             <div className="profile-content">
                 <div className="profile-content-paragraph">
-                    <div className="profile-content-label"> Name : </div>
+                    <div className="profile-content-label"> {t('name')} : </div>
                     <div className="profile-content-get" >{name}</div>
-                    <div className="change-profile" onClick={changeNamePopup}> Change </div>
+                    <div className="change-profile" onClick={changeNamePopup}> {t('change')} </div>
                 </div>
                 <div className="profile-content-paragraph">
-                    <div className="profile-content-label"> Email : </div>
+                    <div className="profile-content-label"> {t('email')} : </div>
                     <div className="profile-content-get" >{email} </div>
-                    <div className="change-profile" onClick={changeEmailPopup}> Change </div>
+                    <div className="change-profile" onClick={changeEmailPopup}> {t('change')} </div>
                 </div>
             </div>
             <div className="profile-password">
-                <a className="change-profile" onClick={changePasswordPopup}> Change Password </a>
-                <a className="change-profile" onClick={changeChildrenPasswordPopup}> Change Children Password </a>
+                <a className="change-profile" onClick={changePasswordPopup}> {t('change-password')} </a>
+                <a className="change-profile" onClick={changeChildrenPasswordPopup}> {t('change-children-password')} </a>
             </div>
         </div>
         <div className="btn-profile-back">
-             <ButtonAppComponent content="Back" action={goToWelcome} type={"classic"}/>
+             <ButtonAppComponent content={t('back')} action={goToWelcome} type={"classic"}/>
         </div>
         <div className='popup-profile' id="popup-change-name">
             <div className='popup-profile-content'>
                 <div className="popup-profile-css">
-                    <h1>Change Name</h1>
+                    <h1>{t('change-name')}</h1>
                     <div className="popup-profile-input-container">
-                        <input id="profile-new-name" type="text" placeholder="New Name"/>
-                        <input id="profile-new-name-password" type="password" placeholder="Password"/>
+                        <input id="profile-new-name" type="text" placeholder={t('new-name')}/>
+                        <input id="profile-new-name-password" type="password" placeholder={t('password')}/>
                     </div>
-                    <ButtonAppComponent content="Change" action={changeName} type={"classic"}/>
+                    <ButtonAppComponent content={t('change')} action={changeName} type={"classic"}/>
                     <div className="profile-change-popup-close">
                         <img src={Close} onClick={closePopup} alt="close" className="profile-change-popup-close-img"></img>
                     </div>
@@ -277,12 +279,12 @@ function ProfileComponent() {
         <div className='popup-profile' id="popup-change-email">
             <div className='popup-profile-content'>
                 <div className="popup-profile-css">
-                    <h1>Change Email</h1>
+                    <h1>{t('change-email')}</h1>
                     <div className="popup-profile-input-container">
-                        <input id="profile-new-email" type="text" placeholder="New Email"/>
-                        <input id="profile-new-email-password" type="password" placeholder="Password"/>
+                        <input id="profile-new-email" type="text" placeholder={t('new-email')}/>
+                        <input id="profile-new-email-password" type="password" placeholder={t('password')}/>
                     </div>
-                    <ButtonAppComponent content="Change" action={changeEmail} type={"classic"}/>
+                    <ButtonAppComponent content={t('change')} action={changeEmail} type={"classic"}/>
                     <div className="profile-change-popup-close">
                         <img src={Close} onClick={closePopup} alt="close" className="profile-change-popup-close-img"></img>
                     </div>
@@ -292,13 +294,13 @@ function ProfileComponent() {
         <div className='popup-profile' id="popup-change-password">
             <div className='popup-profile-content'>
                 <div className="popup-profile-css">
-                    <h1>Change Password</h1>
+                    <h1>{t('change-password')}</h1>
                     <div className="popup-profile-input-container">
-                        <input id="oldPassword" type="password" placeholder="Old Password"/>
-                        <input id="newPassword" type="password" placeholder="New Password"/>
-                        <input id="newPassword2" type="password" placeholder="New Password Again"/>
+                        <input id="oldPassword" type="password" placeholder={t('old-password')}/>
+                        <input id="newPassword" type="password" placeholder={t('new-password')}/>
+                        <input id="newPassword2" type="password" placeholder={t('confirm-new-password')}/>
                     </div>
-                    <ButtonAppComponent content="Change" action={changePassword} type={"classic"}/>
+                    <ButtonAppComponent content={t('change')} action={changePassword} type={"classic"}/>
                     <div className="profile-change-popup-close">
                         <img src={Close} onClick={closePopup} alt="close" className="profile-change-popup-close-img"></img>
                     </div>
@@ -308,12 +310,12 @@ function ProfileComponent() {
         <div className='popup-profile' id="popup-change-children-password">
             <div className='popup-profile-content'>
                 <div className="popup-profile-css">
-                    <h1>Change Children Password</h1>
+                    <h1>{t('change-children-password')}</h1>
                     <div className="popup-profile-input-container">
-                        <input id="newChildrenPassword" type="password" placeholder="Children New Password"/>
-                        <input id="realPassword" type="password" placeholder="Password"/>
+                        <input id="newChildrenPassword" type="password" placeholder={t('new-children-password')}/>
+                        <input id="realPassword" type="password" placeholder={t('password')}/>
                     </div>
-                    <ButtonAppComponent content="Change" action={changeChildrenPassword} type={"classic"}/>
+                    <ButtonAppComponent content={t('change')} action={changeChildrenPassword} type={"classic"}/>
                     <div className="profile-change-popup-close">
                         <img src={Close} onClick={closePopup} alt="close" className="profile-change-popup-close-img"></img>
                     </div>
@@ -322,7 +324,7 @@ function ProfileComponent() {
         </div>
         <div className="popup-success" id="popup-success" onClick={sucessPopupClose}>
             <div className="popup-success-content">
-                <h1>Successful change !</h1>
+                <h1>{t('successful-change')}</h1>
             </div>
         </div>
     </main>

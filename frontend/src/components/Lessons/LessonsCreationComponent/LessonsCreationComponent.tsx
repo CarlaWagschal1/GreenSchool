@@ -4,10 +4,12 @@ import "./LessonsCreationComponent.css";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import { useTranslation} from "react-i18next";
 
 
 function LessonsCreationComponent() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const[fileName, setFileName] = useState("No file selected");
 
 
@@ -82,21 +84,21 @@ function LessonsCreationComponent() {
   return (
     <main>
         <div className="lessons-creation-content">
-            <h1> Create a lesson</h1>
+            <h1> {t('lesson-creation')}</h1>
             <div className="lessons-creation-form">
-                <label htmlFor="lessonName">Lesson name (75 characters max):</label>
-                <input type="text" id="lessonName" name="lessonName" required maxLength={75} placeholder="Lesson Name"/>
-                <label htmlFor="lessonDescription" >Lesson description (300 characsters max):</label>
-                <textarea id="lessonDescription" name="lessonDescription" required maxLength={300} placeholder="Lesson Description"/>
-                <label htmlFor="image" className="upload-lesson-img">File: {fileName}
+                <label htmlFor="lessonName">{t('lesson-name')} ({t('max')} 75 {t('characters')}):</label>
+                <input type="text" id="lessonName" name="lessonName" required maxLength={75} placeholder={t('lesson-name')}/>
+                <label htmlFor="lessonDescription" >{t('lesson-description')} ({t('max')} 300 {t('characters')}):</label>
+                <textarea id="lessonDescription" name="lessonDescription" required maxLength={300} placeholder={t('lesson-description')}/>
+                <label htmlFor="image" className="upload-lesson-img">{t('file')}: {fileName}
                     <input type="file" id="image" name="image" accept="image/*" required />
                 </label>
 
-                <ButtonAppComponent content={"Create lesson"} action={createLesson} type={"classic"}/>
+                <ButtonAppComponent content={t('create')} action={createLesson} type={"classic"}/>
             </div>
         </div>
         <div className="lesson-back-btn">
-            <ButtonAppComponent content={"BACK"} action={goBack} type={"classic"}></ButtonAppComponent>
+            <ButtonAppComponent content={t('back')} action={goBack} type={"classic"}></ButtonAppComponent>
         </div>
     </main>
   );

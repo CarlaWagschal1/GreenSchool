@@ -3,6 +3,7 @@ import ButtonAppComponent from "../../ButtonAppComponent/ButtonAppComponent";
 
 import "./LessonsManagerCard.css";
 import {useNavigate} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 interface LessonsManagerCardProps {
@@ -13,6 +14,7 @@ interface LessonsManagerCardProps {
 
 function LessonsManagerCard({lesson, isDeleted}: LessonsManagerCardProps) {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
 
     const onEdit = (id: number) => {
@@ -62,8 +64,8 @@ function LessonsManagerCard({lesson, isDeleted}: LessonsManagerCardProps) {
                 </div>
             </div>
             <div className="lessons-manager-card-buttons">
-                <ButtonAppComponent content={"Edit"} action={() => onEdit(lesson._id)} type={"edit"}/>
-                <ButtonAppComponent content={"Delete"} action={() => onDelete(lesson._id)} type={"delete"}/>
+                <ButtonAppComponent content={t('edit')} action={() => onEdit(lesson._id)} type={"edit"}/>
+                <ButtonAppComponent content={t('delete')} action={() => onDelete(lesson._id)} type={"delete"}/>
             </div>
         </div>
     </>
