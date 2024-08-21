@@ -61,6 +61,11 @@
   "child-deletion-warning-title": "Bạn có chắc chắn muốn xóa trẻ em này không?",
   "child-deletion-warning-message": "Nếu bạn xóa hồ sơ trẻ em này, bạn sẽ mất tất cả các thống kê về chúng. Hành động này là không thể đảo ngược.",
   "child-logout-message": "Vui lòng nhập mật khẩu đăng xuất của bạn",
+  "font-size-choice": "Chọn kích thước chữ",
+  "font-size-small": "Nhỏ",
+  "font-size-medium": "Trung bình",
+  "font-size-large": "Lớn",
+  "font-size-example": "Ví dụ",
 
   "lesson": "Bài học",
   "new-lesson": "BÀI HỌC MỚI",

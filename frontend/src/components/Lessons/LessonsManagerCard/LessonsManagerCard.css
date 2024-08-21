@@ -12,7 +12,7 @@
     height: auto;
     background-color: var(--lessons-manager-card-background);
     box-shadow: 0 0 10px var(--lessons-manager-card-shadow);
-    padding: 10px;
+    padding: 20px;
     margin: 10px;
 }
 

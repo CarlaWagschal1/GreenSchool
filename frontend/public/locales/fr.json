@@ -61,6 +61,11 @@
   "child-deletion-warning-title": "Êtes-vous sûr de vouloir supprimer cet enfant ?",
   "child-deletion-warning-message": "Si vous supprimez ce profil enfant, vous perdrez toutes les statistiques le concernant. Cette action est irréversible.",
   "child-logout-message": "Veuillez entrer votre mot de passe de déconnexion",
+  "font-size-choice": "Choisissez la taille de la police",
+  "font-size-small": "Petit",
+  "font-size-medium": "Moyen",
+  "font-size-large": "Grand",
+  "font-size-example": "Exemple de texte",
 
   "lesson": "Leçon",
   "new-lesson": "NOUVELLE LEÇON",
