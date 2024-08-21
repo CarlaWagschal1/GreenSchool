@@ -71,6 +71,31 @@ function ChildrenLessonListComponent() {
         navigate("/welcome");
     }
 
+    const handleFontSize = () => {
+        const fontSize = localStorage.getItem('childrenFontSize');
+        const childrenLessonDescriptionPopupTitle = document.querySelector(".children-lesson-description-popup-title") as HTMLElement;
+        const childrenLessonDescriptionPopupDescription = document.querySelector(".children-lesson-description-popup-description") as HTMLElement;
+
+        if(fontSize){
+            if(fontSize == "small"){
+                childrenLessonDescriptionPopupTitle.style.fontSize = "var(--children-font-size-choice-title-small)";
+                childrenLessonDescriptionPopupDescription.style.fontSize = "var(--children-font-size-choice-paragraph-small)";
+            }
+            else if(fontSize == "medium"){
+                childrenLessonDescriptionPopupTitle.style.fontSize = "var(--children-font-size-choice-title-medium)";
+                childrenLessonDescriptionPopupDescription.style.fontSize = "var(--children-font-size-choice-paragraph-medium)";
+            }
+            else if(fontSize == "large"){
+                childrenLessonDescriptionPopupTitle.style.fontSize = "var(--children-font-size-choice-title-large)";
+                childrenLessonDescriptionPopupDescription.style.fontSize = "var(--children-font-size-choice-paragraph-large)";
+            }
+        }
+    }
+
+    useEffect(() => {
+        handleFontSize();
+    }, [])
+
 
     return (
         <main>

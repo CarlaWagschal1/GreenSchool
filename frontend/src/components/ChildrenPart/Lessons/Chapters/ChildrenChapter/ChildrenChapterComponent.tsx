@@ -4,6 +4,7 @@ import ButtonAppComponent from "../../../../ButtonAppComponent/ButtonAppComponen
 import "./ChildrenChapterComponent.css";
 import {useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {useEffect} from "react";
 
 interface ChildrenChapterComponentProps {
     lessonName: string | undefined;
@@ -20,6 +21,25 @@ function ChildrenChapterComponent(props: ChildrenChapterComponentProps) {
     const backToLessonList = () => {
         navigate("/children-lesson-list");
     }
+
+    const handleFontSize = () => {
+        const fontSize = localStorage.getItem('childrenFontSize');
+        console.log("fontSize", fontSize)
+        if(fontSize) {
+            const chapterDescription = document.querySelector(".chapter-description") as HTMLElement;
+            if (fontSize == "small") {
+                chapterDescription.style.fontSize = "var(--children-font-size-choice-paragraph-small)";
+            } else if (fontSize == "medium") {
+                chapterDescription.style.fontSize = "var(--children-font-size-choice-paragraph-medium)";
+            } else if (fontSize == "large") {
+                chapterDescription.style.fontSize = "var(--children-font-size-choice-paragraph-large)";
+            }
+        }
+    }
+
+    useEffect(() => {
+        handleFontSize();
+    }, [])
 
 
     return (

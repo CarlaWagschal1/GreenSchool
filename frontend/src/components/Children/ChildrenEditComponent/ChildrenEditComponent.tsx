@@ -4,6 +4,7 @@ import axios from "axios";
 import {useTranslation} from "react-i18next";
 
 import "./ChildrenEditComponent.css";
+import {useEffect} from "react";
 
 
 interface ChildrenEditComponent {
@@ -22,6 +23,7 @@ function ChildrenEditComponent(props: ChildrenEditComponent) {
         const name = (document.getElementById("children-edit-name-" + props.child._id) as HTMLInputElement).value;
         const lastName = (document.getElementById("children-edit-last-name-" + props.child._id) as HTMLInputElement).value;
         const age = (document.getElementById("children-edit-age-" + props.child._id) as HTMLSelectElement).value;
+        const fontSize = (document.querySelector('input[name="fontSize"]:checked') as HTMLInputElement).value;
 
 
         const headers = {
@@ -32,7 +34,8 @@ function ChildrenEditComponent(props: ChildrenEditComponent) {
         const data = {
             name: name,
             lastName: lastName,
-            age: age
+            age: age,
+            fontSize: fontSize
         }
 
         try {
@@ -84,6 +87,44 @@ function ChildrenEditComponent(props: ChildrenEditComponent) {
         }
     }
 
+    const handleChangeSizeFont = () => {
+        const fontSize = (document.querySelector('input[name="fontSize"]:checked') as HTMLInputElement).value;
+        const fontSizeExample = document.querySelector('.font-size-example') as HTMLAnchorElement;
+        console.log(fontSize)
+        if(fontSize === 'small') {
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-small)';
+        } else if(fontSize === 'medium') {
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-medium)';
+        }
+        else {
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-large)';
+        }
+    }
+
+    useEffect(() => {
+        const fontSize = props.child.fontSize;
+        const fontSizeExample = document.querySelector('.font-size-example') as HTMLAnchorElement;
+        if(fontSize === 'small') {
+            (document.getElementById('child-edit-fontSizeSmall') as HTMLInputElement).checked = true;
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-small)';
+        }
+        else if(fontSize === 'medium') {
+            (document.getElementById('child-edit-fontSizeMedium') as HTMLInputElement).checked = true;
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-medium)';
+        }
+        else {
+            (document.getElementById('child-edit-fontSizeLarge') as HTMLInputElement).checked = true;
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-large)';
+        }
+    })
+
+    useEffect(() => {
+        const radios = document.querySelectorAll('input[name="fontSize"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', handleChangeSizeFont)
+        })
+    }, [])
+
 
     return (
     <>
@@ -91,7 +132,7 @@ function ChildrenEditComponent(props: ChildrenEditComponent) {
             <h1 className="children-edit-title">{t('child-edit')}</h1>
             <div className="children-edit-form">
                 <div className=" children-edit-input-container">
-                    <input type="text" placeholder={t('name')} id={"children-edit-name-" + props.child._id} defaultValue={props.child.name} />
+                    <input type="text" placeholder={t('name')} id={"children-edit-name-" + props.child._id} defaultValue={props.child.name}/>
                     <input type="text" placeholder={t('lastName')} id={"children-edit-last-name-" + props.child._id} defaultValue={props.child.lastName}/>
                     <select className="children-edit-select-age" id={"children-edit-age-" + props.child._id} defaultValue={props.child.age}>
                         <option value="" hidden>{t('age')}</option>
@@ -104,6 +145,24 @@ function ChildrenEditComponent(props: ChildrenEditComponent) {
                         <option value="10">10</option>
                         <option value="11">11</option>
                     </select>
+                    <div className="child-edit-font-size-choice">
+                        <p className="child-edit-font-size-choice-title">{t('font-size-choice')} :</p>
+                        <div className="child-edit-radio-container">
+                            <div className="child-edit-font-size-radio">
+                                <label htmlFor="fontSizeSmall">{t('font-size-small')}</label>
+                                <input type="radio" id="child-edit-fontSizeSmall" name="fontSize" value="small" />
+                            </div>
+                            <div className="child-edit-font-size-radio">
+                                <label htmlFor="fontSizeMedium">{t('font-size-medium')}</label>
+                                <input type="radio" id="child-edit-fontSizeMedium" name="fontSize" value="medium" />
+                            </div>
+                            <div className="child-edit-font-size-radio">
+                                <label htmlFor="fontSizeLarge">{t('font-size-large')}</label>
+                                <input type="radio" id="child-edit-fontSizeLarge" name="fontSize" value="large" />
+                            </div>
+                        </div>
+                        <a className="font-size-example">{t('font-size-example')}</a>
+                    </div>
                 </div>
                 <div className="children-edit-button-container">
                     <ButtonAppComponent content={t('edit')} action={editChild} type={"classic"}></ButtonAppComponent>

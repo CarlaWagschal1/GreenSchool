@@ -24,14 +24,15 @@ async function getChildrenById(childrenId) {
     }
 }
 
-async function createChildren(name, lastName, age, educatorId) {
+async function createChildren(name, lastName, age, educatorId, fontSize) {
     const db = getDB();
     try {
         await db.collection('children').insertOne({
             name,
             lastName,
             age,
-            educatorId
+            educatorId,
+            fontSize
         });
     }
     catch (error) {
@@ -66,11 +67,11 @@ async function verifyEducatorWithChildren(educatorId, childId) {
     }
 }
 
-async function updateChildren(childrenId, name, lastName, age) {
+async function updateChildren(childrenId, name, lastName, age, fontSize) {
     const db = getDB();
     try {
         const childrenObjId = new ObjectId(childrenId);
-        await db.collection('children').updateOne({_id: childrenObjId}, {$set: {name, lastName, age}});
+        await db.collection('children').updateOne({_id: childrenObjId}, {$set: {name, lastName, age, fontSize}});
     }
     catch (error) {
         console.log("Error in update children:", error)

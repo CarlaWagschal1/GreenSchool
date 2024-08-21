@@ -37,9 +37,11 @@ function ChildrenCardComponent(props: ChildrenCardComponentProps) {
             };
 
             const response = await axios.post('http://localhost:5000/api/children/play', data, { headers: headers });
+            console.log(response.data);
             if(response.data.childrenToken){
                 localStorage.setItem('childrenToken', response.data.childrenToken);
                 localStorage.setItem('childrenAge', props.child.age.toString());
+                localStorage.setItem('childrenFontSize', props.child.fontSize);
                 navigate('/welcome');
             }
         }

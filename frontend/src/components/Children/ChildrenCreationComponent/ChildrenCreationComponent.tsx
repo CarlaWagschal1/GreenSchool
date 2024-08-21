@@ -3,6 +3,7 @@ import axios from "axios";
 import { useTranslation} from "react-i18next";
 
 import "./ChildrenCreationComponent.css";
+import {useEffect} from "react";
 
 interface ChildrenCreationComponentProps {
     onCreate: (creation: boolean) => void;
@@ -17,7 +18,8 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
             const name = (document.querySelectorAll('input[type="text"]')[0] as HTMLInputElement).value;
             const lastName = (document.querySelectorAll('input[type="text"]')[1] as HTMLInputElement).value;
             const age = (document.querySelector('select') as HTMLSelectElement).value;
-            console.log(name, lastName, age)
+            const fontSize = (document.querySelector('input[name="fontSize"]:checked') as HTMLInputElement).value;
+            console.log(name, lastName, age, fontSize)
 
             const headers = {
                 'Content-Type': 'application/json',
@@ -27,7 +29,8 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
             const data = {
                 name: name,
                 lastName: lastName,
-                age: age
+                age: age,
+                fontSize: fontSize
             }
 
             const rep = await axios.post('http://localhost:5000/api/children', data
@@ -47,7 +50,26 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
 
     }
 
+    const handleChangeSizeFont = () => {
+        const fontSize = (document.querySelector('input[name="fontSize"]:checked') as HTMLInputElement).value;
+        const fontSizeExample = document.querySelector('.font-size-example') as HTMLAnchorElement;
+        console.log(fontSize)
+        if(fontSize === 'small') {
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-small)';
+        } else if(fontSize === 'medium') {
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-medium)';
+        }
+        else {
+            fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-large)';
+        }
+    }
 
+    useEffect(() => {
+        const radios = document.querySelectorAll('input[name="fontSize"]');
+        radios.forEach(radio => {
+            radio.addEventListener('change', handleChangeSizeFont)
+        })
+    }, [])
 
 
 
@@ -69,6 +91,24 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
                         <option value="10">10</option>
                         <option value="11">11</option>
                     </select>
+                    <div className="font-size-choice">
+                        <p className="font-size-choice-title">{t('font-size-choice')} :</p>
+                        <div className="radio-container">
+                            <div className="font-size-radio">
+                                <label htmlFor="fontSizeSmall">{t('font-size-small')}</label>
+                                <input type="radio" id="fontSizeSmall" name="fontSize" value="small" />
+                            </div>
+                            <div className="font-size-radio">
+                                <label htmlFor="fontSizeMedium">{t('font-size-medium')}</label>
+                                <input type="radio" id="fontSizeMedium" name="fontSize" value="medium" />
+                            </div>
+                            <div className="font-size-radio">
+                                <label htmlFor="fontSizeLarge">{t('font-size-large')}</label>
+                                <input type="radio" id="fontSizeLarge" name="fontSize" value="large" />
+                            </div>
+                        </div>
+                        <a className="font-size-example">{t('font-size-example')}</a>
+                    </div>
                 </div>
                 <div className="button-container">
                     <ButtonAppComponent content={t('create')} action={createChild} type={"classic"}></ButtonAppComponent>

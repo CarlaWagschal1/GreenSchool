@@ -66,6 +66,14 @@ body {
   --children-creation-select-background : #e1eacd;
   --children-creation-select-focus : rgba(0, 90, 53, 0.48);
 
+  /* ChildrenCreationComponent FontSize Choice */
+  --children-font-size-choice-paragraph-small : 1.2rem;
+  --children-font-size-choice-paragraph-medium : 1.35rem;
+  --children-font-size-choice-paragraph-large : 1.5rem;
+  --children-font-size-choice-title-small : 1.5rem;
+  --children-font-size-choice-title-medium : 1.75rem;
+  --children-font-size-choice-title-large : 2rem;
+
   /* LogoutChildrenComponent */
     --logout-children-background : #c3e0ba;
     --logout-children-box-shadow : rgba(0, 90, 53, 0.48);

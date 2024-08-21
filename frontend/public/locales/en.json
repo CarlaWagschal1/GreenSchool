@@ -64,6 +64,11 @@
   "child-deletion-warning-title" : "Are you sure you want to delete this child ?",
   "child-deletion-warning-message" : "If you delete this child profile, you will lose all the statistics about him. This action is irreversible.",
   "child-logout-message" : "Please enter your log out password",
+  "font-size-choice": "Font size choice",
+  "font-size-small": "Small",
+  "font-size-medium": "Medium",
+  "font-size-large": "Large",
+  "font-size-example": "Size example",
 
   "lesson": "Lesson",
   "new-lesson": "NEW LESSON",

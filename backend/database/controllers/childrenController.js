@@ -25,10 +25,10 @@ async function getChildrenController(request, response) {
 }
 
 async function createChildrenController(request, response) {
-    const {name, lastName, age} = request.body;
+    const {name, lastName, age, fontSize} = request.body;
     const educatorId = request.user.id;
-    if(!name || !lastName || !age || !educatorId) {
-        response.status(400).json({message: 'Name, last name, age, and educator id are required'})
+    if(!name || !lastName || !age || !educatorId || !fontSize) {
+        response.status(400).json({message: 'Name, last name, age, font size and educator id are required'})
         return;
     }
     const educator = await getEducatorById(educatorId);
@@ -38,7 +38,7 @@ async function createChildrenController(request, response) {
     }
 
     try {
-        await createChildren(name, lastName, age, educatorId, response);
+        await createChildren(name, lastName, age, educatorId, fontSize, response);
         response.status(201).json({message: 'Child created'});
     }
     catch (error) {
@@ -127,13 +127,13 @@ async function getChildrenByIdController(request, response) {
 
 async function updateChildrenController(request, response) {
     const childrenId = request.params.childrenId;
-    const {name, lastName, age} = request.body;
+    const {name, lastName, age, fontSize} = request.body;
     if(!childrenId) {
         response.status(400).json({message: 'Children id is required'})
         return;
     }
     try {
-        await updateChildren(childrenId, name, lastName, age);
+        await updateChildren(childrenId, name, lastName, age, fontSize);
         response.status(200).json({message: 'Children updated'});
     }
     catch (error) {

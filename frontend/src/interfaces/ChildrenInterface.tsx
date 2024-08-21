@@ -3,4 +3,5 @@ export interface ChildrenInterface {
     name: string;
     lastName: string;
     age: number;
+    fontSize: string;
 }
