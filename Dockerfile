@@ -15,7 +15,7 @@ COPY . .
 
 # Expose the port 5000
 EXPOSE 5000
-
+USER root
 # Run the command to start the application
 CMD ["node", "backend/index.js"]
 

@@ -43,7 +43,7 @@
     background-color: var(--signin-input);
 }
 
-.select-age {
+.children-creation-select-age {
     padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
@@ -53,7 +53,7 @@
 }
 
 
-.select-age:focus {
+.children-creation-select-age:focus {
     outline: none;
     border-color: var(--children-creation-select-focus);
     background-color: var(--children-creation-select-background);
@@ -93,7 +93,7 @@
     gap: 10px;
 }
 
-.font-size-example {
+.creation-font-size-example {
     position: relative;
     width: 100%;
     text-align: center;

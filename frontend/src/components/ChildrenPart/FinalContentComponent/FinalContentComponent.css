@@ -1,0 +1,24 @@
+.final-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.final-content-message {
+    font-family: Inter, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+
+.final-content-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    min-width: 530px;
+    max-width: 830px;
+}

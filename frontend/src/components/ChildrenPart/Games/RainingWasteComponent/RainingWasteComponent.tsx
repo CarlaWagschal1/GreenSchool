@@ -15,6 +15,7 @@ import './RainingWasteComponent.css';
 import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
 import { useTranslation} from "react-i18next";
+import FinalContentComponent from "../../FinalContentComponent/FinalContentComponent";
 
 interface WasteItem {
     name: string;
@@ -167,7 +168,7 @@ const RainingWasteComponent = () => {
         );
     };
 
-    const playAgain = () => {
+    const handlePlayAgain = () => {
         setScore(0);
         setScoreError(0);
         setErrorList([]);
@@ -198,13 +199,7 @@ const RainingWasteComponent = () => {
                     </div> :
                 (score >= 10) ?
                     (
-                    <div className="raining-waste-final-content">
-                        <h2 className="raining-waste-final-message">{t('game-over')}</h2>
-                        <div className="raining-waste-final-btn-container">
-                            <ButtonAppComponent content={t('play-again')} type={"classic"} action={playAgain} />
-                            <ButtonAppComponent content={t('change-game')} type={"classic"} action={backToGameChoice} />
-                        </div>
-                    </div>
+                    <FinalContentComponent playAgain={handlePlayAgain} />
                 ) : (
                     <div className="game-content-raining">
                         <h2 className="raining-waste-info" style={{display: "none"}}>Score: {score}</h2>

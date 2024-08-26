@@ -42,6 +42,7 @@ body {
   --game-scroll-item-background : #c3e0ba;
   --game-scroll-item-shadow : rgba(0,0,0,0.50);
   --game-scroll-item-background-hover : rgba(183, 211, 174, 0.85);
+  --game-scroll-item-popup-background : #c3e0ba;
 
   /* ScanDisplayComponent */
     --scan-display-webcam-shadow : rgba(0,0,0,0.50);

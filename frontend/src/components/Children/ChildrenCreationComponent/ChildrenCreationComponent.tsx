@@ -15,8 +15,8 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
 
     const createChild = async () => {
         try {
-            const name = (document.querySelectorAll('input[type="text"]')[0] as HTMLInputElement).value;
-            const lastName = (document.querySelectorAll('input[type="text"]')[1] as HTMLInputElement).value;
+            const name = (document.getElementsByClassName('children-creation-name')[0] as HTMLInputElement).value;
+            const lastName = (document.getElementsByClassName('children-creation-lastname')[0] as HTMLInputElement).value;
             const age = (document.querySelector('select') as HTMLSelectElement).value;
             const fontSize = (document.querySelector('input[name="fontSize"]:checked') as HTMLInputElement).value;
             console.log(name, lastName, age, fontSize)
@@ -39,8 +39,8 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
             console.log(rep)
             if(rep.status === 201) {
                 onCreate(true);
-                (document.querySelectorAll('input[type="text"]')[0] as HTMLInputElement).value = '';
-                (document.querySelectorAll('input[type="text"]')[1] as HTMLInputElement).value = '';
+                (document.getElementsByClassName('children-creation-name')[0] as HTMLInputElement).value = '';
+                (document.getElementsByClassName('children-creation-lastname')[0] as HTMLInputElement).value = '';
             }
 
         }
@@ -52,7 +52,7 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
 
     const handleChangeSizeFont = () => {
         const fontSize = (document.querySelector('input[name="fontSize"]:checked') as HTMLInputElement).value;
-        const fontSizeExample = document.querySelector('.font-size-example') as HTMLAnchorElement;
+        const fontSizeExample = document.querySelector('.creation-font-size-example') as HTMLAnchorElement;
         console.log(fontSize)
         if(fontSize === 'small') {
             fontSizeExample.style.fontSize = 'var(--children-font-size-choice-paragraph-small)';
@@ -78,9 +78,9 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
             <h1 className="children-creation-title">{t('child-creation')}</h1>
             <div className="children-creation-form">
                 <div className="input-creation-container">
-                    <input type="text" placeholder={t('name')} />
-                    <input type="text" placeholder={t('lastName')} />
-                    <select className="select-age" defaultValue="">
+                    <input className="children-creation-name" type="text" placeholder={t('name')} />
+                    <input className="children-creation-lastname" type="text" placeholder={t('lastName')} />
+                    <select className="children-creation-select-age" defaultValue="">
                         <option value="" hidden>{t('age')}</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -107,7 +107,7 @@ function ChildrenCreationComponent( {onCreate}: ChildrenCreationComponentProps){
                                 <input type="radio" id="fontSizeLarge" name="fontSize" value="large" />
                             </div>
                         </div>
-                        <a className="font-size-example">{t('font-size-example')}</a>
+                        <a className="creation-font-size-example">{t('font-size-example')}</a>
                     </div>
                 </div>
                 <div className="button-container">

@@ -113,6 +113,11 @@
   "food-cookie": "Food Cookie",
   "recyclable-cardboard": "Recyclable Cardboard",
 
+  "consignes": "Consignes",
+  "drag-and-drop-consignes": "To win this game you have to sort the waste in the right bins. Drag and drop the waste in the right bin. If you make a mistake, the waste will go back to its initial position. Good luck!",
+  "raining-waste-consignes": "To win this game you have to catch the right waste with the bin. The waste will fall from the sky. You win when you get 10 right wastes. Good luck!",
+
+
   "chapter": "Chapter",
   "previous": "PREVIOUS",
   "next": "NEXT",

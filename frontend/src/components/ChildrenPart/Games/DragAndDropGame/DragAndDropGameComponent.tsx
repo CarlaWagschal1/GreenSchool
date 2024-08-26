@@ -15,6 +15,7 @@ import './DragAndDropGameComponent.css'
 import ButtonAppComponent from "../../../ButtonAppComponent/ButtonAppComponent";
 import {useNavigate} from "react-router-dom";
 import { useTranslation} from "react-i18next";
+import FinalContentComponent from "../../FinalContentComponent/FinalContentComponent";
 
 interface WasteItem {
     name: string;
@@ -41,6 +42,8 @@ function DragAndDropGameComponent(){
 
     const [startTime, setStartTime] = useState<Date | null>(null);
     const [errorList, setErrorList] = useState<string[]>([]);
+
+    const age = localStorage.getItem('childrenAge');
 
     useEffect(() => {
         const age = localStorage.getItem('childrenAge');
@@ -132,6 +135,21 @@ function DragAndDropGameComponent(){
         navigate('/game-choice');
     }
 
+    const handlePlayAgain = () => {
+        if(age && parseInt(age) < 8){
+            setWasteItems(initialWasteItems.slice(0, 3));
+        }
+        else if (age && parseInt(age) < 12){
+            setWasteItems(initialWasteItems);
+        }
+        else {
+            console.log('Age not found');
+        }
+        setScoreError(0);
+        setErrorList([]);
+        setStartTime(new Date());
+    }
+
     return (
         <main>
             <div className="drag-and-drop-game-container">
@@ -139,7 +157,7 @@ function DragAndDropGameComponent(){
                     <h1>{t('drag-and-drop')}</h1>
                 </div>
                 {isGameOver ? (
-                    <h2 className="drag-and-drop-game-final-message">{t('game-over')}</h2>
+                    <FinalContentComponent playAgain={handlePlayAgain}/>
                 ) : (
                     <div className="game-content">
 

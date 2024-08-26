@@ -1,0 +1,28 @@
+.popup-consignes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    background-color: var(--children-lesson-list-popup-background);
+    height: 100%;
+    width: 100%;
+    border: 3px solid var(--vert-fonce);
+    border-radius: 10px;
+    padding: 20px;
+    gap: 20px;
+    font-family: Inter, sans-serif;
+}
+
+.popup-consignes h2 {
+    margin-bottom: 0;
+}
+
+.popup-consignes p {
+    text-align: center;
+}
+
+.popup-consignes-buttons {
+    position: absolute;
+    bottom: 20px;
+}

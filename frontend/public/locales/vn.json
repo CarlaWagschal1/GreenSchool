@@ -109,6 +109,11 @@
   "food-cookie": "Bánh quy thực phẩm",
   "recyclable-cardboard": "Bìa các tông có thể tái chế",
 
+  "consignes": "Hướng dẫn",
+  "drag-and-drop-consignes": "Để thắng trò chơi này, bạn phải phân loại rác vào các thùng rác đúng. Kéo và thả rác vào thùng rác đúng. Nếu bạn mắc lỗi, rác sẽ trở lại vị trí ban đầu. Chúc may mắn!",
+  "raining-waste-consignes": "Để thắng trò chơi này, bạn phải bắt rác đúng bằng thùng rác. Rác sẽ rơi từ trên trời xuống. Bạn thắng khi bắt được 10 rác đúng. Chúc may mắn!",
+
+
 
   "chapter": "Chương",
   "previous": "TRƯỚC",

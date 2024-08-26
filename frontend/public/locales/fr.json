@@ -109,6 +109,10 @@
   "food-cookie": "Biscuit alimentaire",
   "recyclable-cardboard": "Carton recyclable",
 
+  "consignes": "Consignes",
+  "drag-and-drop-consignes": "Pour gagner ce jeu, vous devez trier les déchets dans les bonnes poubelles. Faites glisser et déposez les déchets dans la bonne poubelle. Si vous faites une erreur, le déchet retournera à sa position initiale. Bonne chance !",
+  "raining-waste-consignes": "Pour gagner ce jeu, vous devez attraper les bons déchets avec la poubelle. Les déchets tomberont du ciel. Vous gagnez lorsque vous attrapez 10 bons déchets. Bonne chance !",
+
   "chapter": "Chapitre",
   "previous": "PRÉCÉDENT",
   "next": "SUIVANT",
