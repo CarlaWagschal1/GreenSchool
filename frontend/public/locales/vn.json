@@ -19,9 +19,11 @@
   "profile": "Hồ sơ",
   "logout": "ĐĂNG XUẤT",
   "lessons": "Bài học",
+  "quizs": "Trò chơi",
   "manage-children": "Quản lý Trẻ em",
   "manage-lessons": "Quản lý Bài học",
   "manage-profile": "Quản lý Hồ sơ",
+  "manage-quizs": "Quản lý Trò chơi",
 
   "welcome-message1": "Tại đây, bạn có thể quản lý trẻ em, bài học và hồ sơ của mình.",
   "welcome-message2": "Nhấp vào các thẻ để truy cập các phần khác nhau.",
@@ -74,6 +76,9 @@
   "lesson-description": "Mô tả bài học",
   "file": "Tệp tin",
   "no-file-selected": "Chưa chọn tệp tin nào",
+  "delete-lesson-warning-title": "Bạn có chắc chắn muốn xóa bài học này không?",
+  "delete-lesson-warning": "Hành động này là không thể đảo ngược.",
+
 
   "chapter-creation": "TẠO CHƯƠNG MỚI",
   "chapter-name": "Tên chương",
@@ -141,5 +146,15 @@
   "time": "Thời gian",
   "errors": "Lỗi",
   "error": "Lỗi",
-  "score": "Điểm số"
+  "score": "Điểm số",
+
+  "quiz": "Trò chơi",
+  "delete-quiz-warning-title": "Bạn có chắc chắn muốn xóa trò chơi này không?",
+  "delete-quiz-warning": "Hành động này là không thể đảo ngược",
+  "quiz-list": "DANH SÁCH TRÒ CHƠI",
+  "new-quiz": "TRÒ CHƠI MỚI",
+  "quiz-creation": "TẠO TRÒ CHƠI MỚI",
+  "quiz-name": "Tên trò chơi",
+  "quiz-description": "Mô tả trò chơi"
+
 }

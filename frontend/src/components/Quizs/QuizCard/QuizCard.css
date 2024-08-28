@@ -1,4 +1,4 @@
-.lessons-manager-card {
+.quiz-card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -17,20 +17,20 @@
 }
 
 @media screen and (max-width: 1325px) {
-    .lessons-manager-card {
+    .quiz-card {
         max-width: 800px;
         min-width: 800px;
     }
 }
 
 @media screen and (max-width: 950px) {
-    .lessons-manager-card {
+    .quiz-card {
         max-width: 500px;
         min-width: 500px;
     }
 }
 
-.lessons-manager-card-content {
+.quiz-card-content {
     position: relative;
     display: grid;
     grid-template-columns: 65% 35%;
@@ -41,7 +41,7 @@
     width: 100%;
 }
 
-.lessons-manager-card-info {
+.quiz-card-info {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@
     width: 100%;
 }
 
-.lessons-manager-card-info h2 {
+.quiz-card-info h2 {
     font-family: Inter, sans-serif;
     font-size: 1.5rem;
     text-align: center;
@@ -66,7 +66,7 @@
     hyphens: auto;
 }
 
-.lessons-manager-card-description {
+.quiz-card-description {
     font-family: Inter, sans-serif;
     font-size: 1rem;
     text-align: center;
@@ -80,8 +80,7 @@
     hyphens: auto;
 }
 
-
-.lessons-manager-card-img-container{
+.quiz-card-img {
     width: 140px;
     height: 140px;
     position: relative;
@@ -91,7 +90,7 @@
     box-shadow: 0 0 10px var(--lessons-manager-card-img-shadow);
 }
 
-.lessons-manager-card-img-container img {
+.quiz-card-img img {
     position: absolute;
     top: 0;
     left: 0;
@@ -100,7 +99,7 @@
     object-fit: cover;
 }
 
-.lessons-manager-card-buttons {
+.quiz-card-btn {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -112,7 +111,9 @@
     justify-items: center;
 }
 
-.lesson-card-delete-warning-popup {
+
+
+.quiz-card-delete-warning-popup {
     font-family: Inter, sans-serif;
     z-index: 1;
     position: absolute;
@@ -124,7 +125,7 @@
     width: 95%;
 }
 
-.lesson-card-delete-warning-popup-content {
+.quiz-card-delete-warning-popup-content {
     position: relative;
     display: flex;
     align-items: center;
@@ -135,14 +136,14 @@
     padding: 10px;
 }
 
-.lesson-delete-title {
+.quiz-delete-title {
     font-size: 2rem;
     font-weight: bold;
     margin: 0 0 0 0;
     text-align: center;
 }
 
-.lesson-card-delete-warning-popup-content p {
+.quiz-card-delete-warning-popup-content p {
     position: relative;
     font-size: 1.2rem;
     text-align: center;
@@ -150,7 +151,7 @@
 }
 
 
-.lesson-card-delete-warning-popup-content-btn {
+.quiz-card-delete-warning-popup-content-btn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -160,13 +161,13 @@
 
 
 @media screen and (max-width: 1325px) {
-    .lesson-delete-title {
+    .quiz-delete-title {
         font-size: 1.5rem;
     }
 }
 
 @media screen and (max-width: 950px) {
-    .lesson-delete-title {
+    .quiz-delete-title {
         font-size: 1.4rem;
     }
 }

@@ -42,6 +42,24 @@ const {
     deleteChapterController
 } = require("../controllers/chaptersController");
 
+const {
+    getQuizsController,
+    getQuizByIdController,
+    createQuizController,
+    getQuizsByEducatorIdController,
+    deleteQuizController,
+    updateQuizController
+} = require("../controllers/quizsController");
+
+const {
+    getQuestionsController,
+    getQuestionByIdController,
+    createQuestionController,
+    getQuestionsByQuizIdController,
+    deleteQuestionController,
+    updateQuestionController
+} = require("../controllers/questionsController");
+
 const multer = require('multer');
 const path = require("path");
 
@@ -163,6 +181,77 @@ async function manageAPI(request, response) {
                 const lessonId = pathParts[4];
                 request.params = { lessonId };
                 await getChaptersByLessonIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/quizs') && method === 'GET') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4 && pathParts[3] !== 'educator') {
+                const quizId = pathParts[3];
+                request.params = { quizId };
+                await getQuizByIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/quizs') && method === 'DELETE') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const quizId = pathParts[3];
+                request.params = { quizId };
+                await deleteQuizController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/quizs') && method === 'PATCH') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const quizId = pathParts[3];
+                request.params = { quizId };
+                await updateQuizController(request, response);
+                return;
+            }
+        }
+
+
+        if(url.startsWith('/api/questions') && method === 'GET') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4 && pathParts[3] !== 'quiz') {
+                const questionId = pathParts[3];
+                request.params = { questionId };
+                await getQuestionByIdController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/questions') && method === 'DELETE') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const questionId = pathParts[3];
+                request.params = { questionId };
+                await deleteQuestionController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/questions') && method === 'PATCH') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 4) {
+                const questionId = pathParts[3];
+                request.params = { questionId };
+                await updateQuestionController(request, response);
+                return;
+            }
+        }
+
+        if(url.startsWith('/api/questions/quiz') && method === 'GET') {
+            const pathParts = url.split('/');
+            if(pathParts.length === 5) {
+                const quizId = pathParts[4];
+                request.params = { quizId };
+                await getQuestionsByQuizIdController(request, response);
                 return;
             }
         }
@@ -295,6 +384,54 @@ async function manageAPI(request, response) {
                             return response.status(500).json({ message: 'Chapter creation error', error: createChapterError.message });
                         }
                     });                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/quizs':
+                if (method === 'GET') {
+                    await getQuizsController(request, response);
+                } else if (method === 'POST') {
+                    upload.single('files')(request, response, async (err) => {
+                        if (err) {
+                            console.error('Multer error:', err);
+                            return response.status(500).json({ message: 'File upload error', error: err.message });
+                        }
+                        try {
+                            await createQuizController(request, response);
+                        } catch (createQuizError) {
+                            console.error('Create quiz error:', createQuizError);
+                            return response.status(500).json({ message: 'Quiz creation error', error: createQuizError.message });
+                        }
+                    });
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+
+            case '/api/quizs/educator':
+                if (method === 'GET') {
+                    await getQuizsByEducatorIdController(request, response);
+                } else {
+                    response.status(405).send('Method not allowed');
+                }
+                break;
+            case '/api/questions':
+                if (method === 'GET') {
+                    await getQuestionsController(request, response);
+                } else if (method === 'POST') {
+                    upload.single('files')(request, response, async (err) => {
+                        if (err) {
+                            console.error('Multer error:', err);
+                            return response.status(500).json({ message: 'File upload error', error: err.message });
+                        }
+                        try {
+                            await createQuestionController(request, response);
+                        } catch (createQuestionError) {
+                            console.error('Create question error:', createQuestionError);
+                            return response.status(500).json({ message: 'Question creation error', error: createQuestionError.message });
+                        }
+                    });
+                } else {
                     response.status(405).send('Method not allowed');
                 }
                 break;

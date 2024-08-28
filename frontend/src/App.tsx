@@ -23,6 +23,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ChildrenLessonPage from "./pages/ChildrenLessonPage/ChildrenLessonPage";
 import ChildrenLessonListPage from "./pages/ChildrenLessonListPage/ChildrenLessonListPage";
 import GameChoicePage from "./pages/GameChoicePage/GameChoicePage";
+import QuizManagerPage from "./pages/QuizManagerPage/QuizManagerPage";
 
 function App() {
 
@@ -85,6 +86,9 @@ function App() {
                     </ProtectedRouteEducator>}/>
                 <Route path="/profile" element={
                     <ProtectedRouteEducator childrenRoute={<ProfilePage/>}>
+                    </ProtectedRouteEducator>}/>
+                <Route path={"/quizs-manager"} element={
+                    <ProtectedRouteEducator childrenRoute={<QuizManagerPage/>}>
                     </ProtectedRouteEducator>}/>
 
             </Routes>

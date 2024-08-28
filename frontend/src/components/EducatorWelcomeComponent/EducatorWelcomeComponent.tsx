@@ -3,6 +3,7 @@ import Lesson from "../../assets/livre.png";
 import Profile from "../../assets/profil.png";
 import LogOut from "../../assets/logout.png";
 import Close from "../../assets/close.png";
+import Quiz from "../../assets/quiz.png";
 
 import "./EducatorWelcomeComponent.css";
 import {useNavigate} from "react-router-dom";
@@ -24,6 +25,11 @@ function EducatorWelcomeComponent() {
 
     const goToProfile = () => {
         navigate('/profile');
+    }
+
+    const goToQuizsManager = () => {
+        console.log("click")
+        navigate('/quizs-manager');
     }
 
     const logout = () => {
@@ -77,13 +83,13 @@ function EducatorWelcomeComponent() {
                             <p>{t('manage-lessons')}</p>
                         </div>
                     </div>
-                    <div className="card">
+                    <div className="card" onClick={goToQuizsManager}>
                         <div className="card-img">
-                            <img alt="coming soon" />
+                            <img src={Quiz} alt="quiz" />
                         </div>
                         <div className="card-content">
-                            <h2>Coming soon</h2>
-                            <p>Manage your coming soon</p>
+                            <h2>{t("quizs")}</h2>
+                            <p>{t("manage-quizs")}</p>
                         </div>
                     </div>
                     <div className="card" onClick={goToProfile}>

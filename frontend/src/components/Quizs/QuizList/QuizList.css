@@ -1,0 +1,10 @@
+.quiz-list-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 20px;
+    height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 10px;
+    margin: 20px 0 10px 0;
+}

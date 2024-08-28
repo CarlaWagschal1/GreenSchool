@@ -54,7 +54,7 @@ function LessonsListComponent() {
     return (
         <main>
             <div className="lessons-list-container">
-                <h1>{t('lesson')}</h1>
+                <h1 className="lessons-list-container-title">{t('lesson')}</h1>
                 <div className="lessons-list-content">
                     {(lessons.length === 0) ?
                         (<div className="no-lessons-found-container">

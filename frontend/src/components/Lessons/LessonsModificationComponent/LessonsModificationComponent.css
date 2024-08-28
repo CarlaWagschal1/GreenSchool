@@ -29,6 +29,8 @@
 
 .lessons-modification-infos h2 {
     padding-left: 100px;
+    width: 80%;
+    text-align: center;
 }
 
 .lessons-modification-description{
@@ -37,6 +39,7 @@
     overflow: auto;
     width: 80%;
     font-size: 1rem;
+    padding-left: 100px;
 }
 
 .lessons-modification-img-container {

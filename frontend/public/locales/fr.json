@@ -19,9 +19,11 @@
   "profile": "Profil",
   "logout": "DÉCONNEXION",
   "lessons": "Leçons",
+  "quizs": "Quizs",
   "manage-children": "Gérer vos Enfants",
   "manage-lessons": "Gérer vos Leçons",
   "manage-profile": "Gérer votre Profil",
+    "manage-quizs": "Gérer vos Quizs",
 
   "welcome-message1": "Ici, vous pouvez gérer vos enfants, vos leçons et votre profil.",
   "welcome-message2": "Cliquez sur les cartes pour accéder aux différentes sections.",
@@ -74,6 +76,9 @@
   "lesson-description": "Description de la leçon",
   "file": "Fichier",
   "no-file-selected": "Aucun fichier sélectionné",
+  "delete-lesson-warning-title": "Êtes-vous sûr de vouloir supprimer cette leçon ?",
+  "delete-lesson-warning": "Cette action est irréversible.",
+
 
   "chapter-creation": "CRÉER UN NOUVEAU CHAPITRE",
   "chapter-name": "Nom du chapitre",
@@ -139,5 +144,14 @@
   "time": "Temps",
   "errors": "Erreurs",
   "error": "Erreur",
-  "score": "Score"
+  "score": "Score",
+
+  "quiz": "Quiz",
+  "delete-quiz-warning-title": "Etes-vous sûr de vouloir supprimer ce quiz ?",
+  "delete-quiz-warning": "Cette action est irréversible.",
+  "quiz-list": "LISTE DES QUIZS",
+  "new-quiz": "NOUVEAU QUIZ",
+  "quiz-creation": "CRÉER UN NOUVEAU QUIZ",
+  "quiz-name": "Nom du quiz",
+  "quiz-description": "Description du quiz"
 }
