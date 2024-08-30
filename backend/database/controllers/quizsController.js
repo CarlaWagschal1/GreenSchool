@@ -100,14 +100,15 @@ async function deleteQuizController(request, response) {
 async function updateQuizController(request, response) {
     const {quizId} = request.params;
     const {name, description} = request.body;
-    const imageUrl = request.file ? `/uploads/${request.file.filename}` : null;
 
-    if (!quizId || !name || !description || !imageUrl) {
+    if (!quizId || !name || !description) {
         response.status(400).json({message: 'Id, name, description, and image url are required'})
         return;
     }
 
     try {
+        const quiz = await getQuizById(quizId);
+        const imageUrl = quiz.imageUrl;
         await updateQuiz(quizId, name, description, imageUrl);
         response.status(200).json({message: 'Quiz updated successfully'});
     }

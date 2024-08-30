@@ -47,7 +47,8 @@ async function createQuestionController(request, response) {
     }
 
     try {
-        await createQuestion(quizId, question, options, correctOption, imageUrl);
+        const optionsArray = JSON.parse(options);
+        await createQuestion(quizId, question, optionsArray, correctOption, imageUrl);
         response.status(201).json({message: 'Question created'});
     }
     catch (error) {
@@ -93,15 +94,16 @@ async function deleteQuestionController(request, response) {
 async function updateQuestionController(request, response) {
     const {questionId} = request.params;
     const {question, options, correctOption} = request.body;
-    const imageUrl = request.file ? `/uploads/${request.file.filename}` : null;
 
-    if (!questionId || !question || !options || !correctOption || !imageUrl) {
+    if (!questionId || !question || !options || !correctOption) {
         response.status(400).json({message: 'Id, question, options, and correct option are required'})
         return;
     }
 
     try {
-        await updateQuestion(questionId, question, options, correctOption);
+        const questionBefore = await getQuestionById(questionId);
+        const imageUrl = questionBefore.imageUrl;
+        await updateQuestion(questionId, question, options, correctOption, imageUrl);
         response.status(200).json({message: 'Question updated'});
     }
     catch (error) {

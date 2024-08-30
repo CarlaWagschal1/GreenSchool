@@ -1,0 +1,55 @@
+.quiz-edit {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: Inter, sans-serif;
+}
+
+.quiz-edit h1 {
+    position: relative;
+    font-family: Inter, sans-serif;
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+.quiz-edit-input {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    font-family: Inter, sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
+
+.quiz-edit-input input[type="text"] {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--chapter-creation-input);
+    font-family: Inter, sans-serif;
+    width: 100%;
+}
+
+.quiz-edit-input textarea {
+    position: relative;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--vert-fonce);
+    background-color: var(--quiz-creation-input);
+    font-family: Inter, sans-serif;
+    width: 100%;
+    height: 90px;
+    resize: none;
+    white-space: pre-wrap;
+}

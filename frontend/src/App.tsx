@@ -24,6 +24,7 @@ import ChildrenLessonPage from "./pages/ChildrenLessonPage/ChildrenLessonPage";
 import ChildrenLessonListPage from "./pages/ChildrenLessonListPage/ChildrenLessonListPage";
 import GameChoicePage from "./pages/GameChoicePage/GameChoicePage";
 import QuizManagerPage from "./pages/QuizManagerPage/QuizManagerPage";
+import QuizModificationPage from "./pages/QuizModificationPage/QuizModificationPage";
 
 function App() {
 
@@ -89,6 +90,9 @@ function App() {
                     </ProtectedRouteEducator>}/>
                 <Route path={"/quizs-manager"} element={
                     <ProtectedRouteEducator childrenRoute={<QuizManagerPage/>}>
+                    </ProtectedRouteEducator>}/>
+                <Route path="/quiz-modification/:quizId" element={
+                    <ProtectedRouteEducator childrenRoute={<QuizModificationPage/>}>
                     </ProtectedRouteEducator>}/>
 
             </Routes>

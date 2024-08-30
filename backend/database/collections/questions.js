@@ -15,7 +15,8 @@ async function getQuestions() {
 async function getQuestionById(questionId) {
     const db = getDB();
     try {
-        return await db.collection('questions').findOne({ _id: questionId });
+        const objectId = new ObjectId(questionId);
+        return await db.collection('questions').findOne({ _id: objectId });
     }
     catch (error) {
         console.log("Error in get Question by id:", error);

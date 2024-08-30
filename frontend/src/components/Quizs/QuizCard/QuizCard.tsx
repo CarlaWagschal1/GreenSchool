@@ -5,6 +5,7 @@ import {useTranslation} from "react-i18next";
 import axios from "axios";
 
 import "./QuizCard.css";
+import {useNavigate} from "react-router-dom";
 
 interface QuizCardProps {
     quiz: Quiz;
@@ -13,6 +14,7 @@ interface QuizCardProps {
 
 function QuizCard(props: QuizCardProps) {
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const showWarning = () => {
         const popup = document.getElementById("delete-warning-" + props.quiz._id) as HTMLElement;
@@ -43,7 +45,7 @@ function QuizCard(props: QuizCardProps) {
     }
 
     const goToEdit = () => {
-        console.log('go to edit');
+        navigate('/quiz-modification/' + props.quiz._id);
     }
 
     return (

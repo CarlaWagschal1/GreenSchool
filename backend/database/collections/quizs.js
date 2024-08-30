@@ -15,7 +15,8 @@ async function getQuizs() {
 async function getQuizById(quizId) {
     const db = getDB();
     try {
-        return await db.collection('quizs').findOne({ _id: quizId });
+        const objectId = new ObjectId(quizId);
+        return await db.collection('quizs').findOne({ _id: objectId });
     }
     catch (error) {
         console.log("Error in get Quiz by id:", error);

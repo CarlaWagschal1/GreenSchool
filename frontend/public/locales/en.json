@@ -158,6 +158,17 @@
   "new-quiz": "NEW QUIZ",
   "quiz-creation": "CREATE NEW QUIZ",
   "quiz-name": "Quiz Name",
-  "quiz-description": "Quiz Description"
+  "quiz-description": "Quiz Description",
+
+  "edit-quiz": "EDIT QUIZ",
+  "question-creation": "CREATE NEW QUESTION",
+  "question-name": "Question",
+  "question-options": "Options",
+  "question-option": "Option",
+  "no-question": "No question found",
+  "question-edit": "EDIT QUESTION",
+  "question-list": "QUESTION LIST",
+    "new-question": "NEW QUESTION"
+
 
 }

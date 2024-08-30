@@ -1,0 +1,141 @@
+.quizs-modification-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.quizs-modification-header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.quizs-modification-infos {
+    position: relative;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    width: 100%;
+    gap: 10px;
+}
+
+.quizs-modification-infos-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.quizs-modification-infos h2 {
+    padding-left: 140px;
+    width: 100%;
+    text-align: center;
+}
+
+.quizs-modification-description{
+    white-space: pre-wrap;
+    text-align: center;
+    overflow: auto;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.quizs-modification-edit {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    scale: 0.7;
+}
+
+.quizs-modification-img-container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #000000;
+    box-shadow: 0 0 10px var(--lessons-manager-card-img-shadow);
+}
+
+.quizs-modification-img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.quizs-modification-chapters {
+    position: relative;
+    width: 100%;
+}
+
+.quizs-modification-buttons {
+    position: absolute;
+    left: 0;
+    top: 0;
+    scale: 0.7;
+}
+
+
+.quizs-modification-popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.quizs-modification-popup-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.quizs-modification-popup-css {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--chapter-creation-popup-background);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px var(--chapter-creation-popup-background-box-shadow);
+    width: 500px;
+    height: auto;
+}
+
+
+.quizs-modification-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    scale: 0.7;
+}
+
+.quizs-modification-popup-close img {
+    width: 30px;
+    height: 30px;
+}
+
+

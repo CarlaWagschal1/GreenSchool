@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     width: 1300px;
-    height: calc(100vh - 190px);
+    height: calc(100vh - 200px);
     overflow-y: auto;
     gap: 20px;
 }
