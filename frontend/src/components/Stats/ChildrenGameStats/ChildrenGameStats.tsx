@@ -17,11 +17,11 @@ interface gameStatsInterface {
 
 const gameMock = [
     {
-    name: 'Game 1',
+    name: 'What is recyclable ?',
     id: 'game1'
     },
     {
-    name: 'Game 2',
+    name: 'How to sort waste ?',
     id: 'game2'
     },
     {
@@ -134,7 +134,12 @@ function ChildrenGameStats() {
                 startDate = new Date(0);
                 break;
         }
-        return scores.filter(score => new Date(score.date) >= startDate);
+        const sc = scores.filter(score => new Date(score.date) >= startDate);
+        //trier par date
+        sc.sort((a, b) => {
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+        return sc;
     };
 
     const calculateStats = (filteredScores: ScoreInterface[]) => {

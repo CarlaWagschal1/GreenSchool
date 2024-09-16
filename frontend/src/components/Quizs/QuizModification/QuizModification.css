@@ -3,8 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    height: 100%;
+    font-family: Inter, sans-serif;
 }
 
 .quizs-modification-header {
@@ -47,6 +49,7 @@
     overflow: auto;
     width: 100%;
     font-size: 1rem;
+    padding-left: 140px;
 }
 
 .quizs-modification-edit {

@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    font-family: Inter, sans-serif;
 }
 
 .lessons-modification-header {
@@ -20,11 +21,20 @@
 
 .lessons-modification-infos {
     position: relative;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    width: 100%;
+    gap: 10px;
+}
+
+.lessons-modification-edit {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    scale: 0.7;
 }
 
 .lessons-modification-infos h2 {

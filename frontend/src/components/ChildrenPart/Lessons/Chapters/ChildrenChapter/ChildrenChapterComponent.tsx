@@ -54,7 +54,7 @@ function ChildrenChapterComponent(props: ChildrenChapterComponentProps) {
                         <p>{props.chapter?.description}</p>
                     </div>
                     <div className="chapter-image">
-                        <img src={props.chapter?.imageUrl} alt="chapter" />
+                        <img src={`http://localhost:5000${props.chapter?.imageUrl}`} alt="chapter" />
                     </div>
                 </div>
                 <div className="chapter-footer">

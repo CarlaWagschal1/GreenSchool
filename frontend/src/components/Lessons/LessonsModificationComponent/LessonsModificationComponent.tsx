@@ -52,8 +52,13 @@ function LessonsModificationComponent() {
             <div className="lessons-modification-content">
                 <div className="lessons-modification-header">
                     <div className="lessons-modification-infos">
-                        <h2>{lesson?.name}</h2>
-                        <p className="lessons-modification-description">{lesson?.description}</p>
+                        <div className="lessons-modification-infos-header">
+                            <h2>{lesson?.name}</h2>
+                            <p className="lessons-modification-description">{lesson?.description}</p>
+                        </div>
+                        <div className={"lessons-modification-edit"}>
+                            <ButtonAppComponent content={t('edit-lesson')} type={"classic"} />
+                        </div>
                     </div>
                     <div className="lessons-modification-img-container">
                         <img src={"http://localhost:5000" + lesson?.imageUrl} alt={lesson?.name} />
